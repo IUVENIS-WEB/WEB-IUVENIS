@@ -17,7 +17,8 @@ class CreateOrganizacaoTable extends Migration
             $table->increments("id");
             $table->string("nome");
             $table->binary("logo");
-            $table->string("descricao");
+            $table->string("descricao");    
+            $table->foreign("user_id")->references("id")->on("users");
         });
     }   
 
