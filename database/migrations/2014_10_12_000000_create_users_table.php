@@ -17,11 +17,11 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->string('sobrenome');
-            $table->string("bio");
-            $table->string("descricao");
-            $table->date("nascimento");
+            $table->string('bio');
+            $table->string('descricao');
+            $table->date('nascimento');
             $table->string('email')->unique();
-            $table->password_hash('senha');
+            $table->passwo('senha');
             $table->rememberToken();
             $table->timestamps();
         });
