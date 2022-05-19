@@ -13,12 +13,15 @@ class CreateOrganizacaoTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('organizacao');
         Schema::create('organizacao', function (Blueprint $table) {
-            $table->increments("id");
-            $table->string("nome");
-            $table->binary("logo");
-            $table->string("descricao");    
-            $table->foreign("user_id")->references("id")->on("users");
+            $table->boolean('adm_power');
+            $table->increments('id')->unsigned();;
+            $table->string('nome');
+            $table->binary('logo');
+            $table->string('descricao');    
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }   
 
