@@ -25,14 +25,7 @@ class CreatePostsTable extends Migration
             $table->string('link_midia');
             $table->float('tempo')->unsigned();
             $table->date('lançamento');
-
-            /* 
-            O que devemos usar?
-            $table-?('arquivo');
-            */
-            //foreign keys
-            //$table->integer('user_id')->unsigned();
-            //$table->foreign('user_id')->references('id')->on('users');
+            $table->blob('arquivo');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('organizacao_id')->unsigned();
