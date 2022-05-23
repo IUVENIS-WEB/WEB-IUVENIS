@@ -17,8 +17,10 @@ class CreateOrganizacaoTable extends Migration
         Schema::create('organizacao', function (Blueprint $table) {
             $table->boolean('adm_power');
             $table->increments('id')->unsigned();;
+            $table->integer('posts')->unsigned();
             $table->string('nome');
             $table->binary('logo');
+            $table->binary('logo_alternativa');
             $table->string('descricao');    
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');

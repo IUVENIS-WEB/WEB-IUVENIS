@@ -17,6 +17,8 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->boolean('adm_power');
             $table->increments('id')->unsigned();
+            $table->binary('foto');
+            $table->integer('posts');
             $table->string('nome');
             $table->string('sobrenome');
             $table->string('bio');

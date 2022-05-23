@@ -18,14 +18,15 @@ class CreatePostsTable extends Migration
             //colums
             $table->increments('id')->unsigned();;
             $table->string('título');
-            $table->string('descricao');    
+            $table->string('resumo');    
+            $table->binary('imagem');
             $table->string('tipo');
             $table->string('link_evento');
             $table->date('data_evento');
             $table->string('link_midia');
             $table->float('tempo')->unsigned();
             $table->date('lançamento');
-            $table->blob('arquivo');
+            $table->binary('arquivo');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('organizacao_id')->unsigned();
