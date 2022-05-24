@@ -13,7 +13,6 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('posts');
         Schema::create('posts', function (Blueprint $table) {
             //colums
             $table->increments('id')->unsigned();;
