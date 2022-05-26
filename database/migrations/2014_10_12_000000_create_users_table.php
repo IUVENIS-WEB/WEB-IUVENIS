@@ -14,7 +14,10 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
+            $table->boolean('adm_power');
+            $table->increments('id')->unsigned();
+            $table->binary('foto');
+            $table->integer('posts');
             $table->string('nome');
             $table->string('sobrenome');
             $table->string('bio');
