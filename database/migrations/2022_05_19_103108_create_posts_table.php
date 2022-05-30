@@ -26,6 +26,9 @@ class CreatePostsTable extends Migration
             $table->float('tempo')->unsigned();
             $table->date('lançamento');
             $table->binary('arquivo');
+            $table->string('tags');
+            $table->integer('denunciasContagem');
+            $table->boolean('excluido');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('organizacao_id')->unsigned();
