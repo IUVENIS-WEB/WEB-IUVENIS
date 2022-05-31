@@ -15,9 +15,10 @@
     <main class="container">
         <h2>Olá novamente!</h2>
         <h3>É sempre bom tê-la(o) por aqui</h3>
-        <form action="">
+        <form action="{{action('LoginController@attempt')}}" method="POST">
+            {{ csrf_field() }}
             <div class="input-field">
-                <input type="email" name="username" id="username"
+                <input type="email" name="email" id="email"
                     placeholder="E-mail" required>
             </div>
             <div class="input-field2">

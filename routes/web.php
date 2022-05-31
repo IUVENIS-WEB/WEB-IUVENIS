@@ -35,3 +35,4 @@ Route::get('/pesquisar/{busca}',['as'=>'iuvenis.pesquisar', 'uses'=>'IuvenisCont
 Route::get('/login',['as'=>'login.index', 'uses'=>'LoginController@index']);
 Route::get('/recuperarSenha',['as'=>'login.recuperarSenha', 'uses'=>'LoginController@recuperarSenha']);
 Route::post('/confirmacaoEnvio',['as'=>'login.confirmacaoEnvio', 'uses'=>'LoginController@confirmacaoEnvio']);
+Route::post('/attempt',['as'=>'login.attempt', 'uses'=>'LoginController@attempt']);
