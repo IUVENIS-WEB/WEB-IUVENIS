@@ -32,6 +32,10 @@ class MailController extends Mailable
         return $this->from( config('mail.from.address'))
         ->subject('Recuperação de senha')
         ->view('email.message')
+        ->attach(public_path('images/logo.png'),[
+            'as' => 'iuvenis.png',
+            'mime' => 'image/png',
+        ])
         ->with('data', $this->data);
     }
 }
