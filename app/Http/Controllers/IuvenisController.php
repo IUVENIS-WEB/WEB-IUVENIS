@@ -9,7 +9,10 @@ class IuvenisController extends Controller
     //index/home
     public function index()
     {
-        return view('iuvenis.index');   
+        $isLoggedIn = null;
+        if($isLoggedIn)
+            return view('iuvenis.index');
+        return view('login.index');
     }
     //explorar
     public function explorar(){

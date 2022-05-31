@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('login.index');
+// });
 
 /*
     Criar as rotas, controllers e arquivos .balde.php
@@ -31,11 +31,3 @@ Route::get('/evento',['as'=>'iuvenis.evento', 'uses'=>'IuvenisController@evento'
 Route::get('/mais/{opcoes}',['as'=>'iuvenis.mais', 'uses'=>'IuvenisController@mais']);
 Route::get('/pesquisar/{busca}',['as'=>'iuvenis.pesquisar', 'uses'=>'IuvenisController@pesquisar']);
 Route::get('/login',['as'=>'iuvenis.login', 'uses'=>'IuvenisController@login']);
-
-
-
-
-
-
-
-
