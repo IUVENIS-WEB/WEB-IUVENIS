@@ -30,7 +30,7 @@
             </div>
             <div class="input-field"><input type="submit" value="Entrar"></div>
         </form>
-        <a href="">Recuperar senha</a>
+        <a href="{{route("login.recuperarSenha")}}">Recuperar senha</a>
 
         <div class="footer">
             <div class="flex">

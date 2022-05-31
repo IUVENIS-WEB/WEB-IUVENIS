@@ -30,4 +30,8 @@ Route::get('/video',['as'=>'iuvenis.video', 'uses'=>'IuvenisController@video']);
 Route::get('/evento',['as'=>'iuvenis.evento', 'uses'=>'IuvenisController@evento']);
 Route::get('/mais/{opcoes}',['as'=>'iuvenis.mais', 'uses'=>'IuvenisController@mais']);
 Route::get('/pesquisar/{busca}',['as'=>'iuvenis.pesquisar', 'uses'=>'IuvenisController@pesquisar']);
-Route::get('/login',['as'=>'iuvenis.login', 'uses'=>'IuvenisController@login']);
+
+//LOGIN
+Route::get('/login',['as'=>'login.index', 'uses'=>'LoginController@index']);
+Route::get('/recuperarSenha',['as'=>'login.recuperarSenha', 'uses'=>'LoginController@recuperarSenha']);
+Route::post('/confirmacaoEnvio',['as'=>'login.confirmacaoEnvio', 'uses'=>'LoginController@confirmacaoEnvio']);
