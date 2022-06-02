@@ -32,18 +32,16 @@ class LoginController extends Controller
     }
 
     public function attempt(Request $req){
-        $email = $req->input('email');
-        $password =  $req->input('password');
-        
-        // $user = new User([
-        //     'email' => $email,
-        //     'senha' => Hash::make($password)
-        // ]);
-        
-        // $user->save();
+        $this->validate($req, [
+            'email' => 'required',
+            'password' => 'required'
+        ],[
+            'email.required' => 'O email é obrigatório.',
+            'password.required' => 'A senha é obrigatória.'
+        ]);
 
         //Tenta realizar o login
-        if(Auth::attempt(['email' => $email, 'password' => Hash::make($password)])){
+        if(Auth::attempt(['email' => $req->email, 'password' => Hash::make($req->passowrd)])){
                 return view('welcome');
         }
 
