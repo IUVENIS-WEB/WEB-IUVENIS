@@ -31,7 +31,6 @@ class MailController extends Mailable
     {
         return $this->from( config('mail.from.address'))
         ->subject('Recuperação de senha')
-        ->view('email.message')
-        ->with('data', $this->data);
+        ->view('email.message', ['data' => $this->data]);
     }
 }
