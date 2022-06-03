@@ -12,7 +12,7 @@
    <h1 style="color: #213042; align-self: center;">Olá! {{ $data['nome']}}</h1>
    <P>Esqueceu sua senha? </P>
    <p>Não se preocupe, você pode resetar sua senha na Iuvenis clicando no link abaixo:</P>
-   <a style="text-decoration: none;" href="#"><div style="   background: var(--azul-escuro);
+   <a style="text-decoration: none;" href="{{ route('login.redefinirSenha', ['email' => $data['email'], 'token' => $data['token']]) }}"><div style="   background: var(--azul-escuro);
        cursor: pointer;
        color: white;
        background-color: #213042;
