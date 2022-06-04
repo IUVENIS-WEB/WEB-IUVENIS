@@ -7,14 +7,17 @@ use App\Mail\MailController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+
 class LoginController extends Controller
 {
     public function index(){
         return view('login.index');
     }
 
-    public function recuperarSenha(){
-        return view("login.recuperarSenha");
+    public function recuperarSenha(Request $req){
+        error_log($req->email);
+        return view("login.recuperarSenha", [ 'email' => $req->email]);
     }
 
     public function confirmacaoEnvio(Request $req){
@@ -65,5 +68,31 @@ class LoginController extends Controller
     {
         DB::table('users')->where( 'email' , '=' , $req-> email ) ->update(["senha" => $req->senha]);
         return view('iuvenis.index');
+    }
+
+    public function attempt(Request $req){
+        $this->validate($req, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ],[
+            'email.required' => 'O email é obrigatório.',
+            'email.email' => 'O email deve ser um endereço de email válido.',
+            'password.required' => 'A senha é obrigatória.'
+        ]);
+
+        //Não é necessário fazer o hash da senha antes de realizar o attempt
+        //pois o Auth implicitamente o faz.
+        $attempt = Auth::attempt(['email' => $req->email, 'password' => $req->password]);
+        if($attempt){
+            return view('welcome');
+        }
+        else{
+            return redirect('login')->with('fail', [
+                'email' => $req->email,
+                'errors' => [
+                    'O email ou senha está invalido.'
+                ]
+            ]);
+        }
     }
 }
