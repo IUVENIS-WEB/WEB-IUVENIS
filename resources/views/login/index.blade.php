@@ -19,19 +19,24 @@
     <main class="container">
         <h2>Olá novamente!</h2>
         <h3>É sempre bom tê-la(o) por aqui</h3>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
+        <div class="alert alert-danger">
+            <ul>
+                @if ($errors->any())
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
+                    @endforeach 
+                @endif
+                @if(session('fail.errors'))
+                    @foreach (session('fail.errors') as $error)
+                        <li>{{ $error }}</li>
                     @endforeach
-                </ul>
-            </div>
-        @endif
+                @endif
+            </ul>
+        </div>
         <form action="{{ action('LoginController@attempt') }}" method="POST">
             {{ csrf_field() }}
             <div class="input-field">
-                <input type="email" name="email" id="email" placeholder="E-mail" required>
+                <input type="email" name="email" id="email" placeholder="E-mail" value="{{session('fail.email')}}" required>
             </div>
             <div class="input-field2">
                 <input type="password" name="password" id="password" placeholder="Senha" maxlength="20" required>
@@ -42,7 +47,7 @@
             </div>
             <div class="input-field"><input type="submit" value="Entrar"></div>
         </form>
-        <a href="{{ route('login.recuperarSenha') }}">Recuperar senha</a>
+        <a href="{{ action('LoginController@recuperarSenha', ['email' => session('fail.email')]) }}">Recuperar senha</a>
 
         <div class="footer">
             <div class="flex">

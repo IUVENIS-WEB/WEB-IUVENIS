@@ -16,8 +16,9 @@ class LoginController extends Controller
         return view('login.index');
     }
 
-    public function recuperarSenha(){
-        return view("login.recuperarSenha");
+    public function recuperarSenha(Request $req){
+        error_log($req->email);
+        return view("login.recuperarSenha", [ 'email' => $req->email]);
     }
 
     public function confirmacaoEnvio(Request $req){
@@ -33,18 +34,27 @@ class LoginController extends Controller
 
     public function attempt(Request $req){
         $this->validate($req, [
-            'email' => 'required',
+            'email' => 'required|email',
             'password' => 'required'
         ],[
             'email.required' => 'O email é obrigatório.',
+            'email.email' => 'O email deve ser um endereço de email válido.',
             'password.required' => 'A senha é obrigatória.'
         ]);
 
-        //Tenta realizar o login
-        if(Auth::attempt(['email' => $req->email, 'password' => Hash::make($req->passowrd)])){
-                return view('welcome');
+        //Não é necessário fazer o hash da senha antes de realizar o attempt
+        //pois o Auth implicitamente o faz.
+        $attempt = Auth::attempt(['email' => $req->email, 'password' => $req->password]);
+        if($attempt){
+            return view('welcome');
         }
-
-        return view('login.index');
+        else{
+            return redirect('login')->with('fail', [
+                'email' => $req->email,
+                'errors' => [
+                    'O email ou senha está invalido.'
+                ]
+            ]);
+        }
     }
 }
