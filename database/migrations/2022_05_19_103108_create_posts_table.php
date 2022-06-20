@@ -30,6 +30,9 @@ class CreatePostsTable extends Migration
             $table->integer('denunciasContagem');
             $table->boolean('excluido');
             $table->integer('user_id')->unsigned();
+            $table->boolean('comentario')->default(0);
+            $table->integer('pai_id')->unsigned();
+            $table->foreign('pai_id')->references('id')->on('posts');
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('organizacao_id')->unsigned();
             $table->foreign('organizacao_id')->references('id')->on('organizacao');
