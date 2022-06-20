@@ -23,30 +23,22 @@ class LoginController extends Controller
     public function confirmacaoEnvio(Request $req){
         $email = $req->input("email");
         //Procurando no banco o usuário a partir do email dado
-        $user = DB::table('users')->where( 'email' , '=' , $req-> email ) ->get();
+        $user = DB::table('users')->where( 'email' , '=' , $req-> email ) ->first();
         //Create Password Reset Token
+        $token = str_random(60);
         DB::table('password_resets')->insert([
             'email' => $req->email,
-            'token' => str_random(60),
+            'token' => $token,
             'created_at' => Carbon::now()
         ]);
-        //Get the token just created above
-        $token = DB::table('password_resets')
-            ->where('email', $req->email)->get();
-        if(count($user) < 1)
-        {
-            return view('login.index');
-        }
-        else
-        {
-            $us = (array)$user[0];
-            $ts = (array)$token[0];
-            Mail::to($email)->send(new MailController(["nome" => $us['nome'],
-                                                       "email" => $us['email'], 
-                                                       "token" => $ts['token']]));
-            return view('login.confirmacaoEnvio');
-        }
-        $user = null;
+        
+        $data = [
+            'email' => $req->email,
+            'nome' => $user->nome,
+            'token' => $token
+        ];
+        Mail::to($req->email)->send(new MailController($data, 'Redefinição de senha', 'email.message'));
+        return view('login.confirmacaoEnvio');
     }
     
     public function redefinirSenha($email, $token)

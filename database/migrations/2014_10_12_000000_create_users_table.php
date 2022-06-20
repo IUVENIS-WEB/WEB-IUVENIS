@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->increments('id')->unsigned();
             // $table->binary('foto');
             // $table->integer('posts');
-            // $table->string('nome');
+            $table->string('nome');
             // $table->string('sobrenome');
             // $table->string('bio');
             // $table->string('descricao');
