@@ -26,6 +26,8 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::disableForeignKeyConstraints();
+        Schema::drop('tags');
+        Schema::enableForeignKeyConstraints();
     }
 }
