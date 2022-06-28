@@ -14,15 +14,14 @@ class CreateOrganizacaoTable extends Migration
     public function up()
     {
         Schema::create('organizacaos', function (Blueprint $table) {
-            $table->boolean('adm_power');
-            $table->increments('id')->unsigned();;
-            $table->integer('posts')->unsigned();
+            //$table->boolean('adm_power');
+            $table->increments('id')->unsigned();
+            $table->integer('posts')->unsigned()->default(0);
             $table->string('nome');
-            $table->binary('logo');
-            $table->binary('logo_alternativa');
-            $table->string('descricao');    
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->binary('logo')->nullable();
+            $table->binary('logo_alternativa')->nullable();
+            $table->string('descricao')->nullable();
+            $table->timestamps();
         });
     }   
 
@@ -33,6 +32,8 @@ class CreateOrganizacaoTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::disableForeignKeyConstraints();
+        Schema::drop('organizacaos');
+        Schema::enableForeignKeyConstraints();
     }
 }
