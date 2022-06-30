@@ -14,7 +14,11 @@ use Illuminate\Http\Request;
 */
 //Use como referência: https://www.toptal.com/laravel/restful-laravel-api-tutorial
 
-Route::get('/post/{post}', 'PostController@show');
+Route::group(['prefix' => 'post'], function (){
+    Route::get('all', 'PostController@showAll');
+    Route::get('grouped', 'PostController@showAllGrouped');
+    Route::get('{post}', 'PostController@show');
+});
 
 Route::get('/user', function (Request $request) {
     return $request->user();
