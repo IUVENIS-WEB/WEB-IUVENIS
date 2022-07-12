@@ -26,8 +26,11 @@ class AlterSalvosTable extends Migration
      */
     public function down()
     {
+        // Schema::disableForeignKeyConstraints();
         Schema::table('salvos', function (Blueprint $table) {
+            $table->dropForeign(['colecao_id']);
             $table->dropColumn('colecao_id');
         });
+        // Schema::enableForeignKeyConstraints();
     }
 }
