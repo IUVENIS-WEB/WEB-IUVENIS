@@ -14,7 +14,7 @@ class CreateOrganizacaoTable extends Migration
     public function up()
     {
         Schema::create('organizacaos', function (Blueprint $table) {
-            //$table->boolean('adm_power');
+            $table->boolean('adm_power');
             $table->increments('id')->unsigned();
             $table->integer('posts')->unsigned()->default(0);
             $table->string('nome');
