@@ -12,6 +12,9 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//Use como referência: https://www.toptal.com/laravel/restful-laravel-api-tutorial
+
+Route::get('/post/{post}', 'PostController@show');
 
 Route::get('/user', function (Request $request) {
     return $request->user();
