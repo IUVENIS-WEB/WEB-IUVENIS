@@ -43,7 +43,7 @@ class EnvioController extends Controller
                 'mensagem' => $request->mensagem
             ];
 
-        Mail::to($data['email'])->send(new MailController($data, 'Recuperação de senha', 'email.message'));
+        Mail::to($data['email'])->send(new MailController($data));
         return view('email.envio');
     }
 
