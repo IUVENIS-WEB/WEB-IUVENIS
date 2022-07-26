@@ -1,10 +1,10 @@
-@inject('tagRepository', 'App\Contratcs\ITagRepository')
+@inject('tagRepository', 'App\Contracts\ITagRepository')
 <div class="sidebar">
             <div class="conteudo-sidebar">
                 <div class="topicos-recomendados">
                     <h4>Tópicos recomendados</h4>
                     <div class="tags-sidebar-recomendado">
-                        @forelse ($tagRepository->getMostViewedTags as $tag)
+                        @forelse ($tagRepository->getMostViewedTags() as $tag)
                             <a href=""><div class="tag">{{$tag->name}}</div></a>
                         @empty
                             
