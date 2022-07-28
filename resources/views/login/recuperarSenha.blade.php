@@ -1,6 +1,6 @@
-@extends('layout.siteLogin')
-@section('titulo','Recuperar Senha')
-@section('conteudo')
+@extends('layouts.siteLogin')
+@section('title','Recuperar Senha')
+@section('content')
     <main class="container">
         <h3>Coloque seu email aqui para criarmos uma solicitação de recuperação de senha.</h3>
         <form method="POST" action="{{action("LoginController@confirmacaoEnvio")}}">

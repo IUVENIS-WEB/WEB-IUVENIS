@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTagsTable extends Migration
+class CreateColecaosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
+        Schema::create('colecaos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+
             $table->string('nome');
 
-            $table->timestamps();
+            $table->integer('creator_id')->unsigned();
+            $table->foreign('creator_id')->references('id')->on('users');
         });
     }
 
@@ -29,7 +32,7 @@ class CreateTagsTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('colecaos');
         Schema::enableForeignKeyConstraints();
     }
 }

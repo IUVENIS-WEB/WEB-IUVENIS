@@ -37,3 +37,9 @@ Route::get('/recuperarSenha',['as'=>'login.recuperarSenha', 'uses'=>'LoginContro
 Route::post('/confirmacaoEnvio',['as'=>'login.confirmacaoEnvio', 'uses'=>'LoginController@confirmacaoEnvio']);
 Route::get('/redefinirSenha/{email}/{token}',['as'=>'login.redefinirSenha', 'uses'=>'LoginController@redefinirSenha']);
 Route::put('/definirNovaSenha',['as'=>'login.definirNovaSenha', 'uses' =>'LoginController@definirNovaSenha']);
+Route::post('/attempt',['as'=>'login.attempt', 'uses'=>'LoginController@attempt']);
+
+//TESTE
+Route::get('/explorar', function (){
+    return view('explorar.index');
+});
