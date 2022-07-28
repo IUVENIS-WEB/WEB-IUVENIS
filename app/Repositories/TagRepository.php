@@ -12,11 +12,11 @@ class TagRepository extends Repository implements ITagRepository
         function getMostViewedTags($take = 10)
         {
                 return DB::table('post_tags')
-                        ->select(DB::raw('count(*) as tag_count, tags.id, tags.name'))
+                        ->select(DB::raw('count(*) as tag_count, tags.id, tags.nome'))
                         ->join('tags', 'post_tags.tag_id', '=', 'tags.id')
                         ->orderBy('tag_count', 'desc')
                         ->groupBy('tags.id')
-                        ->groupBy('tags.name')
+                        ->groupBy('tags.nome')
                         ->take($take)
                         ->get();
         }

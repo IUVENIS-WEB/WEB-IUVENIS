@@ -9,7 +9,8 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
         'resumo' => $faker->sentence,
         'tipo' => $faker->randomElement(['evento', 'video', 'artigo']),
         'excluido' => false,
-        'user_id' => $faker->randomElement($userArray),
+        'imagem' => 'post.png',
+        'autor_id' => $faker->randomElement($userArray),
         'organizacao_id' => $faker->randomElement($orgArray)
     ];
 });

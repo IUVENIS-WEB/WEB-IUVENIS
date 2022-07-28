@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSalvosTable extends Migration
+class CreatePostViewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,20 @@ class CreateSalvosTable extends Migration
      */
     public function up()
     {
-
-        Schema::create('salvos', function (Blueprint $table) {
+        Schema::create('post_views', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+
+            $table->string("url");
+            $table->string("session_id");
+            $table->string("ip");
+            $table->string("agent");
+            
             $table->integer('user_id')->unsigned();
             $table->integer('post_id')->unsigned();
-            $table->integer('colecao_id')->unsigned();
             
-            $table->foreign('colecao_id')->references('id')->on('colecaos');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -34,8 +37,6 @@ class CreateSalvosTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('salvos');
-        Schema::enableForeignKeyConstraints();
+        Schema::dropIfExists('post_views');
     }
 }

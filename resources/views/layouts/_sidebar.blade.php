@@ -5,7 +5,7 @@
                     <h4>Tópicos recomendados</h4>
                     <div class="tags-sidebar-recomendado">
                         @forelse ($tagRepository->getMostViewedTags() as $tag)
-                            <a href=""><div class="tag">{{$tag->name}}</div></a>
+                            <a href=""><div class="tag">{{$tag->nome}}</div></a>
                         @empty
                             
                         @endforelse
