@@ -4,10 +4,10 @@
                 <div class="topicos-recomendados">
                     <h4>Tópicos recomendados</h4>
                     <div class="tags-sidebar-recomendado">
-                        @forelse ($tagRepository->getMostViewedTags() as $tag)
+                        @forelse ($tagRepository->getMostViewedTags(8) as $tag)
                             <a href=""><div class="tag">{{$tag->nome}}</div></a>
                         @empty
-                            
+                            <small>Ops...Não há tópicos para recomendar no momento, desculpa!</small>
                         @endforelse
                     </div>
                 </div>
