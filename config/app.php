@@ -182,6 +182,7 @@ return [
          * Provedores personalizados
          */
         App\Providers\TagRepositoryProvider::class,
+        App\Providers\PostRepositoryProvider::class,
     ],
 
     /*
