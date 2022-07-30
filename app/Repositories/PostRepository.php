@@ -19,6 +19,7 @@ class PostRepository extends Repository implements IPostRepository
                         ['excluido', '=', 0],
                         ['comentario', '=', 0],
                 ])
+                ->orderBy('created_at', 'desc')
                 ->take($take)
                 ->get();
         }
