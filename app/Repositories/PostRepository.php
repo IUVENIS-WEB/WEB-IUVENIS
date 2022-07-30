@@ -9,12 +9,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class PostRepository extends Repository implements IPostRepository
 {
-        //A resposta deve estar em https://laravel.com/docs/5.3/eloquent-relationships#querying-relationship-existence
-        // ou em https://laravel.com/docs/5.2/queries#where-clauses
         function getPosts($tagIdArray= [], $take = 10){
-                return Post::whereHas('tags', function($q){
-                        $q->where('id', '=', 2);
-                })
+                return Post::with(['tags' => function ($q) use($tagIdArray){
+                        $q->when($tagIdArray, function ($query) use($tagIdArray){
+                                $query->whereIn('tags.id', $tagIdArray);
+                        });
+                }])
+                ->where([
+                        ['excluido', '=', 0],
+                        ['comentario', '=', 0],
+                ])
+                ->take($take)
                 ->get();
         }
 }
