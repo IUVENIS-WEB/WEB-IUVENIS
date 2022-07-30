@@ -14,7 +14,8 @@ class PostRepository extends Repository implements IPostRepository
                         $q->when($tagIdArray, function ($query) use($tagIdArray){
                                 $query->whereIn('tags.id', $tagIdArray);
                         });
-                }])
+                },
+                'autor'])
                 ->where([
                         ['excluido', '=', 0],
                         ['comentario', '=', 0],
