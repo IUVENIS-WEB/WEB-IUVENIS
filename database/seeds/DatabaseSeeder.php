@@ -1,5 +1,6 @@
 <?php
 
+use App\PostViews;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PostsSeeder::class);
         $this->call(TagsSeeder::class);
         $this->call(PostTagsSeeder::class);
+        $this->call(PostViewsSeeder::class);
     }
 }
