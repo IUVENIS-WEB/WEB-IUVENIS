@@ -1,4 +1,5 @@
 @inject('tagRepository', 'App\Contracts\ITagRepository')
+@inject('postRepository', 'App\Contracts\IPostRepository')
 <div class="sidebar">
             <div class="conteudo-sidebar">
                 <div class="topicos-recomendados">
@@ -14,43 +15,19 @@
                 <div class="escritores-recomendados">
                     <h4>Conheça os escritores</h4>
                     <div class="escritores">
-                       <a href="#">
-                        <div class="escritor-perfil-sidebar">
-                            <div class="imagem-perfil-sidebar"><img src="assets/tabate.png" alt="foto de perfil"></div>
-                            <div class="nome-descricao-escritor">
-                                <h4>Nome sobrenome</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur simoismda is...</p>
+                       @forelse ($postRepository->getMostViewedEscritor(4) as $user)
+                        <a href="#">
+                            <div class="escritor-perfil-sidebar">
+                                <div class="imagem-perfil-sidebar"><img src="{{asset('images/users/'.$user->foto)}}" alt="foto de perfil"></div>
+                                <div class="nome-descricao-escritor">
+                                    <h4>{{$user->nome.' '.$user->sobrenome}}</h4>
+                                    <p>{{$user->bio}}</p>
+                                </div>
                             </div>
-                        </div>
-                       </a> 
-                       <a href="#">
-                        <div class="escritor-perfil-sidebar">
-                            <div class="imagem-perfil-sidebar"><img src="assets/tabate.png" alt="foto de perfil"></div>
-                            <div class="nome-descricao-escritor">
-                                <h4>Nome sobrenome</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur simoismda is...</p>
-                            </div>
-                        </div>
-                       </a> 
-                       <a href="#">
-                        <div class="escritor-perfil-sidebar">
-                            <div class="imagem-perfil-sidebar"><img src="assets/tabate.png" alt="foto de perfil"></div>
-                            <div class="nome-descricao-escritor">
-                                <h4>Nome sobrenome</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur simoismda is...</p>
-                            </div>
-                        </div>
-                       </a> 
-                       <a href="#">
-                        <div class="escritor-perfil-sidebar">
-                            <div class="imagem-perfil-sidebar"><img src="assets/tabate.png" alt="foto de perfil"></div>
-                            <div class="nome-descricao-escritor">
-                                <h4>Nome sobrenome</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur simoismda is...</p>
-                            </div>
-                        </div>
-                       </a> 
-                  
+                        </a>
+                       @empty
+                           <small>Ops...não foi possível encontrar escritores no momento.</small>
+                       @endforelse
                     </div>
                     <a href="" class="ver-todos">Ver todos</a>
                 </div>

@@ -24,4 +24,23 @@ class PostRepository extends Repository implements IPostRepository
                 ->take($take)
                 ->get();
         }
+
+        function getMostViewedEscritor($take = 10){
+                return DB::table('users')
+                ->select(DB::raw('count(post_views.post_id) as count,
+                 users.foto, users.nome, users.sobrenome, users.bio, users.id'))
+                ->join('posts', 'users.id', '=', 'posts.autor_id')
+                ->join('post_views', 'posts.id', '=', 'post_views.post_id')
+                ->orderBy('count', 'desc')
+                ->groupBy(['post_views.post_id',
+                 'users.foto',
+                 'users.nome',
+                 'users.sobrenome',
+                 'users.bio',
+                 'users.id'
+                 ])
+                ->take($take)
+                ->get()->all();
+
+        }
 }
