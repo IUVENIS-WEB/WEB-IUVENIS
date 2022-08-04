@@ -1,9 +1,9 @@
-@extends('layout.site')
-@section('titulo','Home')
-@section('CssLink')
+@extends('layouts.main_layout')
+@section('title','Home')
+@section('css')
     <link rel="stylesheet" href="{{ URL::asset('css/style_home.css') }}" type="text/css">
 @endsection
-@section('conteudo')
+@section('content')
     <main class="container">
         <div class="navbar">
         </div>
@@ -13,7 +13,7 @@
                 <div id="subtitulo-top">
                     <p>A plataforma sobre Educação Sexual. Ansioso(a) para aprender mais?</p> 
                 </div>
-                <a href="{{ route('iuvenis.explorar') }}"><div class="botao-explorar">Explorar</div></a>
+                <a href="{{ route('explorar.index') }}"><div class="botao-explorar">Explorar</div></a>
                 <img src="{{ URL::asset('images/assets/aprendizado.png') }}" id="aprendizado">
                 <img src="{{ URL::asset('images/assets/mão amor.png') }}" id="mao">
                 <img src="{{ URL::asset('images/assets/resistencia.png') }}" id="resistencia">
@@ -38,14 +38,14 @@
             <div class="secao um">
                 <h2>O QUE É EDUCAÇÃO SEXUAL?</h2>
                 <p>A educação sexual ou educação em sexualidade engloba uma série de conhecimentos sobre saúde, corpo humano, identidade, sentimentos, bem-estar, consentimento, responsabilidade, autoproteção e tipos de toques que os outros estão autorizados ou não em relação ao corpo da criança e do adolescente, como forma de prevenção à violência sexual.</p>
-                <a href="{{route('iuvenis.mais')}}"><div class="saiba-mais">Saiba mais</div></a>
+                <a href="#"><div class="saiba-mais">Saiba mais</div></a>
 
             </div>
             <div class="secao dois">
                 <div class="conteudo-texto">
                     <h2>VÍDEOS & SERIES, TEXTOS E EVENTOS</h2>
                     <p>Esses são todos os tipos de conteúdo disponibilizados pela iuvenis. Ouça, leia e assista sobre educação sexual para diferentes idades e cenários </p>
-                    <a href="{{route('iuvenis.conteudo')}}"><div class="saiba-mais">Saiba mais</div></a>
+                    <a href="#"><div class="saiba-mais">Saiba mais</div></a>
                 </div>
                 <img src="{{ URL::asset('images/assets/mulher.png') }}" alt="mulher">
             </div>
@@ -57,28 +57,10 @@
                         <div class="imagem-card"><img src="{{ URL::asset('images/assets/tabate.png') }}" alt="foto de perfil"></div>
                         <p>Nome sobrenome</p>
                         <h6>Doutora em letras pela FUDERJ | Psicóloga pela Unesp</h6>
-                        <a href="{{route('iuvenis.perfil', ['id' => 1])}}"><div class="ver-perfil">Ver perfil</div></a>
-                    </div>
-                    <div class="card-escritor b">
-                        <div class="imagem-card"><img src="{{ URL::asset('images/assets/tabate.png') }}" alt="foto de perfil"></div>
-                        <p>Nome sobrenome</p>
-                        <h6>Doutora em letras pela FUDERJ | Psicóloga pela Unesp</h6>
-                        <a href="{{route('iuvenis.perfil', ['id' => 1])}}"><div class="ver-perfil">Ver perfil</div></a>
-                    </div>
-                    <div class="card-escritor c">
-                        <div class="imagem-card"><img src="{{ URL::asset('images/assets/tabate.png') }}" alt="foto de perfil"></div>
-                        <p>Nome sobrenome</p>
-                        <h6>Doutora em letras pela FUDERJ | Psicóloga pela Unesp</h6>
-                        <a href="{{route('iuvenis.perfil', ['id' => 1])}}"><div class="ver-perfil">Ver perfil</div></a>
-                    </div>
-                    <div class="card-escritor d">
-                        <div class="imagem-card"><img src="{{ URL::asset('images/assets/tabate.png') }}" alt="foto de perfil"></div>
-                        <p>Nome sobrenome</p>
-                        <h6>Doutora em letras pela FUDERJ | Psicóloga pela Unesp</h6>
-                        <a href="{{route('iuvenis.perfil', ['id' => 1])}}"><div class="ver-perfil">Ver perfil</div></a>
+                        <a href=""><div class="ver-perfil">Ver perfil</div></a>
                     </div>
                 </div>
-                <a href="{{route('iuvenis.perfil', ['id' => 0])}}">Ver todos</a>
+                <a href="">Ver todos</a>
 
             </div>
             <div class="secao quatro">

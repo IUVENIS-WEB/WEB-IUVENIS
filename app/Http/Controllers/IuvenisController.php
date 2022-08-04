@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IuvenisController extends Controller
 {
     //index/home
     public function index()
     {
-        $isLoggedIn = null;
-        if($isLoggedIn)
+        if(Auth::check())
             return view('iuvenis.index');
         return view('login.index');
     }

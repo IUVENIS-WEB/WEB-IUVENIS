@@ -24,11 +24,10 @@ use Illuminate\Support\Facades\Route;
 
 */
 Route::get('/',['as'=>'iuvenis.index', 'uses'=>'IuvenisController@index']);
-Route::get('/explorar',['as'=>'iuvenis.explorar', 'uses'=>'IuvenisController@explorar']);
 Route::get('/texto/{filtro}',['as'=>'iuvenis.texto', 'uses'=>'IuvenisController@texto']);
 Route::get('/video',['as'=>'iuvenis.video', 'uses'=>'IuvenisController@video']);
 Route::get('/evento',['as'=>'iuvenis.evento', 'uses'=>'IuvenisController@evento']);
-Route::get('/mais/{opcoes}',['as'=>'iuvenis.mais', 'uses'=>'IuvenisController@mais']);
+Route::get('/organizacoes',['as'=>'iuvenis.organizacoes', 'uses'=>'IuvenisController@organizacoes']);
 Route::get('/pesquisar/{busca}',['as'=>'iuvenis.pesquisar', 'uses'=>'IuvenisController@pesquisar']);
 
 //LOGIN
