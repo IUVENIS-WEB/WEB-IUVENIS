@@ -44,19 +44,19 @@ class PostRepository extends Repository implements IPostRepository
 
         }
 
-        function getLastSavedPosts($take = 10){
+        function getLastSavedPosts($userId, $take = 4){
                 return DB::table('posts')
                 ->join('users', 'users.id', '=', 'posts.autor_id')
                 ->join('salvos', 'salvos.post_id', '=', 'posts.id')
                 ->where([
                         ['posts.excluido', '=', 0],
                         ['posts.comentario', '=', 0],
-                        ['users.id', '=', 1]
+                        ['users.id', '=', $userId]
                 ])
                 ->orderBy('salvos.created_at', 'desc')
                 ->select([
-                        'posts.id',
-                        'users.id',
+                        'posts.autor_id',
+                        'salvos.post_id',
                         'users.foto',
                         'users.nome',
                         'users.sobrenome',
