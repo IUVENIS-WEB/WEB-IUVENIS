@@ -11,15 +11,19 @@ class MailController extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
+    public $subject; 
+    public $view;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($data, $subject, $view)
     {
         $this->data = $data;
+        $this->$subject = $subject;
+        $this->$view = $view;
     }
 
     /**
@@ -30,7 +34,8 @@ class MailController extends Mailable
     public function build()
     {
         return $this->from( config('mail.from.address'))
-        ->subject('Recuperação de senha')
-        ->view('email.message', ['data' => $this->data]);
+        ->subject($this->$subject)
+        ->view($this->$view)
+        ->with('data', $this->data);
     }
 }

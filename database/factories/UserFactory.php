@@ -23,5 +23,6 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'nascimento' => $faker->date(),
         'password' => $password ?: $password = bcrypt('Iuvenis@2022'),
         'remember_token' => str_random(10),
+        'bio' => $faker->sentence()
     ];
 });

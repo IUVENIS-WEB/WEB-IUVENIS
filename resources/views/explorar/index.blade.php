@@ -15,454 +15,70 @@
                 <div class="line-horizontal-conteudo"></div>
             </div>
             <div class="cards">
-                <div class="card">
-                    <a href="">
-                        <div class="autoria">
-                            <div class="imagem-perfil menor"><img src="assets/tabate.png" alt="foto de perfil"></div>
-                            <p>Nome e sobrenome</p>
-                            <div class="circulo"></div>
-                            <p class="data">Abril 18</p>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="conteudo-card">
-                            <div class="card-texto">
-                                <h2>Gravidez na adolescencia e métodos contraceptivos</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque condimentum nisl
-                                    nisl, sed venenatis libero pretium sed. Etiam ac ...</p>
+                @forelse ($posts as $post)
+                    <div class="card">
+                        <a href="">
+                            <div class="autoria">
+                                <div class="imagem-perfil menor"><img src="{{asset('images/users/'.$post->autor->foto)}}" alt="foto de perfil"></div>
+                                <p>{{$post->autor->nome.' '.$post->autor->sobrenome}}</p>
+                                <div class="circulo"></div>
+                                <p class="data">{{date('M, d', strtotime($post->updated_at))}}</p>
                             </div>
-                            <div class="imagem-card"><img src="assets/capa.png"></div>
-                        </div>
-                    </a>
-                    <div class="bottom-card">
-                        <div class="direita-bottom-card">
-                            <a href="">
-                                <div class="tag">Adolescencia</div>
-                            </a>
-                            <p>Editorial</p>
-                        </div>
-                        <div class="esquerda-bottom-card">
-                            <div class="dropdown-center">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCenterBtn"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bookmark">
-                                        <i class="fa-regular fa-bookmark"></i>
-                                        <i class="fa-solid fa-bookmark"></i>
-                                    </i>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownCenterBtn">
-                                    <li>
-                                        <h6 class="dropdown-header">Coleções <button type="button" class="mais"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                    class="fa-solid fa-plus"></i></button></h6>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Lista de leitura</a></li>
+                        </a>
+                        <a href="">
+                            <div class="conteudo-card">
+                                <div class="card-texto">
+                                    <h2>{{$post->titulo}}</h2>
+                                    <p>
+                                        {{$post->resumo}}
+                                    </p>
+                                </div>
+                                <div class="imagem-card"><img src="{{asset('images/posts/'.$post->imagem)}}"></div>
+                            </div>
+                        </a>
+                        <div class="bottom-card">
+                            <div class="direita-bottom-card">
+                                @forelse ($post->tags as $tag)
+                                <a href="">
+                                    <div class="tag">{{$tag->nome}}</div>
+                                </a>
+                                @empty
+                                    
+                                @endforelse
+                                <p>{{$post->tipo}}</p>
+                            </div>
+                            <div class="esquerda-bottom-card">
+                                <div class="dropdown-center">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCenterBtn"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bookmark">
+                                            <i class="fa-regular fa-bookmark"></i>
+                                            <i class="fa-solid fa-bookmark"></i>
+                                        </i>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownCenterBtn">
+                                        <li>
+                                            <h6 class="dropdown-header">Coleções <button type="button" class="mais"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                                        class="fa-solid fa-plus"></i></button></h6>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                        <li><a class="dropdown-item" href="#">Lista de leitura</a></li>
 
-                                </ul>
+                                    </ul>
+                                </div>
+                                <i class="fa-solid fa-share-from-square"></i>
                             </div>
-                            <i class="fa-solid fa-share-from-square"></i>
                         </div>
+
+                        <div class="line-horizontal-conteudo"></div>
                     </div>
-
-                    <div class="line-horizontal-conteudo"></div>
-                </div>
-
-                <div class="card">
-                    <a href="">
-                        <div class="autoria">
-                            <div class="imagem-perfil menor"><img src="assets/tabate.png" alt="foto de perfil"></div>
-                            <p>Nome e sobrenome</p>
-                            <div class="circulo"></div>
-                            <p class="data">Abril 18</p>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="conteudo-card">
-                            <div class="card-texto">
-                                <h2>Gravidez na adolescencia e métodos contraceptivos</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque condimentum nisl
-                                    nisl, sed venenatis libero pretium sed. Etiam ac ...</p>
-                            </div>
-                            <div class="imagem-card"><img src="assets/capa.png"></div>
-                        </div>
-                    </a>
-                    <div class="bottom-card">
-                        <div class="direita-bottom-card">
-                            <a href="">
-                                <div class="tag">Adolescencia</div>
-                            </a>
-                            <p>Editorial</p>
-                        </div>
-                        <div class="esquerda-bottom-card">
-                            <div class="dropdown-center">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCenterBtn"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bookmark">
-                                        <i class="fa-regular fa-bookmark"></i>
-                                        <i class="fa-solid fa-bookmark"></i>
-                                    </i>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownCenterBtn">
-                                    <li>
-                                        <h6 class="dropdown-header">Coleções <button type="button" class="mais"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                    class="fa-solid fa-plus"></i></button></h6>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Lista de leitura</a></li>
-
-                                </ul>
-                            </div>
-                            <i class="fa-solid fa-share-from-square"></i>
-                        </div>
-                    </div>
-
-                    <div class="line-horizontal-conteudo"></div>
-                </div>
-
-                <div class="card">
-                    <a href="">
-                        <div class="autoria">
-                            <div class="imagem-perfil menor"><img src="assets/tabate.png" alt="foto de perfil"></div>
-                            <p>Nome e sobrenome</p>
-                            <div class="circulo"></div>
-                            <p class="data">Abril 18</p>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="conteudo-card">
-                            <div class="card-texto">
-                                <h2>Gravidez na adolescencia e métodos contraceptivos</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque condimentum nisl
-                                    nisl, sed venenatis libero pretium sed. Etiam ac ...</p>
-                            </div>
-                            <div class="imagem-card"><img src="assets/capa.png"></div>
-                        </div>
-                    </a>
-                    <div class="bottom-card">
-                        <div class="direita-bottom-card">
-                            <a href="">
-                                <div class="tag">Adolescencia</div>
-                            </a>
-                            <p>Editorial</p>
-                        </div>
-                        <div class="esquerda-bottom-card">
-                            <div class="dropdown-center">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCenterBtn"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bookmark">
-                                        <i class="fa-regular fa-bookmark"></i>
-                                        <i class="fa-solid fa-bookmark"></i>
-                                    </i>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownCenterBtn">
-                                    <li>
-                                        <h6 class="dropdown-header">Coleções <button type="button" class="mais"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                    class="fa-solid fa-plus"></i></button></h6>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Lista de leitura</a></li>
-
-                                </ul>
-                            </div>
-                            <i class="fa-solid fa-share-from-square"></i>
-                        </div>
-                    </div>
-
-                    <div class="line-horizontal-conteudo"></div>
-                </div>
-
-                <div class="card">
-                    <a href="">
-                        <div class="autoria">
-                            <div class="imagem-perfil menor"><img src="assets/tabate.png" alt="foto de perfil"></div>
-                            <p>Nome e sobrenome</p>
-                            <div class="circulo"></div>
-                            <p class="data">Abril 18</p>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="conteudo-card">
-                            <div class="card-texto">
-                                <h2>Gravidez na adolescencia e métodos contraceptivos</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque condimentum nisl
-                                    nisl, sed venenatis libero pretium sed. Etiam ac ...</p>
-                            </div>
-                            <div class="imagem-card"><img src="assets/capa.png"></div>
-                        </div>
-                    </a>
-                    <div class="bottom-card">
-                        <div class="direita-bottom-card">
-                            <a href="">
-                                <div class="tag">Adolescencia</div>
-                            </a>
-                            <p>Editorial</p>
-                        </div>
-                        <div class="esquerda-bottom-card">
-                            <div class="dropdown-center">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCenterBtn"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bookmark">
-                                        <i class="fa-regular fa-bookmark"></i>
-                                        <i class="fa-solid fa-bookmark"></i>
-                                    </i>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownCenterBtn">
-                                    <li>
-                                        <h6 class="dropdown-header">Coleções <button type="button" class="mais"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                    class="fa-solid fa-plus"></i></button></h6>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Lista de leitura</a></li>
-
-                                </ul>
-                            </div>
-                            <i class="fa-solid fa-share-from-square"></i>
-                        </div>
-                    </div>
-
-                    <div class="line-horizontal-conteudo"></div>
-                </div>
-
-                <div class="card">
-                    <a href="">
-                        <div class="autoria">
-                            <div class="imagem-perfil menor"><img src="assets/tabate.png" alt="foto de perfil"></div>
-                            <p>Nome e sobrenome</p>
-                            <div class="circulo"></div>
-                            <p class="data">Abril 18</p>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="conteudo-card">
-                            <div class="card-texto">
-                                <h2>Gravidez na adolescencia e métodos contraceptivos</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque condimentum nisl
-                                    nisl, sed venenatis libero pretium sed. Etiam ac ...</p>
-                            </div>
-                            <div class="imagem-card"><img src="assets/capa.png"></div>
-                        </div>
-                    </a>
-                    <div class="bottom-card">
-                        <div class="direita-bottom-card">
-                            <a href="">
-                                <div class="tag">Adolescencia</div>
-                            </a>
-                            <p>Editorial</p>
-                        </div>
-                        <div class="esquerda-bottom-card">
-                            <div class="dropdown-center">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCenterBtn"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bookmark">
-                                        <i class="fa-regular fa-bookmark"></i>
-                                        <i class="fa-solid fa-bookmark"></i>
-                                    </i>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownCenterBtn">
-                                    <li>
-                                        <h6 class="dropdown-header">Coleções <button type="button" class="mais"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                    class="fa-solid fa-plus"></i></button></h6>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Lista de leitura</a></li>
-
-                                </ul>
-                            </div>
-                            <i class="fa-solid fa-share-from-square"></i>
-                        </div>
-                    </div>
-
-                    <div class="line-horizontal-conteudo"></div>
-                </div>
-
-                <div class="card">
-                    <a href="">
-                        <div class="autoria">
-                            <div class="imagem-perfil menor"><img src="assets/tabate.png" alt="foto de perfil"></div>
-                            <p>Nome e sobrenome</p>
-                            <div class="circulo"></div>
-                            <p class="data">Abril 18</p>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="conteudo-card">
-                            <div class="card-texto">
-                                <h2>Gravidez na adolescencia e métodos contraceptivos</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque condimentum nisl
-                                    nisl, sed venenatis libero pretium sed. Etiam ac ...</p>
-                            </div>
-                            <div class="imagem-card"><img src="assets/capa.png"></div>
-                        </div>
-                    </a>
-                    <div class="bottom-card">
-                        <div class="direita-bottom-card">
-                            <a href="">
-                                <div class="tag">Adolescencia</div>
-                            </a>
-                            <p>Editorial</p>
-                        </div>
-                        <div class="esquerda-bottom-card">
-                            <div class="dropdown-center">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCenterBtn"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bookmark">
-                                        <i class="fa-regular fa-bookmark"></i>
-                                        <i class="fa-solid fa-bookmark"></i>
-                                    </i>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownCenterBtn">
-                                    <li>
-                                        <h6 class="dropdown-header">Coleções <button type="button" class="mais"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                    class="fa-solid fa-plus"></i></button></h6>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Lista de leitura</a></li>
-
-                                </ul>
-                            </div>
-                            <i class="fa-solid fa-share-from-square"></i>
-                        </div>
-                    </div>
-
-                    <div class="line-horizontal-conteudo"></div>
-                </div>
-
-                <div class="card">
-                    <a href="">
-                        <div class="autoria">
-                            <div class="imagem-perfil menor"><img src="assets/tabate.png" alt="foto de perfil"></div>
-                            <p>Nome e sobrenome</p>
-                            <div class="circulo"></div>
-                            <p class="data">Abril 18</p>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="conteudo-card">
-                            <div class="card-texto">
-                                <h2>Gravidez na adolescencia e métodos contraceptivos</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque condimentum nisl
-                                    nisl, sed venenatis libero pretium sed. Etiam ac ...</p>
-                            </div>
-                            <div class="imagem-card"><img src="assets/capa.png"></div>
-                        </div>
-                    </a>
-                    <div class="bottom-card">
-                        <div class="direita-bottom-card">
-                            <a href="">
-                                <div class="tag">Adolescencia</div>
-                            </a>
-                            <p>Editorial</p>
-                        </div>
-                        <div class="esquerda-bottom-card">
-                            <div class="dropdown-center">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCenterBtn"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bookmark">
-                                        <i class="fa-regular fa-bookmark"></i>
-                                        <i class="fa-solid fa-bookmark"></i>
-                                    </i>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownCenterBtn">
-                                    <li>
-                                        <h6 class="dropdown-header">Coleções <button type="button" class="mais"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                    class="fa-solid fa-plus"></i></button></h6>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Lista de leitura</a></li>
-
-                                </ul>
-                            </div>
-                            <i class="fa-solid fa-share-from-square"></i>
-                        </div>
-                    </div>
-
-                    <div class="line-horizontal-conteudo"></div>
-                </div>
-
-                <div class="card">
-                    <a href="">
-                        <div class="autoria">
-                            <div class="imagem-perfil menor"><img src="assets/tabate.png" alt="foto de perfil"></div>
-                            <p>Nome e sobrenome</p>
-                            <div class="circulo"></div>
-                            <p class="data">Abril 18</p>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="conteudo-card">
-                            <div class="card-texto">
-                                <h2>Gravidez na adolescencia e métodos contraceptivos</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque condimentum nisl
-                                    nisl, sed venenatis libero pretium sed. Etiam ac ...</p>
-                            </div>
-                            <div class="imagem-card"><img src="assets/capa.png"></div>
-                        </div>
-                    </a>
-                    <div class="bottom-card">
-                        <div class="direita-bottom-card">
-                            <a href="">
-                                <div class="tag">Adolescencia</div>
-                            </a>
-                            <p>Editorial</p>
-                        </div>
-                        <div class="esquerda-bottom-card">
-                            <div class="dropdown-center">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCenterBtn"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bookmark">
-                                        <i class="fa-regular fa-bookmark"></i>
-                                        <i class="fa-solid fa-bookmark"></i>
-                                    </i>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownCenterBtn">
-                                    <li>
-                                        <h6 class="dropdown-header">Coleções <button type="button" class="mais"
-                                                data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                    class="fa-solid fa-plus"></i></button></h6>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Lista de leitura</a></li>
-
-                                </ul>
-                            </div>
-                            <i class="fa-solid fa-share-from-square"></i>
-                        </div>
-                    </div>
-
-                    <div class="line-horizontal-conteudo"></div>
-                </div>
-
+                @empty
+                    <small>Não há posts no momento :(</small>
+                @endforelse
             </div>
         </div>
         @include('layouts._sidebar')

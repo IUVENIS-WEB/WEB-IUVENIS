@@ -7,7 +7,7 @@
             {{ csrf_field() }}
             <div class="input-field">
                 <input type="email" name="email" id="email"
-                    placeholder="E-mail" required>
+                    placeholder="E-mail" value="{{$email}}" required>
             </div>
             <div class="input-field"><input type="submit" value="Enviar"></div>
         </form>
