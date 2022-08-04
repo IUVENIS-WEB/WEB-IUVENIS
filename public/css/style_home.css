@@ -1,0 +1,626 @@
+:root{
+
+    /*variáveis das cores*/
+    --bege: #FFF0E7;
+    --azul-escuro: #213042; 
+    --cinza: #5E6368; 
+    --bege-escuro: #C1B8A9;
+    --sombra: rgba(0, 0, 0, 0.25);
+    --vermelho: #F25F5C; 
+    --amarelo: #FDBB42;
+
+    /*variáveis do peso da fonte*/
+    --light: 300;
+    --regular: 400;
+    --semibold: 600;
+    --bold: 700;
+    --black: 900;
+
+    /*variaveis do tamanho da fonte*/
+    --geral: 1.25rem;
+    --menor: 1rem;
+    --maior: 5.25rem; 
+    --title: 2.75rem;
+    --subtitle:2rem;
+}
+
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+body {
+    background: white;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--azul-escuro);
+}
+
+.navbar{
+    content: '';
+    height: 55px;
+    background-color: #F25F5C;
+}
+
+main.container {
+    width: 100vw;
+    min-height: 40vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+main h2 {
+    font-weight: var(--black);
+    font-size: var(--subtitle);
+    color: var(--azul-escuro);
+    align-self: center;
+
+}
+
+main h3 {
+    font-size: var(--menor);
+    font-weight: var(--semibold);
+    color: var(--bege-escuro);
+    margin-bottom: 1.5rem;
+    align-self: center;
+    text-align: center;
+}
+
+main a {
+    text-decoration: none;
+    align-self: center;
+    font-size: var(--menor);
+    font-weight: var(--semibold);
+    color: var(--azul-escuro);
+}
+main .top{
+    background-color: var(--bege);
+    min-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0rem 6rem 0rem 6rem;
+}
+main .top .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    column-gap: 0.5rem;
+    max-width: 1300px;
+}
+
+.top h1{
+    font-size: var(--maior);
+    font-weight: var(--bold);
+    letter-spacing: 0.5rem;
+    transition: all 0.3s ease;
+    
+}
+
+p{
+    font-size: var(--geral);
+    font-weight: var(--semibold);
+}
+
+#subtitulo-top{
+    max-width: 800px;
+}
+
+.top .botao-explorar{
+    margin-top: 1.25rem;
+    outline:none;
+    border-width: 3px;
+    padding-left: 0.5rem;
+    height: 3.7rem;
+    border-style: solid;
+    border-color: var(--azul-escuro);
+    border-radius: 100px;
+    font-size: var(--geral);
+    color: var(--azul-escuro);
+    width: 350px;
+    margin-bottom: 0.5rem;
+    background-color: var(--amarelo);
+    font-weight: var(--bold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.botao-explorar:hover{
+    letter-spacing: 0.5px;
+    background-color: var(--bege-escuro);
+}
+
+.top .content img{
+    position: absolute;
+}
+
+#seta{
+    right: 8rem;
+    width: 4rem;
+    top: 8rem;
+}
+
+#resistencia{
+    left: 8rem;
+    width: 10rem;
+    top: 35rem;
+}
+
+#mao{
+    left: 3rem;
+    width: 7rem;
+    top: 25rem;
+}
+
+#mudanca{
+    right: 8rem;
+    width: 10rem;
+    top: 35rem;
+}
+
+#aprendizado{
+    left: 3rem;
+    width: 7rem;
+    top: 8rem;
+}
+
+/*---------faixa organizações------------*/
+.bottom{
+    padding: 0rem 6rem 0rem 6rem;
+    background-color: white;
+    display: flex;
+    row-gap: 8rem;
+    flex-direction: column;
+    max-width: 1200px;
+}
+
+.faixa-organizacoes{
+    padding: 0rem 6rem 0rem 6rem;
+    margin-bottom: 8rem;
+    display: flex;
+    justify-content: center;
+    height:100px;
+    border-top: 3px solid var(--azul-escuro);
+    border-bottom: 3px solid var(--azul-escuro);
+    transition: all 0.3s ease;
+
+}
+
+.faixa-organizacoes .conteudo-faixa{
+    display: flex;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+
+}
+
+.faixa-organizacoes .conteudo-faixa .imagens{
+    display:flex;
+    width: 500px;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+
+}
+#gesteld{ 
+    width: 12rem;
+    height: 3.567rem;
+}
+
+#educacross{
+    width: 10rem;
+    height: 4.3rem;
+}
+
+.plus{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-width: 3px;
+    border-style: solid;
+    border-color: var(--azul-escuro);
+    background-color: white;
+    transition: all 0.3s ease;
+
+}
+
+.plus img{
+    width: 22px;
+}
+
+.plus:hover{
+    background-color: var(--bege-escuro);
+
+}
+
+.faixa-organizacoes .conteudo-faixa .texto{
+    display:flex;
+    min-width: 290px;
+    max-width: 500px;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 2rem;
+    transition: all 0.3s ease;
+
+}
+
+
+
+
+/*---------O QUE É EDUCAÇÃO SEXUAL------------*/
+.secao{
+    display: flex;
+
+}
+
+.um, .escritores{
+    flex-direction: column;
+    align-items: center;
+
+}
+.um{
+    row-gap: 2rem;
+    min-width: none;
+}
+
+.um p, .dois p, .quatro{
+    text-align: justify;
+}
+
+
+/*  botão saiba mais  */
+.saiba-mais{
+    background-color: var(--amarelo);
+    border-radius: 7px;
+    padding: 7px 10px 7px 10px;
+    min-width: 9.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-color: var(--azul-escuro);
+    border-width: 3px;
+    transition: all 0.3s ease;
+
+}
+
+.saiba-mais:hover{
+    background-color: #C1B8A9;
+    letter-spacing: 0.5px;
+}
+
+.um h2, .escritores h2{
+    text-align: center;
+}
+
+
+/*---------videos series, textos e eventos-----------*/
+.dois, .quatro{
+    justify-content: space-between;
+
+}
+
+.dois img {
+    width: 300px;
+    height: 300px;
+    margin-left: 1rem;
+
+}
+
+.conteudo-texto{
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    align-items: flex-start;
+
+
+}
+
+.conteudo-texto h2, .conteudo-texto p, .conteudo-texto a{
+    align-self: flex-start;
+
+}
+
+/*-----------CONHEÇA OS ESCRITORES-----------*/
+
+.escritores .cards{
+    display: flex;
+    column-gap: 2rem;
+    justify-content: space-between;
+    margin-top: 2rem;
+    margin-bottom: 1.25rem;
+}
+
+.card-escritor{
+    box-shadow: 0px 0px 5px #00000040;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    width: 250px;
+    row-gap: 0.5rem;
+    padding: 1.25rem 0.5rem 1.25rem 0.5rem;
+    border-style: solid;
+    border-width: 3px;
+    border-color: white;
+    transition: all 0.3s ease;
+
+}
+
+.card-escritor:hover{
+    border-style: solid;
+    border-width: 3px;
+    border-color: var(--azul-escuro);
+
+}
+
+.imagem-card{
+    border-radius: 200px;
+    height: 106px;
+    width: 106px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--azul-escuro);
+}
+
+.card-escritor img{
+    border-radius: 400px;
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+
+}
+
+.card-escritor h6{
+    font-size: 0.75rem;
+    color: #5E6368;
+    text-align: center;
+    font-weight: var(--semibold);
+}
+
+.ver-perfil{
+    margin-top: 2rem;
+    background-color: var(--azul-escuro);
+    color: white;
+
+    border-radius: 7px;
+    padding: 7px 10px 7px 10px;
+    min-width: 9.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-color: var(--azul-escuro);
+    border-width: 3px;
+    transition: all 0.3s ease;
+
+}
+
+.ver-perfil:hover{
+    background-color: #283159;
+    letter-spacing: 0.5px;
+
+}
+
+/*-----------seção 4-----------*/
+
+.quatro img{
+    width: 350px;
+    height: 233px;
+    margin-right: 4rem;
+    align-self: center;
+}
+
+.quatro h2{
+    text-align: left;
+}
+
+.quatro .conteudo-texto{
+    width: 100%;
+    max-width: none;
+}
+
+/*-----------BAIXE O APP-----------*/
+.app{
+    box-shadow: 0px 3px 7px black;
+    border-radius: 15px;
+    background-color: var(--azul-escuro);
+    color: white;
+    margin-bottom: 8rem;
+    height: 240px;
+    transition: all 0.3s ease;
+
+
+}
+.app .botoes-stores a img{
+    width: 16px;
+    margin-right: 0.5rem;
+}
+
+.app-card-esquerda{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 2rem 2rem 2rem;
+    margin-right: 2rem;
+    transition: all 0.3s ease;
+}
+
+.app-card-direita{
+    width: 100%;
+}
+
+.app-card-direita img{
+    height: 240px;
+    width: 100%;
+    border-radius: 0px 15px 15px 0px;
+    object-fit: cover;
+}
+
+.botoes-stores {
+    display: flex;
+    column-gap: 1rem;
+    margin-top: 3rem;
+    transition: all 0.3s ease;
+}
+
+.baixar{
+    background-color: var(--amarelo);
+    border-radius: 7px;
+    padding: 0.5rem 10px 0.5rem 10px;
+    min-width: 9.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    border-style: solid;
+    border-color: var(--azul-escuro);
+    border-width: 3px;
+    transition: all 0.3s ease;
+
+}
+
+.baixar:hover{
+    background-color: #C1B8A9;
+}
+
+
+
+
+@media (max-width: 1165px){
+ 
+    #educacross{
+        display: none;
+    }
+    .top h1{
+        letter-spacing: 0rem;
+        
+    }
+}
+
+@media (max-width: 1090px){
+ 
+    .top img{
+        display: none;        
+    }
+
+    .top h1{
+        font-size: var(--title);
+    }
+}
+
+
+
+@media (max-width: 838px){
+    #gesteld{
+        display: none;
+    }
+
+    .faixa-organizacoes .conteudo-faixa .imagens{
+       justify-content: right;
+       width: 40px;
+    }
+
+    .app-card-direita{
+        display: none;
+    }
+
+    .app-card-esquerda{
+        width: 100%;
+        align-items: center;
+        transition: all 0.3s ease;
+        margin-right: 0px;
+
+    }
+
+    .app-card-esquerda h1, .app-card-esquerda p{
+        text-align: center;
+        transition: all 0.3s ease;
+
+    }
+
+    .botoes-stores {
+        column-gap: 0.5vw;
+    }
+}
+
+@media (max-width: 500px){
+   .bottom, .faixa-organizacoes, .top{
+    padding: 0rem 3rem 0rem 3rem;
+   }
+   .top .botao-explorar{
+       width: 70vw;
+   }
+}
+@media (min-width: 1200px){
+    .bottom, .conteudo-faixa{
+        align-self: center;
+        max-width: 1300px;
+    }
+ }
+
+  /*---VIDEOS MWEBSERIES TEXTOS--*/
+
+@media (max-width: 790px){
+    .dois img{
+        display: none;
+    }
+
+    .dois .conteudo-texto a{
+        align-self: center;
+
+    }
+
+    .dois h2{
+        text-align: center;
+    }
+ }
+
+
+ /*---ESCRITORES--*/
+
+ @media (max-width: 1261px){
+    .d, .quatro img{
+        display: none;
+     }
+
+     .quatro .conteudo-texto a, .quatro .conteudo-texto p, .quatro .conteudo-texto h2{
+         align-self: center;
+     }
+
+     .quatro h2{
+        text-align: center;
+     }
+
+     .quatro{
+        width: 100%;
+        justify-self: center;
+        align-self: center;
+    }
+ }
+
+ @media (max-width: 1000px){
+    .c{
+        display: none;
+     }
+ }
+ @media (max-width: 723px){
+    .b{
+        display: none;
+     }
+ }
