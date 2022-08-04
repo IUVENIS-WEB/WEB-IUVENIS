@@ -6,7 +6,7 @@
                     <h4>Tópicos recomendados</h4>
                     <div class="tags-sidebar-recomendado">
                         @forelse ($tagRepository->getMostViewedTags(8) as $tag)
-                            <a href=""><div class="tag">{{$tag->nome}}</div></a>
+                            <a href="{{url('/tag/'.$tag->id)}}"><div class="tag">{{$tag->nome}}</div></a>
                         @empty
                             <small>Ops...Não há tópicos para recomendar no momento, desculpa!</small>
                         @endforelse
@@ -34,62 +34,24 @@
                 <div class="salvos-recentemente">
                     <h4>Recentemente salvos</h4>
                     <div class="salvos">
-                       <a href="#">
-                            <div class="conteudo-salvo">
-                                <div class="autoria">
-                                    <div class="imagem-perfil"><img src="assets/tabate.png" alt="foto de perfil"></div>
-                                    <p>Nome e sobrenome</p>
+                       @forelse ($postRepository->getLastSavedPosts() as $saved)
+                            <a href="#">
+                                <div class="conteudo-salvo">
+                                    <div class="autoria">
+                                        <div class="imagem-perfil"><img src="{{asset('images/users/'.$saved->foto)}}" alt="foto de perfil"></div>
+                                        <p>{{$saved->nome.' '.$saved->sobrenome}}</p>
+                                    </div>
+                                    <h4>{{$saved->titulo}}</h4>
+                                    <div class="autoria">
+                                        <p class="data">{{date('M, d', strtotime($saved->updated_at))}}</p>
+                                        <div class="circulo"></div>
+                                        <p class="data">{{$saved->tipo}}</p>
+                                    </div>
                                 </div>
-                                <h4>Gravidez na adolescencia e metodos contraceptivos</h4>
-                                <div class="autoria">
-                                    <p class="data">Abril 18</p>
-                                    <div class="circulo"></div>
-                                    <p class="data">Artigo</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="conteudo-salvo">
-                                <div class="autoria">
-                                    <div class="imagem-perfil"><img src="assets/tabate.png" alt="foto de perfil"></div>
-                                    <p>Nome e sobrenome</p>
-                                </div>
-                                <h4>Gravidez na adolescencia e metodos contraceptivos</h4>
-                                <div class="autoria">
-                                    <p class="data">Abril 18</p>
-                                    <div class="circulo"></div>
-                                    <p class="data">Artigo</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="conteudo-salvo">
-                                <div class="autoria">
-                                    <div class="imagem-perfil"><img src="assets/tabate.png" alt="foto de perfil"></div>
-                                    <p>Nome e sobrenome</p>
-                                </div>
-                                <h4>Gravidez na adolescencia e metodos contraceptivos</h4>
-                                <div class="autoria">
-                                    <p class="data">Abril 18</p>
-                                    <div class="circulo"></div>
-                                    <p class="data">Artigo</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="conteudo-salvo">
-                                <div class="autoria">
-                                    <div class="imagem-perfil"><img src="assets/tabate.png" alt="foto de perfil"></div>
-                                    <p>Nome e sobrenome</p>
-                                </div>
-                                <h4>Gravidez na adolescencia e metodos contraceptivos</h4>
-                                <div class="autoria">
-                                    <p class="data">Abril 18</p>
-                                    <div class="circulo"></div>
-                                    <p class="data">Artigo</p>
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                       @empty
+                           
+                       @endforelse
                      </div>
 
                      <a href="" class="ver-todos">Ver todos</a>

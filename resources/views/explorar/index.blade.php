@@ -30,7 +30,7 @@
                                 <div class="card-texto">
                                     <h2>{{$post->titulo}}</h2>
                                     <p>
-                                        {{$post->descricao}}
+                                        {{$post->resumo}}
                                     </p>
                                 </div>
                                 <div class="imagem-card"><img src="{{asset('images/posts/'.$post->imagem)}}"></div>

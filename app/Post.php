@@ -13,4 +13,8 @@ class Post extends Model
     function autor(){
         return $this->belongsTo('App\User', 'autor_id');
     }
+
+    function salvos(){
+        return $this->belongsToMany('App\Salvo', 'salvos');
+    }
 }
