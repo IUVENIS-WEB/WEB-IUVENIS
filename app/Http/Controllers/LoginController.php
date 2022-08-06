@@ -7,6 +7,8 @@ use App\Mail\MailController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -26,39 +28,44 @@ class LoginController extends Controller
         $user = DB::table('users')->where( 'email' , '=' , $req-> email ) ->first();
         //Create Password Reset Token
         $token = str_random(60);
-        DB::table('password_resets')->insert([
-            'email' => $req->email,
-            'token' => $token,
-            'created_at' => Carbon::now()
-        ]);
-        
-        $data = [
-            'email' => $req->email,
-            'nome' => $user->nome,
-            'token' => $token
-        ];
-        Mail::to($req->email)->send(new MailController($data, 'Redefinição de senha', 'email.message'));
+        if($user){
+            DB::table('password_resets')->insert([
+                'email' => $req->email,
+                'token' => $token,
+                'created_at' => Carbon::now()
+            ]);
+            $data = [
+                'email' => $req->email,
+                'nome' => $user->nome,
+                'token' => $token
+            ];
+            Mail::to($req->email)->send(new MailController($data, 'Redefinição de senha', 'email.message'));
+        }
         return view('login.confirmacaoEnvio');
     }
     
     public function redefinirSenha($email, $token)
     {
-        $toke = DB::table('password_resets')->where( 'email' , '=' , $email ) ->get(); 
-        $ts = (array)$toke[0];
-        if($ts['token'] != $token)
+        $toke = \App\PasswordReset::where( 'email' , '=' , $email )->get()->first(); 
+        if($toke->token != $token)
         {
             return view('login.index');
         }
         else
         {
-            
+            $toke->delete();
             return view('login.definirSenha', compact('email'));
         }
     }
 
     public function definirNovaSenha(Request $req)
     {
-        DB::table('users')->where( 'email' , '=' , $req-> email ) ->update(["senha" => $req->senha]);
+        if(!$req->senha)
+            return back();
+        $user = User::where( 'email' , '=' , $req-> email )->get()->first();
+        $user->password = Hash::make($req->senha);
+        $user->save();
+        Auth::login($user);
         return view('iuvenis.index');
     }
 
@@ -76,7 +83,7 @@ class LoginController extends Controller
         //pois o Auth implicitamente o faz.
         $attempt = Auth::attempt(['email' => $req->email, 'password' => $req->password]);
         if($attempt){
-            return view('welcome');
+            return view('iuvenis.index');
         }
         else{
             return redirect('login')->with('fail', [
@@ -86,5 +93,10 @@ class LoginController extends Controller
                 ]
             ]);
         }
+    }
+
+    public function deslogar(){
+        Auth::logout();
+        return view('iuvenis.index');
     }
 }

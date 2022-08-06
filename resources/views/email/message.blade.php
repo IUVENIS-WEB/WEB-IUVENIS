@@ -36,7 +36,7 @@
             border-width: 3px;
             border-radius: 100px;
             outline:none;
-            " href="#">Recuperar senha</a>
+            " href="{{route('login.redefinirSenha', ['email'=> $data['email'], 'token' => $data['token']])}}">Recuperar senha</a>
          </strong>
       </tr>
    </table> 

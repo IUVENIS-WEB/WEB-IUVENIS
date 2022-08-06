@@ -32,6 +32,7 @@ Route::get('/pesquisar/{busca}',['as'=>'iuvenis.pesquisar', 'uses'=>'IuvenisCont
 
 //LOGIN
 Route::get('/login',['as'=>'login.index', 'uses'=>'LoginController@index']);
+Route::get('/deslogar',['as'=>'login.deslogar', 'uses'=>'LoginController@deslogar']);
 Route::get('/recuperarSenha',['as'=>'login.recuperarSenha', 'uses'=>'LoginController@recuperarSenha']);
 Route::post('/confirmacaoEnvio',['as'=>'login.confirmacaoEnvio', 'uses'=>'LoginController@confirmacaoEnvio']);
 Route::get('/redefinirSenha/{email}/{token}',['as'=>'login.redefinirSenha', 'uses'=>'LoginController@redefinirSenha']);
