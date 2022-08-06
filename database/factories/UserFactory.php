@@ -13,7 +13,7 @@
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
-
+    $orgArray = App\Organizacao::pluck('id')->toArray();
     return [
         'foto' => 'usuario.png',
         'adm_power' => $faker->boolean(),
@@ -23,6 +23,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'nascimento' => $faker->date(),
         'password' => $password ?: $password = bcrypt('Iuvenis@2022'),
         'remember_token' => str_random(10),
-        'bio' => $faker->sentence()
+        'bio' => $faker->sentence(),
+        'organizacao_id' => $faker->randomElement($orgArray),
     ];
 });

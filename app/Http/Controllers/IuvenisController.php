@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\IEscritorRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class IuvenisController extends Controller
 {
     //index/home
-    public function index()
+    public function index(IEscritorRepository $escritorRepository)
     {
-        if(Auth::check())
-            return view('iuvenis.index');
-        return view('login.index');
+        $escritores = $escritorRepository->getEscritores([], 4);
+        return view('iuvenis.index', ['escritores'=>$escritores]);
     }
     //explorar
     public function explorar(){
