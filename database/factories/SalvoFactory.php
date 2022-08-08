@@ -11,13 +11,13 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
-    static $password;
-
+$factory->define(App\Salvo::class, function (Faker\Generator $faker) {
+    $postArray = App\Post::pluck('id')->toArray();
+    $userArray = App\User::pluck('id')->toArray();
+    $colecaoArray = App\Colecao::pluck('id')->toArray();
     return [
-        'name' => $faker->name,
-        'email' => $faker->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'post_id' => $faker->randomElement($postArray),
+        'user_id' => $faker->randomElement($userArray),
+        'colecao_id' => $faker->randomElement($colecaoArray),
     ];
 });

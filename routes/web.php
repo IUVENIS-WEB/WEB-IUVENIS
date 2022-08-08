@@ -24,17 +24,23 @@ use Illuminate\Support\Facades\Route;
 
 */
 Route::get('/',['as'=>'iuvenis.index', 'uses'=>'IuvenisController@index']);
-Route::get('/explorar',['as'=>'iuvenis.explorar', 'uses'=>'IuvenisController@explorar']);
 Route::get('/texto/{filtro}',['as'=>'iuvenis.texto', 'uses'=>'IuvenisController@texto']);
 Route::get('/video',['as'=>'iuvenis.video', 'uses'=>'IuvenisController@video']);
 Route::get('/evento',['as'=>'iuvenis.evento', 'uses'=>'IuvenisController@evento']);
-Route::get('/mais/{opcoes}',['as'=>'iuvenis.mais', 'uses'=>'IuvenisController@mais']);
+Route::get('/organizacoes',['as'=>'iuvenis.organizacoes', 'uses'=>'IuvenisController@organizacoes']);
 Route::get('/pesquisar/{busca}',['as'=>'iuvenis.pesquisar', 'uses'=>'IuvenisController@pesquisar']);
 
 //LOGIN
 Route::get('/login',['as'=>'login.index', 'uses'=>'LoginController@index']);
+Route::get('/cadastro',['as'=>'login.cadastro', 'uses'=>'LoginController@cadastro']);
+Route::post('/completarCadastro',['as'=>'login.completarCadastro', 'uses'=>'LoginController@completarCadastro']);
+Route::get('/cadastroFinal',['as'=>'login.cadastroFinal', 'uses'=>'LoginController@cadastroFinal']);
+Route::get('/deslogar',['as'=>'login.deslogar', 'uses'=>'LoginController@deslogar']);
 Route::get('/recuperarSenha',['as'=>'login.recuperarSenha', 'uses'=>'LoginController@recuperarSenha']);
 Route::post('/confirmacaoEnvio',['as'=>'login.confirmacaoEnvio', 'uses'=>'LoginController@confirmacaoEnvio']);
 Route::get('/redefinirSenha/{email}/{token}',['as'=>'login.redefinirSenha', 'uses'=>'LoginController@redefinirSenha']);
 Route::put('/definirNovaSenha',['as'=>'login.definirNovaSenha', 'uses' =>'LoginController@definirNovaSenha']);
 Route::post('/attempt',['as'=>'login.attempt', 'uses'=>'LoginController@attempt']);
+Route::post('/cadastrar',['as'=>'login.cadastrar', 'uses'=>'LoginController@cadastrar']);
+
+Route::get('/explorar', ['as' => 'explorar.index', 'uses' => 'ExplorarController@index']);

@@ -1,6 +1,5 @@
 <?php
-
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +18,3 @@ Route::group(['prefix' => 'posts'], function (){
     Route::get('grouped', 'PostController@showAllGrouped');
     Route::get('{post}', 'PostController@show');
 });
-
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');

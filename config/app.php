@@ -178,6 +178,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Provedores personalizados
+         */
+        App\Providers\TagRepositoryProvider::class,
+        App\Providers\PostRepositoryProvider::class,
+        App\Providers\EscritorRepositoryProvider::class,
     ],
 
     /*

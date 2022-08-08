@@ -1,0 +1,133 @@
+
+* 
+{
+ margin: 0;
+ border: 0;
+ padding: 0;
+ box-sizing: border-box;
+ font-family: 'Source Sans Pro', sans-serif;
+}
+footer
+{   background-color: #fff0e7;
+    width: 100%;
+    min-height: 250px;
+    display: flex;
+    margin-bottom: 0 auto;
+    justify-content: space-between;
+    padding: 0 6rem 0 6rem;
+    column-gap: 6rem;
+    bottom: 0;
+
+}
+
+.conteudo-rodape-esquerdo{
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items:flex-start;
+    padding-top: 2rem;
+    grid-row-gap: 0.5rem;
+    color: #213042;
+
+}
+
+.conteudo-rodape-direito{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    min-width: 400px;
+}
+
+
+
+
+
+footer .box1
+{
+    padding: 20px;
+}
+
+.box1 h2 /*cor do titulo de cada box*/
+{
+    color: #213042;
+    margin-bottom: 20px;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.box1 ul li /*margem das descrições de cada box menos iuvenis*/
+{
+    list-style: none;
+    text-decoration: none;
+    color: #213042;
+}
+.box1 ul li a /*margem das descrições de cada box menos iuvenis*/
+{
+    text-decoration: none;
+    color: #213042;
+}
+
+.box1 p /* descriçao Iuvenis*/
+{
+    color: #213042;
+    text-align: center;
+}
+
+@media (max-width: 950px)
+{
+    footer
+    {
+        flex-direction: column;
+        align-items: center
+    }
+    .conteudo-rodape-esquerdo{
+        justify-content:center;
+        align-items:center;
+        order: 2;
+        padding-bottom:2rem;
+    }
+    .conteudo-rodape-direito{
+        order: 1;
+    }
+
+    
+
+}
+
+@media (max-width: 500px)
+{
+    footer
+    {
+        padding: 0 3rem 0 3rem;
+    }
+    footer .box1
+    {
+        padding: 20px;
+    }
+    .box1 h2 /*cor do titulo de cada box*/
+    {
+        color: #213042;
+        text-align: left; 
+        font-size: 16px;
+        margin-bottom: 10px;
+
+    }
+    footer .box1
+    {
+        padding: 10px;
+    }   
+    
+    .conteudo-rodape-direito{
+        min-width: none;
+    }
+}
+
+@media (max-width: 400px)
+{
+    .conteudo-rodape-direito{
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+    }
+
+}

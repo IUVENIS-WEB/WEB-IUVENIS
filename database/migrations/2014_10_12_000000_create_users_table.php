@@ -14,10 +14,10 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->boolean('adm_power');
+            $table->boolean('adm_power')->default(0);
             $table->increments('id')->unsigned();
-            $table->binary('foto')->nullable();
-            $table->integer('posts')->default(0);
+            $table->string('foto')->nullable();
+            $table->integer('posts_count')->default(0);
             $table->string('nome');
             $table->string('sobrenome');
             $table->string('bio')->nullable();
@@ -27,9 +27,6 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-
-            $table->integer('organizacao_id')->unsigned()->nullable();
-            $table->foreign('organizacao_id')->references('id')->on('organizacaos');
         });
     }
 
@@ -41,7 +38,7 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::drop('users');
+        Schema::dropIfExists('users');
         Schema::enableForeignKeyConstraints();
     }
 }

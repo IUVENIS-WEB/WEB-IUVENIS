@@ -1,6 +1,6 @@
-@extends('layout.siteLogin')
-@section('titulo','Login')
-@section('conteudo')
+@extends('layouts.siteLogin')
+@section('title','Login')
+@section('content')
     <main class="container">
         <h2>Olá novamente!</h2>
         <h3>É sempre bom tê-la(o) por aqui</h3>
@@ -48,7 +48,7 @@
                 </div>
             </a>
             <div class="comando-cadastro">
-                <p>Não possui uma conta? <a href="#">Cadastrar</a></p>
+                <p>Não possui uma conta? <a href="{{action('LoginController@cadastro')}}">Cadastrar</a></p>
             </div>
         </div>
     </main>

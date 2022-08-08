@@ -14,29 +14,29 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            //colums
-            $table->increments('id')->unsigned();;
+            $table->timestamps();
+            $table->increments('id')->unsigned();
             $table->string('titulo');
-            $table->string('resumo');    
-            $table->binary('imagem')->nullable();
+            $table->string('resumo')->nullable();    
+            $table->string('imagem')->nullable();
             $table->enum('tipo', ['evento', 'video', 'artigo']);
             $table->string('link_evento')->nullable();
             $table->date('data_evento')->nullable();
             $table->string('link_midia')->nullable();
-            $table->float('tempo')->unsigned()->nullable();
+            $table->float('duracao')->unsigned()->nullable();
             $table->date('lançamento')->nullable();
-            $table->binary('arquivo')->nullable();
-            $table->string('tags')->nullable();
+            $table->string('arquivo')->nullable();
             $table->integer('denunciasContagem')->default(0);
-            $table->boolean('excluido');
-            $table->integer('user_id')->unsigned();
+            $table->boolean('excluido')->default(0);
             $table->boolean('comentario')->default(0);
+            
+            $table->integer('autor_id')->unsigned();
             $table->integer('pai_id')->unsigned()->nullable();
-            $table->foreign('pai_id')->references('id')->on('posts');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->integer('organizacao_id')->unsigned();
+            
+            $table->foreign('pai_id')->references('id')->on('posts');
+            $table->foreign('autor_id')->references('id')->on('users');
             $table->foreign('organizacao_id')->references('id')->on('organizacaos');
-            $table->timestamps();
         });
     }
 
@@ -48,7 +48,7 @@ class CreatePostsTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::drop('posts');
+        Schema::dropIfExists('posts');
         Schema::enableForeignKeyConstraints();
     }
 }

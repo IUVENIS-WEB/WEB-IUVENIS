@@ -6,15 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    public function user(){
-        return $this->hasOne('App\User');
+    function tags()
+    {
+        return $this->belongsToMany('App\Tag', 'post_tags');
     }
 
-    public function organizacao(){
-        return $this->hasOne('App\Organizacao');
+    function autor()
+    {
+        return $this->belongsTo('App\User', 'autor_id');
     }
 
-    public function salvo(){
-        return $this->hasMany('Appa\Salvo');
+    function salvos()
+    {
+        return $this->belongsToMany('App\Salvo', 'salvos');
     }
 }

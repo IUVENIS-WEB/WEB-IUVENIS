@@ -15,9 +15,14 @@ class CreateSalvosTable extends Migration
     {
 
         Schema::create('salvos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
             $table->integer('post_id')->unsigned();
+            $table->integer('colecao_id')->unsigned();
+            
+            $table->foreign('colecao_id')->references('id')->on('colecaos');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('post_id')->references('id')->on('posts');
         });
     }
@@ -30,7 +35,7 @@ class CreateSalvosTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::drop('salvos');
+        Schema::dropIfExists('salvos');
         Schema::enableForeignKeyConstraints();
     }
 }
