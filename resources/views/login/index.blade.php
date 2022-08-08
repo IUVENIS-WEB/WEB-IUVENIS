@@ -48,7 +48,7 @@
                 </div>
             </a>
             <div class="comando-cadastro">
-                <p>Não possui uma conta? <a href="#">Cadastrar</a></p>
+                <p>Não possui uma conta? <a href="{{action('LoginController@cadastro')}}">Cadastrar</a></p>
             </div>
         </div>
     </main>
