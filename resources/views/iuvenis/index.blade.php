@@ -122,6 +122,7 @@
                 </div>
             </div>
         </div>
+        @include('layouts._rodape')
     </main>
 
 

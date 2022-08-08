@@ -25,9 +25,10 @@
 </head>
 
 <body>
-    @include('layouts._navbar')
-    @yield('content')
-    @include('layouts._rodape')
+    <main class="container">
+        @include('layouts._navbar')
+        @yield('content')
+    </main>
 </body>
 {{-- Aqui ficará todos os arquivos JS necessários --}}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
