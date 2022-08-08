@@ -73,7 +73,7 @@
         <div class="rodape-sidebar">
             <a href="{{ url('/explorar') }}">Explorar</a>
             <a href="{{ url('/artigos') }}">Artigos</a>
-            <a href="{{ url('/videos') }}">Videos</a>
+            <a href="{{ url('/videos') }}">Vídeos</a>
             <a href="{{ url('/eventos') }}">Eventos</a>
             <a href="{{ url('/login') }}">Login</a>
             <a href="{{ url('/sobre') }}">Sobre</a>
