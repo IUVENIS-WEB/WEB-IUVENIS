@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailNotify;
 
+
 class EnvioController extends Controller
 {
     /**
@@ -94,6 +95,14 @@ class EnvioController extends Controller
 
     public function envioContato(Request $req)
     {
+        $data = [
+            'nome' => $req->nome,
+            'email' => $req->email,
+            'tel' => $req->tel,
+            'comentario' =>$req->comentario
+        ];
 
+        Mail::to('ciuvenis@gmail.com')->send(new MailController($data, 'Contato user', 'email.contact'));
+        return redirect('/');
     }
 }
