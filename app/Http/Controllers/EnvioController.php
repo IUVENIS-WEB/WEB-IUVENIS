@@ -91,4 +91,9 @@ class EnvioController extends Controller
     {
         //
     }
+
+    public function envioContato(Request $req)
+    {
+
+    }
 }
