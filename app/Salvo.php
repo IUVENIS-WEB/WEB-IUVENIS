@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Salvo extends Model
 {
-    //
+    protected $fillable = ['user_id', 'post_id', 'colecao_id'];
 }

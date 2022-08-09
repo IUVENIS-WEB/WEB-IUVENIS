@@ -46,3 +46,8 @@ Route::post('/cadastrar',['as'=>'login.cadastrar', 'uses'=>'LoginController@cada
 Route::get('/explorar', ['as' => 'explorar.index', 'uses' => 'ExplorarController@index']);
 
 Route::get('/contato', ['as' => 'iuvenis.contato.', 'uses' => 'IuvenisController@contato']);
+
+//COLEÇÕES E SALVOS
+Route::get('/getColecaos', ['as' => 'colecao.getColecaos', 'uses' => 'ColecaoController@getColecaos']);
+Route::post('/salvaPost', ['as' => 'colecao.salvaPost', 'uses' => 'ColecaoController@salvaPost']);
+Route::post('/salvaColecao', ['as' => 'colecao.salvaColecao', 'uses' => 'ColecaoController@salvaColecao']);
