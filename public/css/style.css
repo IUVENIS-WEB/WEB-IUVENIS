@@ -124,6 +124,7 @@ form {
 .input-field2 input{
     outline: none;
     font-size: var(--menor);
+    width: 100%;
 
 }
 
