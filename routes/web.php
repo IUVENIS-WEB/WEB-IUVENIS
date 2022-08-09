@@ -46,3 +46,4 @@ Route::post('/cadastrar',['as'=>'login.cadastrar', 'uses'=>'LoginController@cada
 Route::get('/explorar', ['as' => 'explorar.index', 'uses' => 'ExplorarController@index']);
 
 Route::get('/contato', ['as' => 'iuvenis.contato.', 'uses' => 'IuvenisController@contato']);
+Route::post('/envioContato', ['as' => 'iuvenis.envioContato.', 'uses' => 'EnvioController@envioContato']);
