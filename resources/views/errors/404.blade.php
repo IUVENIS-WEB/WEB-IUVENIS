@@ -1,6 +1,3 @@
-@extends('layout.site')
-@section('name','NotFoundPage')
-@section('conteudo')
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,7 +10,7 @@
 
 
 
-        <title>Erro</title>
+        <title>404 - PageNotFound</title>
         <link href="{{ URL::asset('css/erro.css') }}" rel="stylesheet" type="text/css">
         
     </head>
@@ -40,5 +37,4 @@
 
 
     </body>
-    </html> 
-@endsection
+    </html>
