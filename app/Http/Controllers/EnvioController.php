@@ -6,6 +6,14 @@ use App\Mail\MailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailNotify;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use App\User;
+use Exception;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 
 class EnvioController extends Controller
