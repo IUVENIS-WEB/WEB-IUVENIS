@@ -3,11 +3,10 @@
 $colecoes = $salvoRepository->getColecoes();
 $loggedIn = Auth::check();
 @endphp
-
 @extends('layouts.main_layout')
-@section('title', 'Explorar')
+@section('title', 'Tags')
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/explorar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tag.css') }}">
 @endsection
 
 @section('content')
@@ -15,8 +14,8 @@ $loggedIn = Auth::check();
         <div class="conteudo">
             <div class="titulo">
                 <div class="titulo-top">
-                    <img src="assets/explorar-icon.png">
-                    <h1>Explorar</h1>
+                    <img src="{{asset('images/assets/tag-icon.png')}}">
+                    <h1>{{$tag}}</h1>
                 </div>
                 <div class="line-horizontal-conteudo"></div>
             </div>
@@ -24,12 +23,12 @@ $loggedIn = Auth::check();
                 @forelse ($posts as $post)
                     @include('layouts._card_post', ['post' => $post])
 
-                        <div class="line-horizontal-conteudo"></div>
-                    </div>
-                @empty
-                    <small>Não há posts no momento :(</small>
-                @endforelse
+                    <div class="line-horizontal-conteudo"></div>
             </div>
+        @empty
+            <small>Não há posts no momento :(</small>
+            @endforelse
+        </div>
         </div>
         @include('layouts._sidebar')
     </main>
@@ -49,12 +48,13 @@ $loggedIn = Auth::check();
                     <input type="number" id="post_id" hidden class="form-control">
                 </div>
                 <div class="modal-footer">
-                    <button id="submit" data-bs-dismiss="modal" class="btn btn-primary" onclick="criar_colecao()" disabled>Salvar</button>
+                    <button id="submit" data-bs-dismiss="modal" class="btn btn-primary" onclick="criar_colecao()"
+                        disabled>Salvar</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="{{asset('js/colecao.js')}}"></script>
+    <script src="{{ asset('js/colecao.js') }}"></script>
 
 @endsection
