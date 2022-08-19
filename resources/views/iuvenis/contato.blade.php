@@ -27,11 +27,13 @@
             <div class="forms"> 
             	<c>Nos deixe uma mensagem</c>
                 <d>Adoraríamos ouvir de você!</d>
+
+
                 <form action="{{action('EnvioController@envioContato')}}" method="POST">
                 {{ csrf_field() }}
                     <input type = "text" name="nome" placeholder =  " Nome " /> 
-			        <input type = "email" name="email" placeholder =  " E-mail " />
-			        <input type = "tel" name="tel" placeholder =  " Telefone celular " />
+			        <input type = "email" name="email" placeholder =  " E-mail " required/>
+			        <input type = "tel" name="tel" placeholder =  " Telefone celular " required />
 			        <textarea placeholder=" Seu comentário" name="comentario" maxlength="2000"></textarea>
                     
 				    <input type="submit">
