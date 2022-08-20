@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 */
 Route::get('/',['as'=>'iuvenis.index', 'uses'=>'IuvenisController@index']);
+Route::get('/publicar_texto',['as'=>'iuvenis.index', 'uses'=>'IuvenisController@publicar']);
 Route::get('/texto/{filtro}',['as'=>'iuvenis.texto', 'uses'=>'IuvenisController@texto']);
 Route::get('/video',['as'=>'iuvenis.video', 'uses'=>'IuvenisController@video']);
 Route::get('/evento',['as'=>'iuvenis.evento', 'uses'=>'IuvenisController@evento']);

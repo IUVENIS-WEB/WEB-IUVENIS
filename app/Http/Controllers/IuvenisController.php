@@ -47,4 +47,14 @@ class IuvenisController extends Controller
         return view('iuvenis.contato');
     }
 
+    public function publicar(){
+        if(Auth::check())
+        {
+        return view('iuvenis.publicar_artigo');
+        }else
+        {
+            return redirect('/login');
+        }
+    }
+
 }
