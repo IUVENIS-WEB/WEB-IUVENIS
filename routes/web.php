@@ -43,4 +43,16 @@ Route::put('/definirNovaSenha',['as'=>'login.definirNovaSenha', 'uses' =>'LoginC
 Route::post('/attempt',['as'=>'login.attempt', 'uses'=>'LoginController@attempt']);
 Route::post('/cadastrar',['as'=>'login.cadastrar', 'uses'=>'LoginController@cadastrar']);
 
+//DESCOBERTA DE CONTEÚDO
 Route::get('/explorar', ['as' => 'explorar.index', 'uses' => 'ExplorarController@index']);
+Route::get('/tag/{tag}', ['as' => 'tag.index', 'uses' => 'TagController@index'])
+->where('tag', '\d+');
+
+Route::get('/contato', ['as' => 'iuvenis.contato.', 'uses' => 'IuvenisController@contato']);
+
+//COLEÇÕES E SALVOS
+Route::get('/getColecaos', ['as' => 'colecao.getColecaos', 'uses' => 'ColecaoController@getColecaos']);
+Route::post('/salvaPost', ['as' => 'colecao.salvaPost', 'uses' => 'ColecaoController@salvaPost']);
+Route::post('/salvaColecao', ['as' => 'colecao.salvaColecao', 'uses' => 'ColecaoController@salvaColecao']);
+
+Route::post('/envioContato', ['as' => 'iuvenis.envioContato.', 'uses' => 'EnvioController@envioContato']);

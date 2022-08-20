@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
@@ -35,5 +36,23 @@
     integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
 </script>
 <script src="https://kit.fontawesome.com/7af21c135f.js" crossorigin="anonymous"></script>
-
+<script>
+    //Usar esse método sempre que precisar fazer um post pelo JS
+    //é necessário usar await para receber o retorno do laravel.
+    function fetchPost(resource, body) {
+            let _token = document.head.querySelector("[name~=csrf-token][content]").content;
+            return fetch(resource, {
+                    method: 'post',
+                    body: JSON.stringify(body),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "X-CSRF-Token": _token
+                    }
+                })
+                .then(response => {
+                    return response.json();
+                })
+                // .catch(e => console.log(e))
+        }
+</script>
 </html>

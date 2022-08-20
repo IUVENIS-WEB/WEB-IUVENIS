@@ -42,4 +42,9 @@ class IuvenisController extends Controller
     public function login(){
         return view('iuvenis.login');
     }
+    //contato
+    public function contato(){
+        return view('iuvenis.contato');
+    }
+
 }

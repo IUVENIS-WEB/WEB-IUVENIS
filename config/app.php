@@ -184,6 +184,7 @@ return [
         App\Providers\TagRepositoryProvider::class,
         App\Providers\PostRepositoryProvider::class,
         App\Providers\EscritorRepositoryProvider::class,
+        App\Providers\SalvoRepositoryProvider::class,
     ],
 
     /*

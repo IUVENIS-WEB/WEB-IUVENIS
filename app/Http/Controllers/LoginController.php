@@ -54,7 +54,7 @@ class LoginController extends Controller
     {
         $toke = \App\PasswordReset::where('email', '=', $email)->get()->first();
         if ($toke->token != $token) {
-            return view('login.index');
+            return redirect('/');
         } else {
             $toke->delete();
             return view('login.definirSenha', compact('email'));
@@ -69,7 +69,7 @@ class LoginController extends Controller
         $user->password = Hash::make($req->senha);
         $user->save();
         Auth::login($user);
-        return view('iuvenis.index');
+        return redirect('/');
     }
 
     public function attempt(Request $req)
