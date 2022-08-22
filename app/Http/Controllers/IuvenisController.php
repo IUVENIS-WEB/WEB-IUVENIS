@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Contracts\IEscritorRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Post;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\BD;
+use Illuminate\Database\Eloquent\Model;
 
 class IuvenisController extends Controller
 {
@@ -50,7 +54,26 @@ class IuvenisController extends Controller
     public function publicar(){
         if(Auth::check())
         {
-        return view('iuvenis.publicar_artigo');
+            $id = Auth::user();
+            $posts = DB::table('posts')
+           ->join('users', 'users.id', '=', 'posts.autor_id')
+           ->where([
+               ['posts.excluido', '=', 0],
+                ['posts.comentario', '=', 0],
+                ['posts.autor_id', '=', $id->id],
+           ])
+            ->select('posts.autor_id',
+            'users.foto',
+            'users.nome',
+            'users.sobrenome',
+            'posts.tipo',
+            'posts.titulo',
+            'posts.updated_at')
+            ->take(10)
+            ->get();
+
+
+        return view('iuvenis.publicar_artigo', ['posts'=> $posts, 'user' => $user]);
         }else
         {
             return redirect('/login');
