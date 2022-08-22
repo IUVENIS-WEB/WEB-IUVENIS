@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\IPostRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use App\Post;
 use Exception;
+use Illuminate\Support\Facades\Response;
+
 class PostController extends Controller
 {
     public function show(Post $post){
@@ -17,11 +20,7 @@ class PostController extends Controller
         return Post::where('excluido', false)->get();
     }
 
-    public function showAllGrouped(){
-        return collect(
-            DB::table('posts')
-            ->where('excluido', false)
-            ->get()
-        )->groupBy('tipo');
+    public function showAllGrouped(IPostRepository $postRepository){
+        return response()->json($postRepository->groupedPostsByTag());
     }
 }
