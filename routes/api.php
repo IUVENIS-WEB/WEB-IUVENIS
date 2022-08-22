@@ -1,6 +1,5 @@
 <?php
-
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,11 +11,10 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//Use como referência: https://www.toptal.com/laravel/restful-laravel-api-tutorial
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
-
-Route::get('/posts', function (Request $request) {
-    return json_encode(App\Post::all());
+Route::group(['prefix' => 'posts'], function (){
+    Route::get('/', 'PostController@showAll');
+    Route::get('grouped', 'PostController@showAllGrouped');
+    Route::get('{post}', 'PostController@show');
 });
