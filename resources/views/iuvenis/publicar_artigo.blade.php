@@ -10,8 +10,8 @@
     <nav>
         <div class="conteudo-navbar">
         <a href="{{ url('/') }}">
-        <img src="{{URL::asset('images/logo.png')}}" id="aprendizado" width="44" height="35">
-                    </a>
+            <img src="{{URL::asset('images/logo.png')}}" id="aprendizado" width="44" height="35">
+        </a>
             
 
             <form class="d-flex" role="search">
@@ -59,8 +59,8 @@
         <div class="sidebar">
             <div class="conteudo-sidebar">
                 <div class="perfil">
-                    <div class="imagem-perfil"><img src="images/assets/tabate.png" alt="foto de perfil"></div>
-                    <h3>{{$user->nome}}</h3>
+                    <div class="imagem-perfil"><img src=" {{asset('images/users/' . $id->foto)}}" alt="foto de perfil"></div>
+                    <h3>{{$id->nome}}</h3>
                 </div>
                 <div class="botoes"> 
                     <a href="">
@@ -74,8 +74,8 @@
                             <h4>Painel</h4>
                         </div>
                     </a>
-                    <a href="">
-                        <div class="botao btn-pagina-atual">
+                    <a href="{{ route('iuvenis.publica_texto')}}">
+                        <div class="botao">
                             <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.48918 11.2581C0.230995 9.45081 1.63338 7.83385 3.45903 7.83385H17.5387C19.3644 7.83385 20.7668 9.45081 20.5086 11.2581L19.0326 21.5897C18.8215 23.0676 17.5557 24.1654 16.0628 24.1654H4.93497C3.44202 24.1654 2.17626 23.0676 1.96512 21.5897L0.48918 11.2581Z" fill="#5E6368"/>
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M2.33203 5.50077C2.33203 4.85651 2.85431 4.33423 3.49857 4.33423H17.4971C18.1413 4.33423 18.6636 4.85651 18.6636 5.50077C18.6636 6.14503 18.1413 6.66731 17.4971 6.66731H3.49857C2.85431 6.66731 2.33203 6.14503 2.33203 5.50077Z" fill="#5E6368"/>
@@ -84,7 +84,7 @@
                             <h4>Textos</h4>
                         </div>
                     </a>
-                    <a href="">
+                    <a href="{{ route('iuvenis.publica_video')}}">
                         <div class="botao">
                             <svg width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0 11.4839V3.90397C0 1.22255 2.94911 -0.448987 5.30839 0.885921L11.938 4.6701L18.6737 8.51231C20.9976 9.83561 20.9976 13.1323 18.6737 14.4439L11.938 18.2862L5.22582 22.1168C2.91372 23.4401 0 21.7917 0 19.1451V11.4839Z" fill="#5E6368"/>
@@ -92,7 +92,7 @@
                             <h4>Videos</h4>
                         </div>
                     </a>
-                    <a href="">
+                    <a href="{{ route('iuvenis.publica_evento')}}">
                         <div class="botao">
                             <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M19.7387 20.2474C20.3611 22.184 18.9167 24.1654 16.8826 24.1654L4.11574 24.1654C2.08162 24.1654 0.637196 22.1839 1.25966 20.2474L4.58052 9.91582C4.97931 8.67516 6.13344 7.83385 7.43661 7.83385L13.5617 7.83385C14.8649 7.83385 16.019 8.67516 16.4178 9.91582L19.7387 20.2474Z" fill="#5E6368"/>
@@ -117,12 +117,22 @@
             <div class="titulo">
                 <div class="titulo-top">
                     <img src="images/assets/textos-icon.png">
+                    @if($tipo == 'Texto')
                     <h1>Produção Textual</h1>
+                    @endif
+                    @if($tipo == 'Video')
+                    <h1>Produção de video</h1>
+                    @endif
+                    @if($tipo == 'Evento')
+                    <h1>Produção de eventos</h1>
+                    @endif
                 </div>
                 <div class="titulo-bottom">
                     <div class="titulo-links">
-                        <a href="#" class="pagina-atual" >Artigos</a>
+                        <a href="#" class="pagina-atual" >{{$tipo}}</a>
+                        @if($tipo == 'Texto')
                         <a href="#">Editoriais</a>
+                        @endif
                     </div>
                     <div class="line-horizontal-conteudo"></div>
                 </div>
@@ -130,8 +140,10 @@
             <div class="lista-posts">
                 <a href="" class="publicar-novo">  
                     <img src="assets/adicionar-icon.svg" alt="">
-                    <div>Publicar novo artigo</div>
+                    <div>Publicar novo {{strtolower ($tipo )}} </div>
                 </a>
+
+                @forelse ($user as $post)
                 <div class="btn-publicacao">
                     <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0.48918 11.2581C0.230995 9.45081 1.63338 7.83385 3.45903 7.83385H17.5387C19.3644 7.83385 20.7668 9.45081 20.5086 11.2581L19.0326 21.5897C18.8215 23.0676 17.5557 24.1654 16.0628 24.1654H4.93497C3.44202 24.1654 2.17626 23.0676 1.96512 21.5897L0.48918 11.2581Z" fill="#5E6368"/>
@@ -141,15 +153,15 @@
                     <a class="conteudo-btn-post">
                         <div class="titulo-post">
                             <div class="titulo-btn-publicacao">Título</div>
-                            <p>Gravidez na adolescência e métodos contraceptivos</p>
+                            <p>{{$post->titulo}}</p>
                         </div>
                         <div class="organizacao-post">
                             <div class="titulo-btn-publicacao">Organização</div>
-                            <p>Nenhuma</p>
+                            <p>{{$post->nome}}</p>
                         </div>
                         <div class="data-post">
                             <div class="titulo-btn-publicacao">Data</div>
-                            <p>29/02/2020</p>
+                            <p>{{$post->updated_at}}</p>
                         </div>
                     </a>
                     <div class="dropstart">
@@ -160,10 +172,14 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownCenterBtn">
                             <li><button type="button" class="dropdown-item exclusao" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-trash-can"></i> excluir</button></li>
-                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-pen-clip"></i> editar</a></li>     
+                            <li><a class="dropdown-item" href=" {{ url('/posts/' . $post->id) }}"><i class="fa-solid fa-pen-clip"></i> editar</a></li>     
                         </ul>
                     </div>
                 </div>
+
+                @empty
+                    <small>Ops...Não há {{strtolower ($tipo )}}!</small>
+                @endforelse
             </div>
         </div>
     </main>

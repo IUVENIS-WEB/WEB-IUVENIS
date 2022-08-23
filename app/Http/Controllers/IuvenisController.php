@@ -9,6 +9,7 @@ use App\Post;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\BD;
 use Illuminate\Database\Eloquent\Model;
+use App\Contracts\IPostRepository;
 
 class IuvenisController extends Controller
 {
@@ -51,29 +52,40 @@ class IuvenisController extends Controller
         return view('iuvenis.contato');
     }
 
-    public function publicar(){
+    public function publicar_texto(IPostRepository $postRepository){
         if(Auth::check())
         {
-            $id = Auth::user();
-            $posts = DB::table('posts')
-           ->join('users', 'users.id', '=', 'posts.autor_id')
-           ->where([
-               ['posts.excluido', '=', 0],
-                ['posts.comentario', '=', 0],
-                ['posts.autor_id', '=', $id->id],
-           ])
-            ->select('posts.autor_id',
-            'users.foto',
-            'users.nome',
-            'users.sobrenome',
-            'posts.tipo',
-            'posts.titulo',
-            'posts.updated_at')
-            ->take(10)
-            ->get();
+            $tipo = 'Texto';
+        $id = Auth::user();
+        $user = $postRepository->getPostsUser($id, $tipo);
+        return view('iuvenis.publicar_artigo', ['user' => $user, 'id' => $id, 'tipo' => $tipo]);
+        }else
+        {
+            return redirect('/login');
+        }
+    }
 
+    public function publicar_video(IPostRepository $postRepository){
+        if(Auth::check())
+        {
+        $tipo = 'Video';
+        $id = Auth::user();
+        $user = $postRepository->getPostsUser($id, $tipo);
+        return view('iuvenis.publicar_artigo', ['user' => $user, 'id' => $id, 'tipo' => $tipo]);
+        }else
+        {
+            return redirect('/login');
+        }
+    }
 
-        return view('iuvenis.publicar_artigo', ['posts'=> $posts, 'user' => $user]);
+    public function publicar_evento(IPostRepository $postRepository){
+        if(Auth::check())
+        {
+        $tipo = 'Evento';
+        $id = Auth::user();
+        $user = $postRepository->getPostsUser($id, 'evento');
+
+        return view('iuvenis.publicar_artigo', ['user' => $user, 'id' => $id, 'tipo' => $tipo]);
         }else
         {
             return redirect('/login');
