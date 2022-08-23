@@ -18,3 +18,6 @@ Route::group(['prefix' => 'posts'], function (){
     Route::get('grouped', 'PostController@showAllGrouped');
     Route::get('{post}', 'PostController@show');
 });
+Route::group(['prefix' => 'comentarios'], function(){
+    Route::get('{id}', 'PostController@getComentarioByIdPai');
+});

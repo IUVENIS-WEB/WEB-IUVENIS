@@ -23,4 +23,8 @@ class PostController extends Controller
     public function showAllGrouped(IPostRepository $postRepository){
         return response()->json($postRepository->groupedPostsByTag());
     }
+
+    public function getComentarioByIdPai(IPostRepository $postRepository, $id){
+        return response()->json($postRepository->getComentarioPostbyIdPai($id));
+    }
 }

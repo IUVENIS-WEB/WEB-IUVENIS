@@ -110,4 +110,14 @@ class PostRepository extends Repository implements IPostRepository
                 }
                 return $response;
         }
+        public function getComentarioPostbyIdPai($id){
+                return $data =DB::table('posts')
+                         ->join('users', 'users.id', '=', 'posts.autor_id')
+                         ->where([
+                                 ['posts.comentario','=','1'],
+                                 ['posts.pai_id','=',$id]
+                         ])
+                         ->orderBy('posts.created_at', 'asc')
+                        ->get();
+         }
 }
