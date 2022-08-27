@@ -74,6 +74,18 @@
                             <h4>Painel</h4>
                         </div>
                     </a>
+                    @if($tipo == 'Texto')
+                    <a href="{{ route('iuvenis.publica_texto')}}">
+                        <div class="botao btn-pagina-atual">
+                            <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.48918 11.2581C0.230995 9.45081 1.63338 7.83385 3.45903 7.83385H17.5387C19.3644 7.83385 20.7668 9.45081 20.5086 11.2581L19.0326 21.5897C18.8215 23.0676 17.5557 24.1654 16.0628 24.1654H4.93497C3.44202 24.1654 2.17626 23.0676 1.96512 21.5897L0.48918 11.2581Z" fill="#5E6368"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.33203 5.50077C2.33203 4.85651 2.85431 4.33423 3.49857 4.33423H17.4971C18.1413 4.33423 18.6636 4.85651 18.6636 5.50077C18.6636 6.14503 18.1413 6.66731 17.4971 6.66731H3.49857C2.85431 6.66731 2.33203 6.14503 2.33203 5.50077Z" fill="#5E6368"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.66602 2.00114C4.66602 1.35687 5.03907 0.834595 5.49926 0.834595H15.4982C15.9584 0.834595 16.3314 1.35687 16.3314 2.00114C16.3314 2.6454 15.9584 3.16768 15.4982 3.16768H5.49926C5.03907 3.16768 4.66602 2.6454 4.66602 2.00114Z" fill="#5E6368"/>
+                            </svg>
+                            <h4>Textos</h4>
+                        </div>
+                    </a>
+                    @else
                     <a href="{{ route('iuvenis.publica_texto')}}">
                         <div class="botao">
                             <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,6 +96,17 @@
                             <h4>Textos</h4>
                         </div>
                     </a>
+                    @endif
+                    @if($tipo == 'Video')
+                    <a href="{{ route('iuvenis.publica_video')}}">
+                        <div class="botao btn-pagina-atual">
+                            <svg width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 11.4839V3.90397C0 1.22255 2.94911 -0.448987 5.30839 0.885921L11.938 4.6701L18.6737 8.51231C20.9976 9.83561 20.9976 13.1323 18.6737 14.4439L11.938 18.2862L5.22582 22.1168C2.91372 23.4401 0 21.7917 0 19.1451V11.4839Z" fill="#5E6368"/>
+                            </svg>  
+                            <h4>Videos</h4>
+                        </div>
+                    </a>
+                    @else
                     <a href="{{ route('iuvenis.publica_video')}}">
                         <div class="botao">
                             <svg width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -92,6 +115,20 @@
                             <h4>Videos</h4>
                         </div>
                     </a>
+                    @endif
+
+                    @if($tipo == 'Evento')
+                    <a href="{{ route('iuvenis.publica_evento')}}">
+                        <div class="botao btn-pagina-atual">
+                            <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19.7387 20.2474C20.3611 22.184 18.9167 24.1654 16.8826 24.1654L4.11574 24.1654C2.08162 24.1654 0.637196 22.1839 1.25966 20.2474L4.58052 9.91582C4.97931 8.67516 6.13344 7.83385 7.43661 7.83385L13.5617 7.83385C14.8649 7.83385 16.019 8.67516 16.4178 9.91582L19.7387 20.2474Z" fill="#5E6368"/>
+                                <path d="M1.25937 8.25226C0.636906 6.31571 2.08133 4.33423 4.11545 4.33423L16.8823 4.33423C18.9164 4.33423 20.3609 6.31571 19.7384 8.25226L16.4175 18.5838C16.0187 19.8245 14.8646 20.6658 13.5614 20.6658L7.43632 20.6658C6.13315 20.6658 4.97902 19.8245 4.58024 18.5838L1.25937 8.25226Z" fill="#5E6368"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.33203 2.00114C2.33203 1.35687 2.85431 0.834595 3.49857 0.834595H17.4971C18.1413 0.834595 18.6636 1.35687 18.6636 2.00114C18.6636 2.6454 18.1413 3.16768 17.4971 3.16768H3.49857C2.85431 3.16768 2.33203 2.6454 2.33203 2.00114Z" fill="#5E6368"/>
+                            </svg>
+                            <h4>Eventos</h4>
+                        </div>
+                    </a>
+                    @else
                     <a href="{{ route('iuvenis.publica_evento')}}">
                         <div class="botao">
                             <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -102,6 +139,7 @@
                             <h4>Eventos</h4>
                         </div>
                     </a>
+                    @endif
                     <a href="">
                         <div class="botao">
                             <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
