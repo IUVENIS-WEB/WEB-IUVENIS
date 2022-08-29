@@ -120,4 +120,24 @@ class PostRepository extends Repository implements IPostRepository
                          ->orderBy('posts.created_at', 'asc')
                         ->get();
          }
+         public function getColecoesByUser($id){
+                $data = DB::table('colecaos')
+                        ->where([
+                                ['colecaos.creator_id','=',$id]
+                        ])
+                        ->select(['colecaos.id', 'colecaos.nome'])
+                       ->get()
+                       ->all();
+                return $data;
+        }
+        public function getPostByIdColecoes($id){
+               return $data = DB::table('salvos')       
+                        ->join('posts','posts.id','=','salvos.post_id')
+                        ->where([
+                                ['salvos.colecao_id','=',$id]
+                        ])
+                        ->get()
+                        ->all();
+                
+        }
 }

@@ -27,4 +27,13 @@ class PostController extends Controller
     public function getComentarioByIdPai(IPostRepository $postRepository, $id){
         return response()->json($postRepository->getComentarioPostbyIdPai($id));
     }
+    
+    public function getColecoesByIdUser(IPostRepository $postRepository, $id)
+    {
+        return response()->json($postRepository->getColecoesByUser($id));
+    }
+    public function getPostByIdColecoes(IPostRepository $postRepository, $id)
+    {
+        return response()->json($postRepository->getPostByIdColecoes($id));
+    }
 }

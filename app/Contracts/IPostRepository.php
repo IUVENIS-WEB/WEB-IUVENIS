@@ -6,4 +6,6 @@ interface IPostRepository{
     function getLastSavedPosts($userId, $take = 10);
     function groupedPostsByTag($tipo = null, $take = 10);
     function getComentarioPostbyIdPai($id);
+    function getColecoesByUser($id);
+    function getPostByIdColecoes($id);
 }

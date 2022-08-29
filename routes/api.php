@@ -17,6 +17,10 @@ Route::group(['prefix' => 'posts'], function (){
     Route::get('/', 'PostController@showAll');
     Route::get('grouped', 'PostController@showAllGrouped');
     Route::get('{post}', 'PostController@show');
+    //retorna as coleções de um usuário pelo seu id
+    Route::get('colecoes/usuario/{id}', 'PostController@getColecoesByIdUser');
+    //retorna os posts de uma coleção pelo seu id
+    Route::get('colecoes/{id}', 'PostController@getPostByIdColecoes');
 });
 Route::group(['prefix' => 'comentarios'], function(){
     Route::get('{id}', 'PostController@getComentarioByIdPai');
