@@ -100,13 +100,12 @@ class PostRepository extends Repository implements IPostRepository
                                 ->get()
                 )->groupBy('nome');
 
-                $response = new stdClass();
-                $response->data = collect([]);
+                $response = collect([]);
                 foreach($data as $posts){
                         $obj = new stdClass();
                         $obj->tag = $posts->all()[0]->nome;
                         $obj->posts = $posts->all();
-                        $response->data->push($obj);
+                        $response->push($obj);
                 }
                 return $response;
         }

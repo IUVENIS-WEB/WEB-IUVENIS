@@ -18,3 +18,6 @@ Route::group(['prefix' => 'posts'], function (){
     Route::get('grouped', 'PostController@showAllGrouped');
     Route::get('{post}', 'PostController@show');
 });
+Route::group(['prefix' => 'login'], function(){
+    Route::post('/register', 'LoginController@register');
+});
