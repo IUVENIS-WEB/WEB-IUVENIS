@@ -109,4 +109,34 @@ class PostRepository extends Repository implements IPostRepository
                 }
                 return $response;
         }
+        public function getComentarioPostbyIdPai($id){
+                return $data =DB::table('posts')
+                         ->join('users', 'users.id', '=', 'posts.autor_id')
+                         ->where([
+                                 ['posts.comentario','=','1'],
+                                 ['posts.pai_id','=',$id]
+                         ])
+                         ->orderBy('posts.created_at', 'asc')
+                        ->get();
+         }
+         public function getColecoesByUser($id){
+                $data = DB::table('colecaos')
+                        ->where([
+                                ['colecaos.creator_id','=',$id]
+                        ])
+                        ->select(['colecaos.id', 'colecaos.nome'])
+                       ->get()
+                       ->all();
+                return $data;
+        }
+        public function getPostByIdColecoes($id){
+               return $data = DB::table('salvos')       
+                        ->join('posts','posts.id','=','salvos.post_id')
+                        ->where([
+                                ['salvos.colecao_id','=',$id]
+                        ])
+                        ->get()
+                        ->all();
+                
+        }
 }
