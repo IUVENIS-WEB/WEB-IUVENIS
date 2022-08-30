@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Contracts\IPostRepository;
 use App\Post;
+use Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use stdClass;
@@ -92,6 +93,8 @@ class PostRepository extends Repository implements IPostRepository
                                         'users.foto',
                                         'users.nome',
                                         'users.sobrenome',
+                                        'posts.id',
+                                        'posts.imagem',
                                         'posts.tipo',
                                         'posts.titulo',
                                         'tags.nome'
@@ -104,7 +107,12 @@ class PostRepository extends Repository implements IPostRepository
                 foreach($data as $posts){
                         $obj = new stdClass();
                         $obj->tag = $posts->all()[0]->nome;
-                        $obj->posts = $posts->all();
+                        $obj->posts = $posts->map(function ($item){
+                                $item->foto = request()->getSchemeAndHttpHost().'/images/users/'.$item->foto;
+                                $item->imagem = request()->getSchemeAndHttpHost().'/images/posts/'.$item->imagem;
+                                return $item;
+                        })->all();
+
                         $response->push($obj);
                 }
                 return $response;
