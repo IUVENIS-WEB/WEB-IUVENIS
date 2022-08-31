@@ -29,3 +29,6 @@ Route::group(['prefix' => 'login'], function(){
 Route::group(['prefix' => 'comentarios'], function(){
     Route::get('{id}', 'PostController@getComentarioByIdPai');
 });
+Route::group(['prefix' => 'users'], function(){
+    Route::get('{id}', 'UserController@getUserById');
+});

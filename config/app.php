@@ -185,6 +185,7 @@ return [
         App\Providers\PostRepositoryProvider::class,
         App\Providers\EscritorRepositoryProvider::class,
         App\Providers\SalvoRepositoryProvider::class,
+        App\Providers\UserRepositoryProvider::class,
     ],
 
     /*
