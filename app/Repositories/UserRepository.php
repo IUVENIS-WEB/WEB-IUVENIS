@@ -12,11 +12,15 @@ class UserRepository extends Repository implements IUserRepository
 {
     public function userById($id)
     {
-        return $data = DB::table('users')
+        $data = DB::table('users')
               ->where([
                 ['users.id','=',$id]
               ])
+              ->select(['id','foto', 'nome', 'sobrenome',
+               'bio', 'nascimento', 'email', 'organizacao_id'])
               ->get()
-              ->all();
+              ->first();
+        $data->foto = request()->getSchemeAndHttpHost().'/images/users/'.$data->foto;
+        return $data;
     }
 }
