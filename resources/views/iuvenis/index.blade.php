@@ -2,26 +2,21 @@
 @section('title', 'Home')
 @section('css')
     <link rel="stylesheet" href="{{ URL::asset('css/style_home.css') }}" type="text/css">
+    
+
 @endsection
 @section('content')
+
     <main class="container">
-        <h1>
-            @if (Auth::check())
-                Tá logado fi
-                <a href="{{ action('LoginController@deslogar') }}">tira tira alek</a>
-            @else
-                Não tá logado, tá ligado?
-                <a href="{{ route('login.index') }}">vai logar</a>
-            @endif
-        </h1>
-        <div class="navbar">
-        </div>
+
+        
         <div class="top">
             <div class="content">
                 <h1>PLATAFORMA IUVENIS</h1>
                 <div id="subtitulo-top">
                     <p>A plataforma sobre Educação Sexual. Ansioso(a) para aprender mais?</p>
                 </div>
+                
                 <a href="{{ route('explorar.index') }}">
                     <div class="botao-explorar">Explorar</div>
                 </a>
@@ -126,9 +121,6 @@
     </main>
 
 
-    </body>
-
-    </html>
 
 
 @endsection

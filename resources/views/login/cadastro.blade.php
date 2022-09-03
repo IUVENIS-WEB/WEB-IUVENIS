@@ -4,6 +4,11 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/style_cadastro.css') }}">
 @endsection
+@section('navbar')
+<span></span>
+@endsection
+
+
 
 @section('content')
     <main class="container">

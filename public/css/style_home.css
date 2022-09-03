@@ -44,9 +44,7 @@ body {
 }
 
 .navbar{
-    content: '';
-    height: 55px;
-    background-color: #F25F5C;
+    position: fixed;
 }
 
 main.container {
@@ -98,7 +96,12 @@ main .top .content{
     text-align: center;
     column-gap: 0.5rem;
     max-width: 1300px;
+    min-height: 700px;
+
 }
+
+
+
 
 .top h1{
     font-size: var(--maior);

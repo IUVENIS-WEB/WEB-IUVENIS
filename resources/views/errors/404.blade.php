@@ -3,6 +3,9 @@
 @section('css')
 <link href="{{ URL::asset('css/erro.css') }}" rel="stylesheet" type="text/css">
 @endsection
+@section('navbar')
+<span></span>
+@endsection
 @section('content')
         <main class="container">
         

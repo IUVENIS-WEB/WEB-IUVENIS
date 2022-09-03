@@ -14,28 +14,37 @@
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/fontawesome.min.css"
         rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+       integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     @hasSection('css')
         @yield('css')
     @else
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ URL::asset('css/style_home.css') }}">
     @endif
-
+    <link rel="stylesheet" href="{{ URL::asset('css/navbar.css') }}" type="text/css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script type="text/javascript" src="navbar.js"></script>
 
 </head>
 
 <body>
-    <main class="container">
+    
+    @hasSection('navbar') 
+        @yield('navbar')
+    @else
         @include('layouts._navbar')
+
+    @endif
         @yield('content')
-    </main>
+
 </body>
 {{-- Aqui ficará todos os arquivos JS necessários --}}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
 </script>
 <script src="https://kit.fontawesome.com/7af21c135f.js" crossorigin="anonymous"></script>
+
 <script>
     //Usar esse método sempre que precisar fazer um post pelo JS
     //é necessário usar await para receber o retorno do laravel.

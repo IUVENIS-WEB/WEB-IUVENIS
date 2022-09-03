@@ -2,7 +2,7 @@
 @section('title', 'Publicar artigo')
 
 @section('css')
-<link rel="stylesheet" href="css/publicar_texto.css">
+<link rel="stylesheet" href="{{ URL::asset('css/publicar_texto.css') }}">
 
 @endsection
 

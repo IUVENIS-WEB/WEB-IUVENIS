@@ -1,0 +1,221 @@
+:root{
+
+    /*variáveis das cores*/
+    --bege: #FFF0E7;
+    --azul-escuro: #213042; 
+    --cinza: #5E6368; 
+    --bege-escuro: #C1B8A9;
+    --cinza-claro: #C4C4C4;
+    --sombra: rgba(0, 0, 0, 0.25);
+    --vermelho: #F25F5C; 
+    --amarelo: #FDBB42;
+    --azul-claro: #2D88ED;
+    --azul-claro2: #DFEDFC;
+    --cinza-claro2:#D9D9D9;
+
+    /*variáveis do peso da fonte*/
+    --light: 300;
+    --regular: 400;
+    --semibold: 600;
+    --bold: 700;
+    --black: 900;
+
+    /*variaveis do tamanho da fonte*/
+    --geral: 1.25rem;
+    --menor: 1rem;
+    --maior: 5.25rem; 
+    --title: 2.75rem;
+    --subtitle:2rem;
+}
+
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+body {
+    background: white;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--azul-escuro);
+    flex-direction: column;
+    position: relative;
+}
+
+
+nav{
+    margin-bottom: auto;
+    min-width: 100%;
+    background-color: white;
+    box-shadow: 0px 4px 6px rgb(179, 176, 176);
+    z-index: 100000;
+    position: fixed;
+    top: 0;
+
+}
+.flex{
+    display: flex;
+}
+
+.navbar-brand svg{
+    width: 50px;
+    transition: all 0.3s ease;
+}
+
+.container-fluid{
+    max-width: 1200px !important;
+    height: 40px;
+}
+
+#explorar-mais, #texto-mais, #videos-mais, #eventos-mais, #divider, #fazer-login-mais,#divider2{
+    display: none;
+} 
+
+nav button:first-child{
+    padding: 0;
+    border-style: none;
+    padding-right: 0.8rem;
+}
+
+.pesquisa-login button[type="button"]:hover{
+    background-color: var(--cinza-claro);
+}
+
+.pesquisa-login button{
+    border-style: none;
+}
+
+.links-navbar{
+    display: flex;
+    justify-content: right;
+    width: calc(100% - 300px);
+}
+
+ul{
+    margin-right: auto 0;
+}
+
+a#navbarDropdown{
+    color: var(--azul-escuro);
+}
+
+.pesquisa-login {
+    max-width: 280px;
+}
+
+
+@media (max-width: 750px){
+    .eventos{
+        display: none;
+    }
+    #eventos-mais, #divider{
+        display: block;
+    }
+}
+@media (max-width: 670px){
+    .videos{
+        display: none;
+    }
+    #videos-mais{
+        display: block;
+    }
+}
+
+@media (max-width: 580px){
+    .texto{
+        display: none;
+    }
+    #texto-mais{
+        display: block;
+    }
+}
+
+@media (max-width: 525px){
+    .explorar{
+        display: none;
+    }
+    #explorar-mais{
+        display: block;
+    }
+}
+
+@media (max-width: 400px){
+    .pesquisa-login {
+        min-width: 108px;
+    }
+    .navbar-brand svg{
+        width: 36px;
+    }
+    
+}
+
+@media (max-width: 345px){
+    button.btn-fazer-login{
+        display: none;
+    }
+    #fazer-login-mais, #divider2{
+        display: block;
+    }
+}
+
+
+.imagem-perfil-navbar{
+    border-radius: 72px;
+    height: 36px;
+    width: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--azul-escuro);
+    transition: all 0.3s ease;
+
+}
+
+.imagem-perfil-navbar img{
+    border-radius: 72px;
+    height: 36px;
+    width: 36px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+nav .btn, .nav .btn:hover,nav .btn:visited,nav .btn:active{
+    background-color: rgba(255, 0, 0, 0);
+    border-style: none;
+    padding: 0;
+    line-height: 0;
+    border-radius: 0;
+    border-radius: 72px;
+}
+
+.nav .btn.show:focus, nav .btn:active:focus, .nav .btn-check:active+.btn:focus, nav .btn-check:checked+.btn:focus, nav .btn.active:focus, nav .btn-secondary .dropdown-toggle .show{
+    box-shadow: none;
+    border-style: none;
+    background-color: rgba(255, 0, 0, 0);
+}
+
+.btn-check:active+.btn, .btn-check:checked+.btn, .btn.active, .btn.show, .btn:active, nav .btn:hover {
+    color: rgba(255, 0, 0, 0);
+    background-color: rgba(255, 0, 0, 0);
+    border-color: rgba(255, 0, 0, 0);
+}
+
+#dropdown-perfil{
+    transform: translate3d(33px, 45px, 0px) !important;
+
+}
+
+.dropdown-menu .dropdown-item svg{
+    width: 16px;
+}
+.dropstart .dropdown-toggle::before {
+    display: none !important;
+}
+
