@@ -6,4 +6,5 @@ interface IPostRepository{
     function getLastSavedPosts($userId, $take = 10);
     function groupedPostsByTag($tipo = null, $take = 10);
     function getPostsUser($id, $tipo = null );
+    function mostRecentEvent();
 }

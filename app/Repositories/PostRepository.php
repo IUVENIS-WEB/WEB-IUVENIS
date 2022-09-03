@@ -7,13 +7,15 @@ use App\Post;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use stdClass;
-use Illuminate\Support\Facades\Auth;
 
 class PostRepository extends Repository implements IPostRepository
 {
-        function getPosts($tagIdArray = [], $take = 10)
+        function getPosts($tagIdArray = [], $take = 10, $tipo = [])
         {
-                return Post::with([
+                if(!$tipo){
+                        $tipo = ['evento', 'artigo', 'video'];
+                }
+                $response = Post::with([
                         'tags' => function ($q) use ($tagIdArray) {
                                 $q->when($tagIdArray, function ($query) use ($tagIdArray) {
                                         $query->whereIn('tags.id', $tagIdArray);
@@ -25,9 +27,11 @@ class PostRepository extends Repository implements IPostRepository
                                 ['excluido', '=', 0],
                                 ['comentario', '=', 0],
                         ])
+                        ->whereIn('tipo', $tipo)
                         ->orderBy('created_at', 'desc')
                         ->take($take)
                         ->get();
+                return $response;
         }
 
         function getMostViewedEscritor($take = 10)
@@ -100,40 +104,60 @@ class PostRepository extends Repository implements IPostRepository
                                 ->take($take)
                                 ->get()
                 )->groupBy('nome');
-                
-                $response = new stdClass();
-                $response->data = (array) $data->map(function($posts){
+
+                $response = collect([]);
+                foreach ($data as $posts) {
                         $obj = new stdClass();
                         $obj->tag = $posts->all()[0]->nome;
                         $obj->posts = $posts->all();
-                        return $obj;
-                })->all();
-                dd($response);
+                        $response->push($obj);
+                }
                 return $response;
         }
-
-        public function getPostsUser($id, $tipo = null )
+        public function getComentarioPostbyIdPai($id)
         {
-                $posts = DB::table('posts')
-               ->join('users', 'users.id', '=', 'posts.autor_id')
-               ->join('organizacaos', 'organizacaos.id', '=', 'posts.organizacao_id')
-               ->where([
-                   ['posts.excluido', '=', 0],
-                   ['posts.tipo', '=', $tipo],
-                    ['posts.comentario', '=', 0],
-                    ['posts.autor_id', '=', $id->id],
-               ])
-               ->orderBy('posts.updated_at', 'asc')
-                ->select('posts.autor_id',
-                'users.foto',
-                'users.nome',
-                'users.sobrenome',
-                'posts.tipo',
-                'posts.id',
-                'posts.titulo',
-                'organizacaos.nome',
-                'posts.updated_at')
-                ->get();
-                return $posts;
+                return $data = DB::table('posts')
+                        ->join('users', 'users.id', '=', 'posts.autor_id')
+                        ->where([
+                                ['posts.comentario', '=', '1'],
+                                ['posts.pai_id', '=', $id]
+                        ])
+                        ->orderBy('posts.created_at', 'asc')
+                        ->get();
+        }
+        public function getColecoesByUser($id)
+        {
+                $data = DB::table('colecaos')
+                        ->where([
+                                ['colecaos.creator_id', '=', $id]
+                        ])
+                        ->select(['colecaos.id', 'colecaos.nome'])
+                        ->get()
+                        ->all();
+                return $data;
+        }
+        public function getPostByIdColecoes($id)
+        {
+                return $data = DB::table('salvos')
+                        ->join('posts', 'posts.id', '=', 'salvos.post_id')
+                        ->where([
+                                ['salvos.colecao_id', '=', $id]
+                        ])
+                        ->get()
+                        ->all();
+        }
+
+        public function getPostsUser($id, $tipo = null ){
+                return [];
+        }
+
+        public function mostRecentEvent(){
+                return Post::where([
+                        ['tipo', '=', 'evento'],
+                        ['excluido', '=', 0],
+                        ['comentario', '=', 0],
+                ])
+                ->orderBy('data_evento', 'desc')
+                ->first();
         }
 }

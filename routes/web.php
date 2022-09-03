@@ -31,7 +31,6 @@ Route::get('/publicar_evento',['as'=>'iuvenis.publica_evento', 'uses'=>'IuvenisC
 
 Route::get('/texto/{filtro}',['as'=>'iuvenis.texto', 'uses'=>'IuvenisController@texto']);
 Route::get('/video',['as'=>'iuvenis.video', 'uses'=>'IuvenisController@video']);
-Route::get('/evento',['as'=>'iuvenis.evento', 'uses'=>'IuvenisController@evento']);
 Route::get('/organizacoes',['as'=>'iuvenis.organizacoes', 'uses'=>'IuvenisController@organizacoes']);
 Route::get('/pesquisar/{busca}',['as'=>'iuvenis.pesquisar', 'uses'=>'IuvenisController@pesquisar']);
 
@@ -52,6 +51,7 @@ Route::post('/cadastrar',['as'=>'login.cadastrar', 'uses'=>'LoginController@cada
 Route::get('/explorar', ['as' => 'explorar.index', 'uses' => 'ExplorarController@index']);
 Route::get('/tag/{tag}', ['as' => 'tag.index', 'uses' => 'TagController@index'])
 ->where('tag', '\d+');
+Route::get('/eventos', ['as' => 'eventos.index', 'uses' => 'EventosController@index']);
 
 Route::get('/contato', ['as' => 'iuvenis.contato.', 'uses' => 'IuvenisController@contato']);
 
