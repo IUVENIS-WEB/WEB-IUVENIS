@@ -14,16 +14,17 @@ use Illuminate\Support\Facades\Route;
 //Use como referência: https://www.toptal.com/laravel/restful-laravel-api-tutorial
 
 Route::group(['prefix' => 'posts'], function (){
+    //retorna os posts de uma coleção pelo seu id
+    Route::get('colecoes/{id}', 'PostController@getPostByIdColecoes');
+    //retorna o post com maior número de visualizações
+    Route::get('recomendado', 'PostController@recomendado');
     Route::get('/', 'PostController@showAll');
     Route::get('grouped', 'PostController@showAllGrouped');
     Route::get('{post}', 'PostController@show');
     //retorna as coleções de um usuário pelo seu id
     Route::get('colecoes/usuario/{id}', 'PostController@getColecoesByIdUser');
-    //retorna os posts de uma coleção pelo seu id
-    Route::get('colecoes/{id}', 'PostController@getPostByIdColecoes');
-    //retorna o post com maior número de visualizações
-    Route::get('recomendado', 'PostController@recomendado');
 });
+
 
 Route::group(['prefix' => 'login'], function(){
     Route::post('/register', 'LoginController@register');
