@@ -8,4 +8,5 @@ interface IPostRepository{
     function getComentarioPostbyIdPai($id);
     function getColecoesByUser($id);
     function getPostByIdColecoes($id);
+    function postRecomendado();
 }

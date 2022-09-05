@@ -147,4 +147,10 @@ class PostRepository extends Repository implements IPostRepository
                         ->all();
                 
         }
+        public function postRecomendado(){
+                $postId = DB::table('post_views')
+                ->select(DB::raw('count(id) as \'count\', id'))
+                ->groupBy(['id', 'post_id']);
+                return $postId;
+        }
 }

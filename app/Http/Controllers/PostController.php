@@ -17,7 +17,14 @@ class PostController extends Controller
     }
 
     public function showAll(){
-        return Post::where('excluido', false)->get();
+        $posts = Post::where('excluido', false)->get();
+        $response = $posts->map(function ($item){
+            // $item->foto = request()->getSchemeAndHttpHost().'/images/users/'.$item->foto;
+            $item->imagem = request()->getSchemeAndHttpHost().'/images/posts/'.$item->imzagem;
+            return $item;
+        })->all();
+
+        return $response;
     }
 
     public function showAllGrouped(IPostRepository $postRepository){
@@ -35,5 +42,9 @@ class PostController extends Controller
     public function getPostByIdColecoes(IPostRepository $postRepository, $id)
     {
         return response()->json($postRepository->getPostByIdColecoes($id));
+    }
+    public function recomendado(IPostRepository $postRepository)
+    {
+        return response()->json($postRepository->postRecomendado());
     }
 }

@@ -21,6 +21,8 @@ Route::group(['prefix' => 'posts'], function (){
     Route::get('colecoes/usuario/{id}', 'PostController@getColecoesByIdUser');
     //retorna os posts de uma coleção pelo seu id
     Route::get('colecoes/{id}', 'PostController@getPostByIdColecoes');
+    //retorna o post com maior número de visualizações
+    Route::get('recomendado', 'PostController@recomendado');
 });
 
 Route::group(['prefix' => 'login'], function(){
