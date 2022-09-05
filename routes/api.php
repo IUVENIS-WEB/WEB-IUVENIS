@@ -31,4 +31,5 @@ Route::group(['prefix' => 'comentarios'], function(){
 });
 Route::group(['prefix' => 'users'], function(){
     Route::get('{id}', 'UserController@getUserById');
+    Route::post('/recuperarSenha','USerController@emailRecuperarSenha');
 });
