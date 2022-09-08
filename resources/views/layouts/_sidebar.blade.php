@@ -1,9 +1,56 @@
 @inject('tagRepository', 'App\Contracts\ITagRepository')
 @inject('postRepository', 'App\Contracts\IPostRepository')
 <div class="sidebar">
+    @if($post == 'user')
+            <div class="conteudo-sidebar sticky-bottom">
+                <div class="perfil-escritor-sidebar">
+                    <div class="imagem-perfil-sidebar-escritor"><img src=" {{ asset('images/users/' . $user->foto) }}" alt="foto de perfil"></div>
+                    <div class="nome-publicações">
+                        <h3>{{$user->nome . ' ' . $user->sobrenome }}</h3>
+                        <p>{{count($posts)}} Publicações</p>
+                    </div>
+                    <p> {{$user->descricao}}</p>
+                </div>
+                <div class="conteudo-sidebar">
+
+        <div class="escritores-recomendados">
+            <h4>Conheça os escritores</h4>
+            <div class="escritores">
+                @forelse ($postRepository->getMostViewedEscritor(4) as $user)
+                    <a href="{{ url('/escritor/' . $user->id) }}">
+                        <div class="escritor-perfil-sidebar">
+                            <div class="imagem-perfil-sidebar"><img src="{{ asset('images/users/' . $user->foto) }}"
+                                    alt="foto de perfil"></div>
+                            <div class="nome-descricao-escritor">
+                                <h4>{{ $user->nome . ' ' . $user->sobrenome }}</h4>
+                                <p>{{ $user->bio }}</p>
+                            </div>
+                        </div>
+                    </a>
+                @empty
+                    <small>Ops...não foi possível encontrar escritores no momento.</small>
+                @endforelse
+            </div>
+            <a href="{{ url('/escritor') }}" class="ver-todos">Ver todos</a>
+        </div>
+                <div class="rodape-sidebar">
+                    <a href="">Explorar</a>
+                    <a href="">Texto</a>
+                    <a href="">Artigos</a>
+                    <a href="">Editoriais</a>
+                    <a href="">Videos</a>
+                    <a href="">Webseries</a>
+                    <a href="">Eventos</a>
+                    <a href="">Login</a>
+                    <a href="">Sobre</a>
+                    <a href="">Contato</a>
+
+                </div>  
+            </div>
+    @else
     <div class="conteudo-sidebar">
         <div class="topicos-recomendados">
-            <h4>Tópicos recomendados</h4>
+            <h4>Tópicos recomendados </h4>
             <div class="tags-sidebar-recomendado">
                 @forelse ($tagRepository->getMostViewedTags(8) as $tag)
                     <a href="{{ url('/tag/' . $tag->id) }}">
@@ -80,4 +127,5 @@
             <a href="{{ url('/contato') }}">Contato</a>
         </div>
     </div>
+    @endif
 </div>

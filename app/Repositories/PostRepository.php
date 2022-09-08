@@ -80,8 +80,8 @@ class PostRepository extends Repository implements IPostRepository
                 //Obter os dados
                 $data = collect(
                         DB::table('posts')
-                                ->join('post_tags', 'post_tags.post_id', '=', 'posts.id')
                                 ->join('users', 'users.id', '=', 'posts.autor_id')
+                                ->join('post_tags', 'post_tags.post_id', '=', 'posts.id')
                                 ->join('tags', 'post_tags.tag_id', '=', 'tags.id')
                                 ->where([
                                         ['posts.excluido', '=', 0],
@@ -95,7 +95,7 @@ class PostRepository extends Repository implements IPostRepository
                                         'users.sobrenome',
                                         'posts.tipo',
                                         'posts.titulo',
-                                        'tags.nome'
+                                        'tags.nome',
                                 ])
                                 ->take($take)
                                 ->get()

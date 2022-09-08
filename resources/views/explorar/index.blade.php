@@ -31,7 +31,7 @@ $loggedIn = Auth::check();
                 @endforelse
             </div>
         </div>
-        @include('layouts._sidebar')
+        @include('layouts._sidebar', [$post = 'explorar'])
     </main>
 
     <div class="modal" tabindex="-1" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
