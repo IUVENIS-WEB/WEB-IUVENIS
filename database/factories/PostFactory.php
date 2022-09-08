@@ -11,6 +11,8 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
         'excluido' => false,
         'imagem' => 'post.png',
         'autor_id' => $faker->randomElement($userArray),
-        'organizacao_id' => $faker->randomElement($orgArray)
+        'organizacao_id' => $faker->randomElement($orgArray),
+        'data_evento' => $faker->date(),
+        'link_evento' => 'https://calendar.google.com/event?action=TEMPLATE&tmeid=MmFvbTkyaWxuMGh0bG80bjFrMG5jZWNvbDYganYuZHVxdWVAdW5lc3AuYnI&tmsrc=jv.duque%40unesp.br'
     ];
 });
