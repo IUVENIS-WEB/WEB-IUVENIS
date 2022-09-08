@@ -1,11 +1,11 @@
 <div class="sidebar">
     <div class="conteudo-sidebar">
         <div class="perfil">
-            <div class="imagem-perfil"><img src=" {{asset('images/users/' . $id->foto)}}" alt="foto de perfil"></div>
-            <h3>{{$id->nome}}</h3>
+            <div class="imagem-perfil"><img src=" {{asset('images/users/' . Auth::user()->foto)}}" alt="foto de perfil"></div>
+            <h3>{{Auth::user()->nome}}</h3>
         </div>
         <div class="botoes">
-            @if($tipo == 'Texto')
+            @if( $tipo && $tipo == 'Texto')
             <a href="{{ route('iuvenis.publicacoes_texto')}}">
                 <div class="botao btn-pagina-atual">
                     <img src="{{asset('assets/texto_icon.svg')}}" alt="">
@@ -20,7 +20,7 @@
                 </div>
             </a>
             @endif
-            @if($tipo == 'Video')
+            @if($tipo && $tipo == 'Video')
             <a href="{{ route('iuvenis.publicacoes_video')}}">
                 <div class="botao btn-pagina-atual">
                     <img src="{{asset('assets/video_icon.svg')}}" alt="">  
@@ -36,7 +36,7 @@
             </a>
             @endif
 
-            @if($tipo == 'Evento')
+            @if($tipo && $tipo == 'Evento')
             <a href="{{ route('iuvenis.publicacoes_evento')}}">
                 <div class="botao btn-pagina-atual">
                     <img src="{{asset('assets/evento_icon.svg')}}" alt="">
