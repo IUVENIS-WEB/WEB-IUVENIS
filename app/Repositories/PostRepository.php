@@ -148,7 +148,27 @@ class PostRepository extends Repository implements IPostRepository
         }
 
         public function getPostsUser($id, $tipo = null ){
-                return [];
+                $posts = DB::table('posts')
+               ->join('users', 'users.id', '=', 'posts.autor_id')
+               ->join('organizacaos', 'organizacaos.id', '=', 'posts.organizacao_id')
+               ->where([
+                   ['posts.excluido', '=', 0],
+                   ['posts.tipo', '=', $tipo],
+                    ['posts.comentario', '=', 0],
+                    ['posts.autor_id', '=', $id->id],
+               ])
+               ->orderBy('posts.updated_at', 'asc')
+                ->select('posts.autor_id',
+                'users.foto',
+                'users.nome',
+                'users.sobrenome',
+                'posts.tipo',
+                'posts.id',
+                'posts.titulo',
+                'organizacaos.nome',
+                'posts.updated_at')
+                ->get();
+                return $posts;
         }
 
         public function mostRecentEvent(){

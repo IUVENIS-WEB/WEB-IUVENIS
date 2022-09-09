@@ -26,12 +26,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',['as'=>'iuvenis.index', 'uses'=>'IuvenisController@index']);
 
 //LISTA DE PUBLICAÇÕES
-Route::get('/publicacoes/texto',['as'=>'iuvenis.publicacoes_texto', 'uses'=>'IuvenisController@publicar_texto']);
+Route::get('/publicacoes/texto',['as'=>'iuvenis.publicacoes_texto', 'uses'=>'IuvenisController@publicar_artigo']);
 Route::get('/publicacoes/video',['as'=>'iuvenis.publicacoes_video', 'uses'=>'IuvenisController@publicar_video']);
 Route::get('/publicacoes/evento',['as'=>'iuvenis.publicacoes_evento', 'uses'=>'IuvenisController@publicar_evento']);
 
 //CADASTRO DE PUBLICAÇÕES
-Route::get('/publicar/texto',['as'=>'publicacao.texto', 'uses'=>'PublicacaoController@form_texto']);
+Route::get('/publicar/texto',['as'=>'publicacao.artigo', 'uses'=>'PublicacaoController@form_artigo']);
 Route::get('/publicar/video',['as'=>'publicacao.video', 'uses'=>'PublicacaoController@form_video']);
 Route::get('/publicar/evento',['as'=>'publicacao.evento', 'uses'=>'PublicacaoController@form_evento']);
 Route::post('/publicar/texto/new',['as'=>'publicacao.new_texto', 'uses'=>'PublicacaoController@novo_artigo']);

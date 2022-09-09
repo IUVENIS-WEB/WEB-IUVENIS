@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="{{ URL::asset('css/publicar_texto.css') }}">
 @endsection
 @section('content')
-    {{-- @include('layouts._sidebar_publicacao') --}}
     <div class="conteudo">
         <div class="titulo">
             <div class="titulo-top">
@@ -25,23 +24,32 @@
                 <div class="line-horizontal-conteudo"></div>
             </div>
         </div>
-        <form action="{{action('PublicacaoController@novo_artigo')}}" method="POST" id="publicar-artigo">
+        @if ($errors->any())
+        <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach 
+                </ul>
+            </div>
+        @endif
+        <form action="{{action('PublicacaoController@novo_artigo')}}" method="POST" id="publicar-artigo" enctype= multipart/form-data>
             {{ csrf_field() }}
             <label for="link">Link*</label>
-            <input type="text" id="link" required>
+            <input type="text" name="link" id="link" required>
             <label for="titulo">Título da publicação*</label>
-            <input type="text" id="titulo" required>
+            <input type="text" name="titulo" id="titulo" required>
             <div class="correcao">
                 <div>Thumbnail da publicação*</div>
-                <input id="imagem" type="file" accept="image/png, image/jpg, image/jpeg" required><label
+                <input id="imagem" name="imagem" type="file" accept="image/png, image/jpg, image/jpeg" required><label
                     for="imagem" class="file-forms" id="imagem-label"><i
                         class="fa-solid fa-file-arrow-up"></i>Selecionar imagem</label></input>
             </div>
             <label for="resumo">Resumo*</label>
-            <textarea id="resumo" required></textarea>
+            <textarea id="resumo" name="resumo" required></textarea>
             <div class="correcao">
                 <div>Arquivo</div>
-                <input id="arquivo" type="file" accept="application/pdf" required><label for="arquivo"
+                <input id="arquivo" name="arquivo" type="file" accept="application/pdf" ><label for="arquivo"
                     class="file-forms" id="arquivo-label"><i class="fa-solid fa-file-arrow-up"></i>Selecionar
                     Arquivo</label></input>
             </div>
@@ -56,12 +64,12 @@
                 </select>
             </div>
             <span class="aviso-tags">Selecione até 3 tags. Clique numa tag selecionada para removê-la</span>
-            @if(Auth::user()->organizacao)
+            {{-- @if(Auth::user()->organizacao)
                 <div class="organizacao">
                     <input type="checkbox">
                     <div>Publicar por "{{Auth::user()->organizacao->nome}}"</div>
                 </div>
-            @endif
+            @endif --}}
         </form>
     </div>
 
