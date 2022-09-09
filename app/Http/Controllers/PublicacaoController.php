@@ -50,7 +50,7 @@ class PublicacaoController extends Controller
         $post->titulo = $fields['titulo'];
         $post->resumo = $fields['resumo'];
         $post->imagem = $imageName;
-        $post->tipo = 'Texto';
+        $post->tipo = 'artigo';
         $post->organizacao_id = Auth::user()->organizacao->id;
         $post->autor_id = Auth::user()->id;
 

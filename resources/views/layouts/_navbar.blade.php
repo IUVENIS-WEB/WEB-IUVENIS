@@ -62,7 +62,7 @@
                         <li id="fazer-login-mais"><a class="dropdown-item" href="#">Fazer login</a></li>
                     </ul>
                 </li>
-                @if(Auth::user()->organizacao)
+                @if(Auth::user() && Auth::user()->organizacao)
                   <li class="nav-item ">
                     <a class="nav-link active" aria-current="page" href="{{ route('iuvenis.publicacoes_texto') }}">Criar</a>
                   </li>
