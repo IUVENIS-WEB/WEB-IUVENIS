@@ -25,7 +25,8 @@
                 <div class="line-horizontal-conteudo"></div>
             </div>
         </div>
-        <form action="" id="publicar-artigo">
+        <form action="{{action('PublicacaoController@novo_artigo')}}" method="POST" id="publicar-artigo">
+            {{ csrf_field() }}
             <label for="link">Link*</label>
             <input type="text" id="link" required>
             <label for="titulo">Título da publicação*</label>
@@ -55,10 +56,12 @@
                 </select>
             </div>
             <span class="aviso-tags">Selecione até 3 tags. Clique numa tag selecionada para removê-la</span>
-            <div class="organizacao">
-                <input type="checkbox">
-                <div>Publicar por "Gesteld"</div>
-            </div>
+            @if(Auth::user()->organizacao)
+                <div class="organizacao">
+                    <input type="checkbox">
+                    <div>Publicar por "{{Auth::user()->organizacao->nome}}"</div>
+                </div>
+            @endif
         </form>
     </div>
 

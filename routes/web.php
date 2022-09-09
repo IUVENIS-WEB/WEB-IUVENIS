@@ -34,6 +34,7 @@ Route::get('/publicacoes/evento',['as'=>'iuvenis.publicacoes_evento', 'uses'=>'I
 Route::get('/publicar/texto',['as'=>'publicacao.texto', 'uses'=>'PublicacaoController@form_texto']);
 Route::get('/publicar/video',['as'=>'publicacao.video', 'uses'=>'PublicacaoController@form_video']);
 Route::get('/publicar/evento',['as'=>'publicacao.evento', 'uses'=>'PublicacaoController@form_evento']);
+Route::post('/publicar/texto/new',['as'=>'publicacao.new_texto', 'uses'=>'PublicacaoController@novo_artigo']);
 
 
 Route::get('/texto/{filtro}',['as'=>'iuvenis.texto', 'uses'=>'IuvenisController@texto']);

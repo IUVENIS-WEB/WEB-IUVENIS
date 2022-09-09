@@ -10,4 +10,8 @@ class PublicacaoController extends Controller
         if(!Auth::check()) return redirect('/');
         return view('publicacao.artigo', ['tipo'=> 'texto']);
     }
+
+    public function novo_artigo(Request $req){
+        dd($req);
+    }
 }
