@@ -16,7 +16,7 @@
                     {{ $post->resumo }}
                 </p>
             </div>
-            <div class="imagem-card"><img src="{{ asset('images/posts/' . $post->imagem) }}"></div>
+            <div class="imagem-card"><img src="{{$post->imagem}}"></div>
         </div>
     </a>
     <div class="bottom-card">

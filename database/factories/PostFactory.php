@@ -9,7 +9,7 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
         'resumo' => $faker->sentence,
         'tipo' => $faker->randomElement(['evento', 'video', 'artigo']),
         'excluido' => false,
-        'imagem' => 'post.png',
+        'imagem' => url()->to('/').':8000/storage/images/posts/post.png',
         'autor_id' => $faker->randomElement($userArray),
         'organizacao_id' => $faker->randomElement($orgArray),
         'data_evento' => $faker->date(),

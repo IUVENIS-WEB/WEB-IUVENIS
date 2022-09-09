@@ -155,6 +155,7 @@ a{
     display: flex;
     align-items: center;
     column-gap: 2rem;
+    justify-content: space-between;
 }
 
 .conteudo-card .card-texto h2{
