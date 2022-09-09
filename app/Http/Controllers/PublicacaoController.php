@@ -10,27 +10,27 @@ use Illuminate\Support\Facades\Storage;
 class PublicacaoController extends Controller
 {
     public function form_artigo(){
-        if(!Auth::check()) return redirect('/');
-        return view('publicacao.artigo', ['tipo'=> 'texto']);
+        //Antes de retornarmos o formulário de cadastro para o usuário, é necessário
+        //validar se ele está logado e se ele possui uma organização.
+        if(!(Auth::user() && Auth::user()->organizacao())) return redirect('/');
+        return view('publicacao.artigo', ['tipo'=> 'artigo']);
     }
 
     public function novo_artigo(Request $req){
         $fields = Input::all();
-        // dd($fields);
+        
         //Validação
         $rules = [
             'link' => 'required',
             'titulo' => 'required',
             'imagem' => 'required|image',
             'resumo' => 'required',
-            'tags' => 'required',
         ];
         $messages = [
             'link.required' => 'O campo \'Link\' é obrigatório.',
             'titulo.required' => 'O campo \'Título da publicação\' é obrigatório.',
             'imagem.required' => 'O campo \'Thimbnail da publicação\' é obrigatório.',
             'resumo.required' => 'O campo \'Resumo\' é obrigatório.',
-            'tags.required' => 'O campo \'Tags\' é obrigatório.',
 
             'link.active_url' => 'O campo \'Link\' deve receber uma URL válida.',
             'imagem.image' => 'O campo \'Thimbnail da publicação\' deve receber uma imagem válida.'
@@ -41,8 +41,16 @@ class PublicacaoController extends Controller
         }
         $post = new \App\Post();
 
+
         //Salvando os arquivos na pasta pública
+        //A função 'asset()' vai retornar o caminho do arquivo já com a URL, então
+        //temos a URL completa para ele a partir da função guardada no banco
+
+        //Todos os arquivos que foi feito upload podem ser encontrados
+        //com '$req->file('nomedocampo')' e posteriormente podem ser guardados em public/storage/caminhoquevocecolocar
+        //com '->store('caminhoquevocecolcoar')'
         $imageName = asset('storage/'.$req->file('imagem')->store('images/posts', 'public'));
+
         if(isset($fields['arquivo'])){
             $post->arquivo = asset('storage/'.$req->file('arquivo')->store('files/', 'public'));
         }
@@ -55,6 +63,12 @@ class PublicacaoController extends Controller
         $post->autor_id = Auth::user()->id;
 
         $post->save();
+        if(isset($fields['tags'])){
+            foreach($fields['tags'] as $tagId){
+                \App\PostTags::create(['post_id' => $post->id, 'tag_id' => $tagId]);
+            }
+        }
+
         return redirect('/publicacoes/texto');
     }
 }

@@ -354,6 +354,7 @@ input, .tag-criada, #resumo, #tags{
 
 #tags{
     width: fit-content;
+    height: fit-content;
     min-width: 10rem;
     background-color: white;
     -webkit-appearance: none;

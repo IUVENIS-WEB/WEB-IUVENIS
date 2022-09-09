@@ -20,4 +20,8 @@ class TagRepository extends Repository implements ITagRepository
                         ->take($take)
                         ->get();
         }
+
+        function getAll(){
+                return Tag::all();
+        }
 }

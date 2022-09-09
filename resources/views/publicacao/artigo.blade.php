@@ -1,3 +1,6 @@
+{{-- O repositório de tags é injetado para que todas as tags possam ser construídas 
+    como elemento sem precisar ficar passando pela controller --}}
+@inject('tagRepository', 'App\Contracts\ITagRepository')
 @extends('layouts.publicarLayout')
 @section('title', 'Publicar')
 @section('css')
@@ -33,6 +36,7 @@
                 </ul>
             </div>
         @endif
+        {{-- Muito importante! Caso for receber arquivos no form, é necessário colocar o atributo enctype= multipart/form-data no <form>--}}
         <form action="{{action('PublicacaoController@novo_artigo')}}" method="POST" id="publicar-artigo" enctype= multipart/form-data>
             {{ csrf_field() }}
             <label for="link">Link*</label>
@@ -53,17 +57,28 @@
                     class="file-forms" id="arquivo-label"><i class="fa-solid fa-file-arrow-up"></i>Selecionar
                     Arquivo</label></input>
             </div>
-            <label for="tag">Tags*</label>
+            <label for="tag">Tags</label>
             <div class="form-flex">
-                <select name="tags" id="tags" aria-placeholder="clique para selecionar" required>
+                {{-- Foi necessário mudar um pouco a lógica do select:
+                    Agora o nome dele precisa ter '[]' para a request entender que podem ser
+                    múltiplos valores. Também é necessário colocar o atributo 'multiple' em <select>.
+                    Dica: para selecionar mais de um valor para a tag, segura 'Ctrl' e clique nelas.
+                    
+                    Para tanto, o Javascript foi somente comentado. Basta comentar a parte que está contida
+                    por 'onchange' lá em baixo dentro da tag <script> (exemplo na atual linha 173).
+                    --}}
+                <select name="tags[]" id="tags" aria-placeholder="clique para selecionar"  multiple>
                     <option value="default" class="display-none" id=>Selecione um valor</option>
-                    <option value="Saab">Saab</option>
-                    <option value="Opel">Opel</option>
-                    <option value="Audi">Audi</option>
-                    <option value="Duque">Duque</option>
+                    {{-- Busca todas as tags e constrói as opções nos seguintes termos:
+                        O 'value' sempre será o Id e o texto que aparece para o usuário é o nome da tag. --}}
+                    @forelse ($tagRepository->getAll() as $tag)
+                    <option value="{{$tag->id}}">{{$tag->nome}}</option>
+                    @empty
+                        Infelizmente ainda não há tags :(
+                    @endforelse
                 </select>
             </div>
-            <span class="aviso-tags">Selecione até 3 tags. Clique numa tag selecionada para removê-la</span>
+            <span class=""><em>Dica: para selecionar mais de uma tag, segure 'Ctrl' e clique nelas.</em></span>
             {{-- @if(Auth::user()->organizacao)
                 <div class="organizacao">
                     <input type="checkbox">
@@ -147,22 +162,35 @@
         const maxvalue = 3;
         let x = 1;
 
-        tagsSelector.onchange = () => {
-            if (x <= maxvalue) {
-                let tagValue = document.getElementById("tags").value;
-                console.log(tagValue);
-                let tagInput = tagcriada.appendChild(document.createElement("input"));
-                tagInput.type = "text";
-                tagInput.setAttribute("value", tagValue);
-                tagInput.readOnly = true;
-                tagInput.setAttribute('id', 'input-tag' + x);
-                tagInput.setAttribute('onclick', 'remove(this)');
-                tagInput.classList.add("tag-input");
-                x++;
+
+        function handleTags(select){
+            if(x >= maxvalue) return
+
+            let tagInput = tagcriada.appendChild(document.createElement("input"));
+            tagInput.type = "text";
+            tagInput.setAttribute("value", select.options[select.selectedIndex].text);
+            tagInput.readOnly = true;
+            tagInput.setAttribute('id', );
+            tagInput.setAttribute('onclick', 'remove(this)');
+            tagInput.classList.add("tag-input");
+            x++;
+        }
+        // tagsSelector.onchange = () => {
+        //     if (x <= maxvalue) {
+        //         let tagValue = document.getElementById("tags").value;
+        //         console.log(tagValue);
+        //         let tagInput = tagcriada.appendChild(document.createElement("input"));
+        //         tagInput.type = "text";
+        //         tagInput.setAttribute("value", tagValue);
+        //         tagInput.readOnly = true;
+        //         tagInput.setAttribute('id', 'input-tag' + x);
+        //         tagInput.setAttribute('onclick', 'remove(this)');
+        //         tagInput.classList.add("tag-input");
+        //         x++;
 
 
-            }
-        };
+        //     }
+        // };
 
         function remove(el) {
             var element = el;
