@@ -53,6 +53,9 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
+                    @else
+                        <li> <a style="margin-left: 5%" href="{{ route('login.index') }}">Entre para
+                        salvar.</a></li>
                     @endif
                     @forelse ($colecoes as $colecao)
                         <li>
@@ -62,8 +65,7 @@
                             </a>
                         </li>
                     @empty
-                        <li> <a style="margin-left: 5%" href="{{ route('login.index') }}">Entre para
-                                salvar.</a></li>
+                        <li>Clique em 'mais' para criar uma coleção.</li>
                     @endforelse
                 </ul>
             </div>
