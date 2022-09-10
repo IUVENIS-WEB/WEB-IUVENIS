@@ -74,12 +74,12 @@
                                 <a href="{{ $post->link_evento }}" target="_blank">
                                     <div class="botao-link">
                                         <i class="fa-sharp fa-solid fa-link"></i>
-                                        <div>Acessar</div>
+                                        <div>Participar</div>
                                     </div>
                                 </a>
                             @endif
                             @if ($post->arquivo)
-                            <a href="{{$post->arquivo}}">
+                            <a href="{{$post->arquivo}}" target="_blank">
                                 <div class="botao-baixar">
                                     <i class="fa-regular fa-circle-down"></i>
                                     <div>Baixar artigo</div>
