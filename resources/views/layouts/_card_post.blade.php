@@ -12,8 +12,11 @@
         <div class="conteudo-card">
             <div class="card-texto">
                 <h2>{{ $post->titulo }}</h2>
-                <p>
-                    {{ $post->resumo }}
+                <p style="">
+                    @php
+                        $resumo = strlen($post->resumo) > 100 ? substr($post->resumo,0,100)."..." : $post->resumo;
+                    @endphp
+                    {{ $resumo }}
                 </p>
             </div>
             <div class="imagem-card"><img src="{{$post->imagem}}"></div>
