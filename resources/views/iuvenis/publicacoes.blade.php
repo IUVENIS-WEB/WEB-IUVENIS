@@ -47,7 +47,7 @@
                     </div>
                     <div class="data-post">
                         <div class="titulo-btn-publicacao">Data</div>
-                        <p>{{$post->updated_at}}</p>
+                        <p>{{date('d/m/Y', strtotime($post->updated_at))}}</p>
                     </div>
                 </a>
                 <div class="dropstart">
@@ -58,7 +58,7 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownCenterBtn">
                         <li><button type="button" class="dropdown-item exclusao" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-trash-can"></i> excluir</button></li>
-                        <li><a class="dropdown-item" href=" {{ url('/posts/' . $post->id) }}"><i class="fa-solid fa-pen-clip"></i> editar</a></li>     
+                        <li><a class="dropdown-item" href=" {{ url('/publicar/'.$tipo.'/'. $post->id) }}"><i class="fa-solid fa-pen-clip"></i> editar</a></li>     
                     </ul>
                 </div>
             </div>

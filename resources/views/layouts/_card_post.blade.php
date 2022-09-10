@@ -5,7 +5,7 @@
                     src="{{ asset('images/users/' . $post->autor->foto) }}" alt="foto de perfil"></div>
             <p>{{ $post->autor->nome . ' ' . $post->autor->sobrenome }}</p>
             <div class="circulo"></div>
-            <p class="data">{{ date('M, d', strtotime($post->updated_at)) }}</p>
+            <p class="data">{{ date('y/m/Y', strtotime($post->updated_at)) }}</p>
         </div>
     </a>
     <a href="">

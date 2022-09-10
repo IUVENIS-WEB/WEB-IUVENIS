@@ -1,6 +1,10 @@
 {{-- O repositório de tags é injetado para que todas as tags possam ser construídas 
     como elemento sem precisar ficar passando pela controller --}}
 @inject('tagRepository', 'App\Contracts\ITagRepository')
+@php
+    $editing = isset($post);
+@endphp
+
 @extends('layouts.publicarLayout')
 @section('title', 'Publicar')
 @section('css')
@@ -40,19 +44,38 @@
         <form action="{{action('PublicacaoController@novo_artigo')}}" method="POST" id="publicar-artigo" enctype= multipart/form-data>
             {{ csrf_field() }}
             <label for="link">Link*</label>
-            <input type="text" name="link" id="link" required>
+            @if ($editing)
+            <input type="text" name="link" id="link" required value="{{$post->link_midia}}">
+            @else
+                <input type="text" name="link" id="link" required >                
+            @endif
             <label for="titulo">Título da publicação*</label>
-            <input type="text" name="titulo" id="titulo" required>
+            @if ($editing)
+                <input type="text" name="titulo" id="titulo" required value="{{$post->titulo}}">
+            @else
+                <input type="text" name="titulo" id="titulo" required>               
+            @endif
             <div class="correcao">
                 <div>Thumbnail da publicação*</div>
-                <input id="imagem" name="imagem" type="file" accept="image/png, image/jpg, image/jpeg" required><label
+                @if ($editing)
+                    <em>Obs.:Adicione uma imagem somente se quiser mudar a thumbnail.</em>
+                @endif
+                <input id="imagem" name="imagem" type="file" accept="image/png, image/jpg, image/jpeg" ><label
                     for="imagem" class="file-forms" id="imagem-label"><i
                         class="fa-solid fa-file-arrow-up"></i>Selecionar imagem</label></input>
             </div>
             <label for="resumo">Resumo*</label>
-            <textarea id="resumo" name="resumo" required></textarea>
+            @if ($editing)
+                <textarea id="resumo" name="resumo" required>{{$post->resumo}}</textarea>
+            @else
+                <textarea id="resumo" name="resumo" required></textarea>           
+            @endif
+            
             <div class="correcao">
                 <div>Arquivo</div>
+                @if ($editing)
+                    <em>Obs.:Adicione um arquivo somente se quiser mudar o atual.</em>
+                @endif
                 <input id="arquivo" name="arquivo" type="file" accept="application/pdf" ><label for="arquivo"
                     class="file-forms" id="arquivo-label"><i class="fa-solid fa-file-arrow-up"></i>Selecionar
                     Arquivo</label></input>
@@ -68,11 +91,14 @@
                     por 'onchange' lá em baixo dentro da tag <script> (exemplo na atual linha 173).
                     --}}
                 <select name="tags[]" id="tags" aria-placeholder="clique para selecionar"  multiple>
-                    <option value="default" class="display-none" id=>Selecione um valor</option>
+                    <option value="default" class="display-none">Selecione um valor</option>
                     {{-- Busca todas as tags e constrói as opções nos seguintes termos:
                         O 'value' sempre será o Id e o texto que aparece para o usuário é o nome da tag. --}}
                     @forelse ($tagRepository->getAll() as $tag)
-                    <option value="{{$tag->id}}">{{$tag->nome}}</option>
+                        @php
+                            $selected = $tags->contains($tag->id)? 'selected="true"' : '';  
+                        @endphp
+                    <option value="{{$tag->id}}" {{$selected}}>{{$tag->nome}}</option>
                     @empty
                         Infelizmente ainda não há tags :(
                     @endforelse
@@ -85,6 +111,10 @@
                     <div>Publicar por "{{Auth::user()->organizacao->nome}}"</div>
                 </div>
             @endif --}}
+            @if ($editing)
+                <input type="text" name="id" id="id" hidden value={{$post->id}}>
+            @endif
+            
         </form>
     </div>
 

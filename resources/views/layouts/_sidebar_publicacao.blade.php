@@ -5,17 +5,17 @@
             <h3>{{Auth::user()->nome}}</h3>
         </div>
         <div class="botoes">
-            @if( $tipo && $tipo == 'Texto')
+            @if( $tipo && $tipo == 'artigo')
             <a href="{{ route('iuvenis.publicacoes_texto')}}">
                 <div class="botao btn-pagina-atual">
-                    <img src="{{asset('assets/texto_icon.svg')}}" alt="">
+                    <img src="{{asset('assets/artigo_icon.svg')}}" alt="">
                     <h4>Textos</h4>
                 </div>
             </a>
             @else
             <a href="{{ route('iuvenis.publicacoes_texto')}}">
                 <div class="botao">
-                    <img src="{{asset('assets/texto_icon.svg')}}" alt="">
+                    <img src="{{asset('assets/artigo_icon.svg')}}" alt="">
                     <h4>Textos</h4>
                 </div>
             </a>

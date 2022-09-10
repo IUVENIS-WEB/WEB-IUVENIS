@@ -31,7 +31,7 @@ Route::get('/publicacoes/video',['as'=>'iuvenis.publicacoes_video', 'uses'=>'Iuv
 Route::get('/publicacoes/evento',['as'=>'iuvenis.publicacoes_evento', 'uses'=>'IuvenisController@publicar_evento']);
 
 //CADASTRO DE PUBLICAÇÕES
-Route::get('/publicar/texto',['as'=>'publicacao.artigo', 'uses'=>'PublicacaoController@form_artigo']);
+Route::get('/publicar/artigo/{postId?}',['as'=>'publicacao.artigo', 'uses'=>'PublicacaoController@form_artigo']);
 Route::get('/publicar/video',['as'=>'publicacao.video', 'uses'=>'PublicacaoController@form_video']);
 Route::get('/publicar/evento',['as'=>'publicacao.evento', 'uses'=>'PublicacaoController@form_evento']);
 Route::post('/publicar/texto/new',['as'=>'publicacao.new_texto', 'uses'=>'PublicacaoController@novo_artigo']);
