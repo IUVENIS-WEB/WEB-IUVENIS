@@ -57,7 +57,7 @@
                         </i>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownCenterBtn">
-                        <li><button type="button" class="dropdown-item exclusao" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-trash-can"></i> excluir</button></li>
+                        <li><button type="button" onclick="changeId(this)" class="dropdown-item exclusao" data-post-id="{{$post->id}}" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-trash-can"></i> excluir</button></li>
                         <li><a class="dropdown-item" href=" {{ url('/publicar/'.$tipo.'/'. $post->id) }}"><i class="fa-solid fa-pen-clip"></i> editar</a></li>     
                     </ul>
                 </div>
@@ -81,7 +81,11 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn cancelar" data-bs-dismiss="modal" aria-label="Close">cancelar</button>
-            <button type="button" class="btn excluir">Excluir</button>
+            <form action="{{action('PublicacaoController@deletar_post')}}" method="POST">
+                {{ csrf_field() }}
+                <input type="hidden" name="id" id="deleteId">
+                <button type="submit" class="btn excluir">Excluir</button>
+            </form>
         </div>
       </div>
     </div>
@@ -89,5 +93,13 @@
 
 <!-- bootstrap-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script>
+    let id = null
+    function changeId(post){
+        id = parseInt(post.dataset.postId)
+        let input = document.getElementById('deleteId')
 
+        input.setAttribute('value', id)
+    }
+</script>
 @endsection

@@ -36,6 +36,9 @@ Route::get('/publicar/video',['as'=>'publicacao.video', 'uses'=>'PublicacaoContr
 Route::get('/publicar/evento',['as'=>'publicacao.evento', 'uses'=>'PublicacaoController@form_evento']);
 Route::post('/publicar/texto/new',['as'=>'publicacao.new_texto', 'uses'=>'PublicacaoController@novo_artigo']);
 
+//DELETAR PUBLICAÇÕES
+Route::post('/publicacoes/deletar/',['as'=>'publicacao.deletar', 'uses'=>'PublicacaoController@deletar_post']);
+
 
 Route::get('/texto/{filtro}',['as'=>'iuvenis.texto', 'uses'=>'IuvenisController@texto']);
 Route::get('/video',['as'=>'iuvenis.video', 'uses'=>'IuvenisController@video']);

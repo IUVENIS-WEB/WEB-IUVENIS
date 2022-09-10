@@ -7,9 +7,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
-
+use Exception;
 class PublicacaoController extends Controller
 {
+    public function deletar_post(Request $req){
+        try{
+            $post = \App\Post::find($req->id);
+            if($post->autor_id == Auth::user()->id) $post->delete();
+            return back();
+        }
+        catch(\Exception $e){
+            return redirect('/');
+        }
+    }
+
     public function form_artigo($postId = null)
     {
         $post = \App\Post::find($postId);
