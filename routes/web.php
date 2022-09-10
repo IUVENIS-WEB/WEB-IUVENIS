@@ -35,6 +35,7 @@ Route::get('/publicar/artigo/{postId?}',['as'=>'publicacao.artigo', 'uses'=>'Pub
 Route::get('/publicar/video',['as'=>'publicacao.video', 'uses'=>'PublicacaoController@form_video']);
 Route::get('/publicar/evento',['as'=>'publicacao.evento', 'uses'=>'PublicacaoController@form_evento']);
 Route::post('/publicar/texto/new',['as'=>'publicacao.new_texto', 'uses'=>'PublicacaoController@novo_artigo']);
+Route::post('/publicar/evento/new',['as'=>'publicacao.new_evento', 'uses'=>'PublicacaoController@novo_evento']);
 
 //DELETAR PUBLICAÇÕES
 Route::post('/publicacoes/deletar/',['as'=>'publicacao.deletar', 'uses'=>'PublicacaoController@deletar_post']);
