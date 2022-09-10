@@ -47,7 +47,7 @@ class PublicacaoController extends Controller
 
         //Validação
         $rules = [
-            'link' => 'required',
+            'link' => 'required|active_url',
             'titulo' => 'required',
 
             'resumo' => 'required',
@@ -142,17 +142,19 @@ class PublicacaoController extends Controller
         
         //Validação
         $rules = [
-            'link' => 'required',
+            'link' => 'required|active_url',
             'titulo' => 'required',
             'imagem' => 'required|image',
             'resumo' => 'required',
+            'data' => 'required|date'
         ];
         $messages = [
             'link.required' => 'O campo \'Link\' é obrigatório.',
             'titulo.required' => 'O campo \'Título da publicação\' é obrigatório.',
             'imagem.required' => 'O campo \'Thimbnail da publicação\' é obrigatório.',
             'resumo.required' => 'O campo \'Resumo\' é obrigatório.',
-
+            'data.required' => 'O campo \'Data\' é obrigatório.',
+            'data.date' => 'O campo \'Data\' precisa estar em um formato válido.',
             'link.active_url' => 'O campo \'Link\' deve receber uma URL válida.',
             'imagem.image' => 'O campo \'Thimbnail da publicação\' deve receber uma imagem válida.'
         ];
@@ -175,9 +177,10 @@ class PublicacaoController extends Controller
         if(isset($fields['arquivo'])){
             $post->arquivo = asset('storage/'.$req->file('arquivo')->store('files/', 'public'));
         }
-
+        $post->data_evento = $fields['data'];
         $post->titulo = $fields['titulo'];
         $post->resumo = $fields['resumo'];
+        $post->link_evento = $fields['link'];
         $post->imagem = $imageName;
         $post->tipo = 'evento';
         $post->organizacao_id = Auth::user()->organizacao->id;
