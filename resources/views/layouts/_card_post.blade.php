@@ -8,7 +8,7 @@
             <p class="data">{{ date('M, d', strtotime($post->updated_at)) }}</p>
         </div>
     </a>
-    <a href="">
+    <a href="{{ url('/posts/' . $post->id) }}">
         <div class="conteudo-card">
             <div class="card-texto">
                 <h2>{{ $post->titulo }}</h2>

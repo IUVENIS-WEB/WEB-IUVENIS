@@ -20,4 +20,8 @@ class Post extends Model
     {
         return $this->belongsToMany('App\Salvo', 'salvos');
     }
+
+    function organizacao(){
+        return $this->belongsTo('\App\Organizacao');
+    }
 }

@@ -104,7 +104,7 @@ $loggedIn = Auth::check();
             </div>
         </div>
        
-        @include('layouts._sidebar', [$post = 'user', 'user' => $escritor, 'posts' => $posts])
+        @include('layouts._sidebar', [$tipo = 'user', 'user' => $escritor, 'posts' => $posts])
 
     </main>
 

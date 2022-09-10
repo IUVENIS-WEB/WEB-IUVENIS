@@ -65,3 +65,5 @@ Route::get('/contato', ['as' => 'iuvenis.contato.', 'uses' => 'IuvenisController
 
 Route::get('/escritor/{id}',['as'=>'explorar.escritor', 'uses'=>'ExplorarController@escritor']);
 
+Route::get('/posts/{post}', ['as'=>'posts.index', 'uses'=>'PostController@index']);
+

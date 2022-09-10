@@ -23,4 +23,8 @@ class PostController extends Controller
     public function showAllGrouped(IPostRepository $postRepository){
         return response()->json($postRepository->groupedPostsByTag());
     }
+
+    public function index(\App\Post $post){
+        return view('posts.index', ['post' => $post]);
+    }
 }
