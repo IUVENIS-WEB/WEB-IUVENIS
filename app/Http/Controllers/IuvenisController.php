@@ -31,10 +31,6 @@ class IuvenisController extends Controller
     public function video(){
         return view('iuvenis.video');
     }
-    //evento
-    public function evento(){
-        return view('iuvenis.evento');
-    }
     //mais/{opções}
     public function mais($opcoes){
         return view('iuvenis.mais');
