@@ -48,13 +48,13 @@ class IuvenisController extends Controller
         return view('iuvenis.contato');
     }
 
-    public function publicar_texto(IPostRepository $postRepository){
+    public function publicar_artigo(IPostRepository $postRepository){
         if(Auth::check())
         {
-            $tipo = 'Texto';
+            $tipo = 'artigo';
         $id = Auth::user();
         $user = $postRepository->getPostsUser($id, $tipo);
-        return view('iuvenis.publicar_artigo', ['user' => $user, 'id' => $id, 'tipo' => $tipo]);
+        return view('iuvenis.publicacoes', ['user' => $user, 'id' => $id, 'tipo' => $tipo]);
         }else
         {
             return redirect('/login');
@@ -67,7 +67,7 @@ class IuvenisController extends Controller
         $tipo = 'Video';
         $id = Auth::user();
         $user = $postRepository->getPostsUser($id, $tipo);
-        return view('iuvenis.publicar_artigo', ['user' => $user, 'id' => $id, 'tipo' => $tipo]);
+        return view('iuvenis.publicacoes', ['user' => $user, 'id' => $id, 'tipo' => $tipo]);
         }else
         {
             return redirect('/login');
@@ -81,7 +81,7 @@ class IuvenisController extends Controller
         $id = Auth::user();
         $user = $postRepository->getPostsUser($id, 'evento');
 
-        return view('iuvenis.publicar_artigo', ['user' => $user, 'id' => $id, 'tipo' => $tipo]);
+        return view('iuvenis.publicacoes', ['user' => $user, 'id' => $id, 'tipo' => $tipo]);
         }else
         {
             return redirect('/login');

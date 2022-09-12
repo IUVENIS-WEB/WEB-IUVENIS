@@ -28,7 +28,7 @@ class User extends Authenticatable
     ];
 
     public function organizacao(){
-        return $this->hasOne('App\Organizacao');
+        return $this->belongsTo('App\Organizacao');
     }
 
     public function posts(){

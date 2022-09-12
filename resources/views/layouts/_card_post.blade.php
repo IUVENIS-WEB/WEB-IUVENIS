@@ -5,18 +5,21 @@
                     src="{{ asset('images/users/' . $post->autor->foto) }}" alt="foto de perfil"></div>
             <p>{{ $post->autor->nome . ' ' . $post->autor->sobrenome }}</p>
             <div class="circulo"></div>
-            <p class="data">{{ date('M, d', strtotime($post->updated_at)) }}</p>
+            <p class="data">{{ date('y/m/Y', strtotime($post->updated_at)) }}</p>
         </div>
     </a>
     <a href="{{ url('/posts/' . $post->id) }}">
         <div class="conteudo-card">
             <div class="card-texto">
                 <h2>{{ $post->titulo }}</h2>
-                <p>
-                    {{ $post->resumo }}
+                <p style="">
+                    @php
+                        $resumo = strlen($post->resumo) > 100 ? substr($post->resumo,0,100)."..." : $post->resumo;
+                    @endphp
+                    {{ $resumo }}
                 </p>
             </div>
-            <div class="imagem-card"><img src="{{ asset('images/posts/' . $post->imagem) }}"></div>
+            <div class="imagem-card"><img src="{{$post->imagem}}"></div>
         </div>
     </a>
     <div class="bottom-card">
@@ -50,6 +53,9 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
+                    @else
+                        <li> <a style="margin-left: 5%" href="{{ route('login.index') }}">Entre para
+                        salvar.</a></li>
                     @endif
                     @forelse ($colecoes as $colecao)
                         <li>
@@ -59,8 +65,7 @@
                             </a>
                         </li>
                     @empty
-                        <li> <a style="margin-left: 5%" href="{{ route('login.index') }}">Entre para
-                                salvar.</a></li>
+                        <li>Clique em 'mais' para criar uma coleção.</li>
                     @endforelse
                 </ul>
             </div>

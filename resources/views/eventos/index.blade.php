@@ -33,7 +33,7 @@ $loggedIn = Auth::check();
                                 <path d="M1.25937 8.25226C0.636906 6.31571 2.08133 4.33423 4.11545 4.33423L16.8823 4.33423C18.9164 4.33423 20.3609 6.31571 19.7384 8.25226L16.4175 18.5838C16.0187 19.8245 14.8646 20.6658 13.5614 20.6658L7.43632 20.6658C6.13315 20.6658 4.97902 19.8245 4.58024 18.5838L1.25937 8.25226Z" fill="#575FCC"/>
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M2.33203 2.00114C2.33203 1.35687 2.85431 0.834595 3.49857 0.834595H17.4971C18.1413 0.834595 18.6636 1.35687 18.6636 2.00114C18.6636 2.6454 18.1413 3.16768 17.4971 3.16768H3.49857C2.85431 3.16768 2.33203 2.6454 2.33203 2.00114Z" fill="#575FCC"/>
                             </svg>
-                            <div class="data-evento-botao">{{date('d/m/y', strtotime($recent->lançamento))}}</div>
+                            <div class="data-evento-botao">{{date('d/m/Y', strtotime($recent->data_evento))}}</div>
                             {{-- <div class="plataforma-evento-botao">Google Meet</div> --}}
                         </div>
                     </div>

@@ -47,7 +47,7 @@ body {
 }
 
 main.container {
-    min-width: 100vw;
+    min-width: 80vw;
     margin: 0;
     padding: 0;
     border: 0;
@@ -352,9 +352,12 @@ input, .tag-criada, #resumo, #tags{
 
 }
 
+#link{
+    margin-bottom: 1rem;
+}
+
 #tags{
     width: fit-content;
-    height: fit-content;
     min-width: 10rem;
     background-color: white;
     -webkit-appearance: none;
@@ -370,7 +373,7 @@ input, .tag-criada, #resumo, #tags{
     display: none;
 }
 
-#link, #titulo, #resumo{
+#link, #titulo, #resumo,#data{
     width: 40rem;
 }
 
