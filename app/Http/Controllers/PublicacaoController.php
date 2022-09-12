@@ -14,7 +14,10 @@ class PublicacaoController extends Controller
     public function deletar_post(Request $req){
         try{
             $post = \App\Post::find($req->id);
-            if($post->autor_id == Auth::user()->id) $post->delete();
+            if($post->autor_id == Auth::user()->id){
+                $post->excluido = true;
+                $post->save();
+            }
             return back();
         }
         catch(\Exception $e){
