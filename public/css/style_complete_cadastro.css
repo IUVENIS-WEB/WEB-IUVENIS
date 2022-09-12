@@ -137,7 +137,7 @@ form label{
 	display: block;
 }
 
-form input[type="email"],form input[type="submit"],form input[type="date"]{
+form input[type="email"], input[type="text"],form input[type="submit"],form input[type="date"]{
 	outline:none;
     border-width: 3px;
     padding-left: 0.5rem;

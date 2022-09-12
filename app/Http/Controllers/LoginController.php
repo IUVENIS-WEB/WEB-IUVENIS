@@ -124,6 +124,8 @@ class LoginController extends Controller
         //Validação
         $rules = [
             'email' => 'email|required|unique:users',
+            'nome' => 'required',
+            'sobrenome' => 'required',
             'password' => 'required|min:7',
             'nascimento' => 'required|date'
         ];
@@ -131,6 +133,8 @@ class LoginController extends Controller
             'email.required' => 'O email é obrigatório.',
             'email.unique' => 'Este email já está em uso.',
             'email.email' => 'O email deve ser um endereço de email válido.',
+            'nome.required' => 'O nome é obrigatório.',
+            'sobrenome.required' => 'O sobrenome é obrigatório.',
             'password.min' => 'A senha deve ter no mínimo 7 (sete) caracteres.',
             'nascimento.required' => 'A data de nascimento é obrigatória.',
             'nascimento.date' => 'A data de nascimento deve ser uma data válida.'
@@ -145,7 +149,9 @@ class LoginController extends Controller
             $user = User::create([
                 'email' => $req->email,
                 'password' => Hash::make($req->password),
-                'nascimento' => $req->nascimento
+                'nascimento' => $req->nascimento,
+                'nome' => $req->nome,
+                'sobrenome' => $req->sobrenome
             ]);
             Auth::login($user);
         }

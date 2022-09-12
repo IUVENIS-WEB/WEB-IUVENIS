@@ -4,6 +4,9 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/style_complete_cadastro.css') }}">
 @endsection
+@section('navbar')
+<span></span>
+@endsection
 
 @section('content')
     <main class="container">
@@ -29,9 +32,15 @@
             <label class="emailBox">
                 <input type="email" id="email" name="email" placeholder="Email" value="{{session()->get('email')}}">
             </label>
+            <label class="emailBox">
+                <input type="text" id="nome" name="nome" placeholder="Nome">
+            </label>
+            <label class="emailBox">
+                <input type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome">
+            </label>
 
             <label class="passBox">
-                <input type="password" id="password" name="password" placeholder="password">
+                <input type="password" id="password" name="password" placeholder="Senha">
                 <i class="eye" onclick="hide()">
                     <i id="hide1" class="fa fa-eye"></i>
                     <i id="hide2" class="fa fa-eye-slash"></i>
