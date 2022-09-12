@@ -30,12 +30,15 @@ Route::get('/publicacoes/texto',['as'=>'iuvenis.publicacoes_texto', 'uses'=>'Iuv
 Route::get('/publicacoes/video',['as'=>'iuvenis.publicacoes_video', 'uses'=>'IuvenisController@publicar_video']);
 Route::get('/publicacoes/evento',['as'=>'iuvenis.publicacoes_evento', 'uses'=>'IuvenisController@publicar_evento']);
 
-//CADASTRO DE PUBLICAÇÕES
+//FORM DE PUBLICAÇÕES
 Route::get('/publicar/artigo/{postId?}',['as'=>'publicacao.artigo', 'uses'=>'PublicacaoController@form_artigo']);
-Route::get('/publicar/video',['as'=>'publicacao.video', 'uses'=>'PublicacaoController@form_video']);
+Route::get('/publicar/video/{postId?}',['as'=>'publicacao.video', 'uses'=>'PublicacaoController@form_video']);
 Route::get('/publicar/evento',['as'=>'publicacao.evento', 'uses'=>'PublicacaoController@form_evento']);
+
+//ENVIO DE POST
 Route::post('/publicar/texto/new',['as'=>'publicacao.new_texto', 'uses'=>'PublicacaoController@novo_artigo']);
 Route::post('/publicar/evento/new',['as'=>'publicacao.new_evento', 'uses'=>'PublicacaoController@novo_evento']);
+Route::post('/publicar/video/new',['as'=>'publicacao.new_video', 'uses'=>'PublicacaoController@novo_video']);
 
 //DELETAR PUBLICAÇÕES
 Route::post('/publicacoes/deletar/',['as'=>'publicacao.deletar', 'uses'=>'PublicacaoController@deletar_post']);
