@@ -73,7 +73,7 @@ $loggedIn = Auth::check();
                         <li>
                             <h6 class="dropdown-header">Coleções <button type="button" class="mais"
                                     data-bs-toggle="modal"
-                                    onclick="inputPostValue({{ $post->id }})"
+                                    onclick="inputPostValue({{ $post->posts_id }})"
                                     data-bs-target="#exampleModal"><i
                                         class="fa-solid fa-plus"></i></button></h6>
                         </li>
