@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use App\Post;
+use App\PostViews;
 use Exception;
 use Illuminate\Support\Facades\Response;
 
@@ -24,7 +25,11 @@ class PostController extends Controller
         return response()->json($postRepository->groupedPostsByTag());
     }
 
-    public function index(\App\Post $post){
-        return view('posts.index', ['post' => $post]);
+    public function index(\App\Post $post, IPostRepository $postRepository){
+        PostViews::createViewLog($post);
+        return view('posts.index', [
+            'post' => $post, 
+            'views'=> $postRepository->postViewCount($post->id)
+        ]);
     }
 }

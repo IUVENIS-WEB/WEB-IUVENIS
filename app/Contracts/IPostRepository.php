@@ -7,4 +7,5 @@ interface IPostRepository{
     function groupedPostsByTag($tipo = null, $take = 10);
     function getPostsUser($id, $tipo = null );
     function mostRecentEvent();
+    function postViewCount($id);
 }

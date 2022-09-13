@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Contracts\IPostRepository;
 use App\Post;
+use App\PostViews;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use stdClass;
@@ -179,5 +180,9 @@ class PostRepository extends Repository implements IPostRepository
                 ])
                 ->orderBy('data_evento', 'desc')
                 ->first();
+        }
+
+        public function postViewCount($id){
+                return PostViews::where([['post_id', '=', $id]])->get()->count();
         }
 }

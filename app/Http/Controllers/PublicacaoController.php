@@ -235,6 +235,7 @@ class PublicacaoController extends Controller
         }
         $messages = [
             'link.required' => 'O campo \'Link\' é obrigatório.',
+            'link.active_url' => 'O campo \'Link\' deve receber uma URL válida.',
             'titulo.required' => 'O campo \'Título da publicação\' é obrigatório.',
             'imagem.required' => 'O campo \'Thimbnail da publicação\' é obrigatório.',
             'resumo.required' => 'O campo \'Resumo\' é obrigatório.',

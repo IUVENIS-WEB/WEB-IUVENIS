@@ -41,7 +41,7 @@ $editing = isset($post);
         <form action="{{ action('PublicacaoController@novo_video') }}" method="POST" id="publicar-video"
             enctype=multipart/form-data>
             {{ csrf_field() }}
-            <label for="link">Embed do Youtube*</label>
+            <label for="link">Link do Embed do Youtube*</label>
             @if ($editing)
                 <input type="text" name="link" id="link" required value="{{ $post->embed }}">
             @else

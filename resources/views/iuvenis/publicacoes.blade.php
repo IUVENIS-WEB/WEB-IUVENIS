@@ -36,7 +36,7 @@
             @forelse ($user as $post)
             <div class="btn-publicacao">
                 <img src="{{asset('assets/'.$tipo.'_icon.svg')}}" alt=""  height="60%" style="margin-top: 13px;margin-right: 20px">
-                <a class="conteudo-btn-post">
+                <a class="conteudo-btn-post" href="{{url('/posts/'.$post->id)}}">
                     <div class="titulo-post">
                         <div class="titulo-btn-publicacao">Título</div>
                         <p>{{$post->titulo}}</p>

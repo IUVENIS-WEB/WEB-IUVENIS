@@ -9,13 +9,15 @@
         <div class="conteudo">
             <div class="titulo">
                 <div class="organizacao-publicacao">
-                    <p>publicado em <a href="{{ url('/organizacao/'.$post->organizacao->id) }}">{{$post->organizacao->nome}}</a></p>
+                    <p>publicado em <a
+                            href="{{ url('/organizacao/' . $post->organizacao->id) }}">{{ $post->organizacao->nome }}</a></p>
                 </div>
                 <div class="titulo-top">
                     <div class="nome-escritor-salvar">
-                        <div class="imagem-perfil-escritor"><img src="assets/tabate.png" alt="foto de perfil"></div>
+                        <div class="imagem-perfil-escritor"><img src="{{ asset('images/users/' .$post->autor->foto) }}"
+                                alt="foto de perfil"></div>
                         <div class="nome-escritor-direita">
-                            <h5>{{$post->autor->nome}} {{$post->autor->sobrenome}}</h5>
+                            <h5>{{ $post->autor->nome }} {{ $post->autor->sobrenome }}</h5>
                             <p>{{ date('d/m/Y', strtotime($post->updated_at)) }}</p>
                         </div>
                     </div>
@@ -47,19 +49,24 @@
                 </div>
             </div>
             <div class="cards">
-                <h1>{{$post->titulo}}</h1>
+                <h1>{{ $post->titulo }}</h1>
                 <div class="tags-artigo">
                     @forelse ($post->tags as $tag)
                         <a href="{{ url('/tag/' . $tag->id) }}">
-                            <div class="tag">{{$tag->nome}}</div>
+                            <div class="tag">{{ $tag->nome }}</div>
                         </a>
                     @empty
-                        
                     @endforelse
                 </div>
+                <p><i class="fa-solid fa-eye"></i> {{$views}} visualizações</p>
+                @if (strtolower($post->tipo) == 'video')
+                    <iframe height="500" src="{{ $post->embed }}" frameborder="5"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                @endif
                 <h4> Resumo<h4>
                         <p>
-                            {{$post->resumo}}
+                            {{ $post->resumo }}
                         </p>
                         <div class="botoes">
                             @if ($post->tipo == 'artigo')
@@ -70,7 +77,7 @@
                                     </div>
                                 </a>
                             @endif
-                            @if ($post->tipo == 'evento') 
+                            @if ($post->tipo == 'evento')
                                 <a href="{{ $post->link_evento }}" target="_blank">
                                     <div class="botao-link">
                                         <i class="fa-sharp fa-solid fa-link"></i>
@@ -79,17 +86,21 @@
                                 </a>
                             @endif
                             @if ($post->arquivo)
-                            <a href="{{$post->arquivo}}" target="_blank">
-                                <div class="botao-baixar">
-                                    <i class="fa-regular fa-circle-down"></i>
-                                    <div>Baixar artigo</div>
-                                </div>
-                            </a>
+                                <a href="{{ $post->arquivo }}" target="_blank">
+                                    <div class="botao-baixar">
+                                        <i class="fa-regular fa-circle-down"></i>
+                                        <div>Baixar artigo</div>
+                                    </div>
+                                </a>
                             @endif
                         </div>
             </div>
         </div>
-        @include('layouts._sidebar', [$tipo = 'user', 'user' => $post->autor, 'posts' => $post->autor->posts])
+        @include('layouts._sidebar', [
+            ($tipo = 'user'),
+            'user' => $post->autor,
+            'posts' => $post->autor->posts,
+        ])
     </main>
 
     <div class="modal" tabindex="-1" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
