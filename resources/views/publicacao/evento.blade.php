@@ -4,6 +4,9 @@
 @section('css')
     <link rel="stylesheet" href="{{ URL::asset('css/publicacao_eventos.css')}}">
 @endsection
+@php
+    $editing = isset($post);
+@endphp
 @section('content')
     
     <main class="container">
@@ -44,21 +47,50 @@
             <form action="{{action('PublicacaoController@novo_evento')}}" method="POST" id="publicar-evento" enctype= multipart/form-data>
                 {{ csrf_field() }}
                 <label for="link">Link*</label>
+                @if($editing)
+                <input type="text" id="link" name="link" value="{{$post->link_evento}}" required>
+                @else
                 <input type="text" id="link" name="link" required>
+                @endif
                 <span class="aviso-tags">Coloque um link da live do Youtube ou de outra plataforma em que o evento será realizado, ou ainda o formulário de inscrição.</span>
 
                 <label for="titulo">Título da publicação*</label>
+                @if ($editing)
+                <input type="text" id="titulo" name="titulo" value="{{$post->titulo}}" required>
+                @else
                 <input type="text" id="titulo" name="titulo" required>
+                @endif
                 <label for="data">Data do Evento*</label>
+                @if($editing)
+                <input type="date" id="data" name="data" value="{{$post->data_evento}}" required>
+                @else
                 <input type="date" id="data" name="data" required>
-                <div class="correcao">
-                    <div>Thumbnail da publicação*</div>
-                    <input id="imagem" name="imagem"  type="file" accept="image/png, image/jpg, image/jpeg"><label
-                        for="imagem" class="file-forms" id="imagem-label"><i
-                            class="fa-solid fa-file-arrow-up"></i>Selecionar imagem</label></input>
-                </div>
+                @endif
+                @if ($editing)
+                    <em>Obs.:Adicione uma imagem somente se quiser mudar a thumbnail.</em>
+                    <div class="correcao">
+                        <div>Thumbnail da publicação*</div>
+                        <input id="imagem" name="imagem"  type="file" accept="image/png, image/jpg, image/jpeg" ><label
+                            for="imagem" class="file-forms" id="imagem-label"><i
+                                class="fa-solid fa-file-arrow-up"></i>Selecionar imagem</label></input>
+                    </div>   
+                @else
+                    <div class="correcao">
+                        <div>Thumbnail da publicação*</div>
+                        <input id="imagem" name="imagem"  type="file" accept="image/png, image/jpg, image/jpeg" ><label
+                            for="imagem" class="file-forms" id="imagem-label"><i
+                                class="fa-solid fa-file-arrow-up"></i>Selecionar imagem</label></input>
+                    </div>   
+                @endif            
                 <label for="resumo">Descrição*</label>
+                @if($editing)
+                <textarea id="resumo" name='resumo' required >{{$post->resumo}}</textarea>
+                @else
                 <textarea id="resumo" name='resumo' required></textarea>
+                @endif
+                @if ($editing)
+                    <input type="number" name="id" id="id" value="{{$post->id}}" hidden>
+                @endif
                 <label for="tag">Tags*</label>
             <div class="form-flex">
                 {{-- Foi necessário mudar um pouco a lógica do select:
@@ -69,16 +101,38 @@
                     Para tanto, o Javascript foi somente comentado. Basta comentar a parte que está contida
                     por 'onchange' lá em baixo dentro da tag <script> (exemplo na atual linha 173).
                     --}}
-                <select name="tags[]" id="tags" aria-placeholder="clique para selecionar"  multiple>
-                    <option value="default" class="display-none" id=>Selecione um valor</option>
-                    {{-- Busca todas as tags e constrói as opções nos seguintes termos:
-                        O 'value' sempre será o Id e o texto que aparece para o usuário é o nome da tag. --}}
-                    @forelse ($tagRepository->getAll() as $tag)
-                    <option value="{{$tag->id}}">{{$tag->nome}}</option>
-                    @empty
-                        Infelizmente ainda não há tags :(
-                    @endforelse
-                </select>
+                @if($editing)
+                    <select name="tags[]" id="tags" aria-placeholder="clique para selecionar"  multiple>
+                        <option value="default" class="display-none" id=>Selecione um valor</option>
+                        {{-- Busca todas as tags e constrói as opções nos seguintes termos:
+                            O 'value' sempre será o Id e o texto que aparece para o usuário é o nome da tag. --}}
+                        @forelse ($tagRepository->getAll() as $tag)
+                            @forelse ($post->tags as $tag_post )
+                                @if ($tag_post->nome == $tag->nome)
+                                    <option value="{{$tag->id}}" selected>{{$tag->nome}}</option>
+                                @else
+                                    <option value="{{$tag->id}}">{{$tag->nome}}</option>
+                                @endif
+                            @empty
+                                <option value="{{$tag->id}}">{{$tag->nome}}</option>
+                            @endforelse
+                        @empty
+                            Infelizmente ainda não há tags :(
+                        @endforelse
+                    </select>
+                
+                @else
+                    <select name="tags[]" id="tags" aria-placeholder="clique para selecionar"  multiple>
+                        <option value="default" class="display-none" id=>Selecione um valor</option>
+                        {{-- Busca todas as tags e constrói as opções nos seguintes termos:
+                            O 'value' sempre será o Id e o texto que aparece para o usuário é o nome da tag. --}}
+                        @forelse ($tagRepository->getAll() as $tag)
+                        <option value="{{$tag->id}}">{{$tag->nome}}</option>
+                        @empty
+                            Infelizmente ainda não há tags :(
+                        @endforelse
+                    </select>
+                @endif
             </div>
             <span class=""><em>Dica: para selecionar mais de uma tag, segure 'Ctrl' e clique nelas.</em></span>
                 <span class="aviso-tags">Selecione até 3 tags. Clique numa tag selecionada para removê-la</span>

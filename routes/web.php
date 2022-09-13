@@ -34,11 +34,13 @@ Route::get('/publicacoes/evento',['as'=>'iuvenis.publicacoes_evento', 'uses'=>'I
 Route::get('/publicar/artigo/{postId?}',['as'=>'publicacao.artigo', 'uses'=>'PublicacaoController@form_artigo']);
 Route::get('/publicar/video',['as'=>'publicacao.video', 'uses'=>'PublicacaoController@form_video']);
 Route::get('/publicar/evento',['as'=>'publicacao.evento', 'uses'=>'PublicacaoController@form_evento']);
+Route::get('/publicar/evento/{postId?}',['as'=>'publicacao.artigo', 'uses'=>'PublicacaoController@form_evento']);
 Route::post('/publicar/texto/new',['as'=>'publicacao.new_texto', 'uses'=>'PublicacaoController@novo_artigo']);
 Route::post('/publicar/evento/new',['as'=>'publicacao.new_evento', 'uses'=>'PublicacaoController@novo_evento']);
 
 //DELETAR PUBLICAÇÕES
 Route::post('/publicacoes/deletar/',['as'=>'publicacao.deletar', 'uses'=>'PublicacaoController@deletar_post']);
+
 
 
 Route::get('/texto/{filtro}',['as'=>'iuvenis.texto', 'uses'=>'IuvenisController@texto']);
