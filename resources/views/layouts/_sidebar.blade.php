@@ -4,8 +4,7 @@
     @if (isset($tipo) && $tipo == 'user')
         <div class="conteudo-sidebar sticky-bottom">
             <div class="perfil-escritor-sidebar">
-                <div class="imagem-perfil-sidebar-escritor"><img src=" {{ asset('images/users/' . $user->foto) }}"
-                        alt="foto de perfil"></div>
+                <div class="imagem-perfil-sidebar-escritor">@include('layouts._foto_perfil', ['user'=>$user])</div>
                 <div class="nome-publicações">
                     <h3>{{ $user->nome . ' ' . $user->sobrenome }}</h3>
                     <p>{{ count($posts) }} Publicações</p>
