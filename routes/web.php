@@ -82,3 +82,16 @@ Route::get('/escritor/{id}',['as'=>'explorar.escritor', 'uses'=>'ExplorarControl
 
 Route::get('/posts/{post}', ['as'=>'posts.index', 'uses'=>'PostController@index']);
 
+// ROTAS DE AUTENTIFICAÇÃO
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// ROTAS DE REGISTRO
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+// USUARIO PERTENCE A UMA ORGANIZAÇÃO
+Route::group(['middlewere' => ['auth', 'Verificausuario:organizacao']], function(){
+    // ...
+});
