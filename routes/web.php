@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use app\Http\Middleware;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',['as'=>'iuvenis.index', 'uses'=>'IuvenisController@index']);
 
 //LISTA DE PUBLICAÇÕES
-Route::get('/publicacoes/texto',['as'=>'iuvenis.publicacoes_texto', 'uses'=>'IuvenisController@publicar_artigo']);
+Route::get('/publicacoes/texto',['as'=>'iuvenis.publicacoes_texto', 'uses'=>'IuvenisController@publicar_artigo'])->middleware('Escritor');
 Route::get('/publicacoes/video',['as'=>'iuvenis.publicacoes_video', 'uses'=>'IuvenisController@publicar_video']);
 Route::get('/publicacoes/evento',['as'=>'iuvenis.publicacoes_evento', 'uses'=>'IuvenisController@publicar_evento']);
 

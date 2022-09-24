@@ -14,8 +14,13 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
+        //\App\Http\Middleware\TrustProxies::class,  //adc recentemente para teste
+       // \App\Http\Middleware\TrimStrings::class,   //adc recentemente para teste
+        //\Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,  //adc recentemente para teste
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+       // \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class, //adc recentemente para teste
         \App\Http\Middleware\CorsMiddleware::class,
+        
     ];
 
     /**
@@ -53,5 +58,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'usuariologado' => \App\Http\Middleware\Verificausuario::class,
+        'Escritor' => \App\Http\Middleware\Escritor::class,
     ];
 }

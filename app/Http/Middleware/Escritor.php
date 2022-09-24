@@ -4,22 +4,33 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use App\Contracts\IEscritorRepository;
+use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\BD;
+use Illuminate\Database\Eloquent\Model;
+use App\Contracts\IPostRepository;
 
 //class RedirectIfAuthenticated
-class Verificausuario
+class Escritor
 {
 
-public function handle($request, Closure $next, $organizacao_id)
+public function handle($request, Closure $next)
 {
-     if ( !auth()->check() )
-         return redirect()->route('usuariologado');
- 
-     $usuariologado = auth()->user()->usuariologado;
-  
-     if ( $usuariologado != $organizacao_id)
-         return back();
-  
-     return $next($request); 
+    if(Auth::check())
+    {
+        $escritor = Auth::user();
+        if($escritor->organizacao_id == null)
+        {
+            return back();
+        }
+        return $next($request);
+    }else
+    {
+        return back();
+
+    }
 }
 
 }
