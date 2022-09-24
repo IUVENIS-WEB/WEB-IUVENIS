@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'usuariologado' => \App\Http\Middleware\Verificausuario::class,
         'Escritor' => \App\Http\Middleware\Escritor::class,
+        'logado' => \App\Http\Middleware\Logado::class,
     ];
 }
