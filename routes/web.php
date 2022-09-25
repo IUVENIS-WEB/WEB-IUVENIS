@@ -70,6 +70,7 @@ Route::get('/eventos', ['as' => 'eventos.index', 'uses' => 'EventosController@in
 Route::get('/escritor/{id}',['as'=>'explorar.escritor', 'uses'=>'ExplorarController@escritor']);
 Route::get('/posts/{post}', ['as'=>'posts.index', 'uses'=>'PostController@index']);
 Route::get('/artigo', ['as'=>'artigo.index', 'uses'=>'ArtigoController@index']);
+Route::get('/video', ['as'=>'video.index', 'uses'=>'VideoController@index']);
 
 
 //COLEÇÕES E SALVOS

@@ -34,7 +34,7 @@
                         Videos
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ url('/video/videos') }}">Videos</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/video') }}">Videos</a></li>
                         <li><a class="dropdown-item" href="{{ url('/video/webserie') }}">Webséries</a></li>
                     </ul>
                 </li>
