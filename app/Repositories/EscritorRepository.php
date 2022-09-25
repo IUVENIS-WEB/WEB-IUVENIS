@@ -13,8 +13,8 @@ class EscritorRepository extends Repository implements IEscritorRepository
                 return User::where([
                         ['organizacao_id', '!=', null],
                 ])
-                ->when($ids != null, function($q) use($ids){
-                        $q->whereIn('id', $ids);
+                ->when($ids != [], function($q) use($ids){
+                        return $q->whereIn('id', $ids);
                 })
                 ->take($take)
                 ->get()

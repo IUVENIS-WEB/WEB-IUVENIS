@@ -1,15 +1,15 @@
 @inject('tagRepository', 'App\Contracts\ITagRepository')
 @inject('postRepository', 'App\Contracts\IPostRepository')
 <div class="sidebar">
-    @if (isset($tipo) && $tipo == 'user')
+    @if (isset($tipo) && $tipo == 'escritor')
         <div class="conteudo-sidebar sticky-bottom">
             <div class="perfil-escritor-sidebar">
-                <div class="imagem-perfil-sidebar-escritor">@include('layouts._foto_perfil', ['user'=>$user])</div>
+                <div class="imagem-perfil-sidebar-escritor">@include('layouts._foto_perfil', ['user'=>$escritor])</div>
                 <div class="nome-publicações">
-                    <h3>{{ $user->nome . ' ' . $user->sobrenome }}</h3>
+                    <h3>{{ $escritor->nome . ' ' . $escritor->sobrenome }}</h3>
                     <p>{{ count($posts) }} Publicações</p>
                 </div>
-                <p> {{ $user->descricao }}</p>
+                <p> {{ $escritor->descricao }}</p>
             </div>
             <div class="conteudo-sidebar">
 

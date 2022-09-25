@@ -67,6 +67,9 @@ Route::get('/explorar', ['as' => 'explorar.index', 'uses' => 'ExplorarController
 Route::get('/tag/{tag}', ['as' => 'tag.index', 'uses' => 'TagController@index'])
 ->where('tag', '\d+');
 Route::get('/eventos', ['as' => 'eventos.index', 'uses' => 'EventosController@index']);
+Route::get('/escritor/{id}',['as'=>'explorar.escritor', 'uses'=>'ExplorarController@escritor']);
+Route::get('/posts/{post}', ['as'=>'posts.index', 'uses'=>'PostController@index']);
+Route::get('/artigo', ['as'=>'artigo.index', 'uses'=>'ArtigoController@index']);
 
 
 //COLEÇÕES E SALVOS
@@ -78,7 +81,5 @@ Route::post('/salvaColecao', ['as' => 'colecao.salvaColecao', 'uses' => 'Colecao
 Route::post('/envioContato', ['as' => 'iuvenis.envioContato.', 'uses' => 'EnvioController@envioContato']);
 Route::get('/contato', ['as' => 'iuvenis.contato.', 'uses' => 'IuvenisController@contato']);
 
-Route::get('/escritor/{id}',['as'=>'explorar.escritor', 'uses'=>'ExplorarController@escritor']);
 
-Route::get('/posts/{post}', ['as'=>'posts.index', 'uses'=>'PostController@index']);
 

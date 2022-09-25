@@ -24,7 +24,7 @@
                         Texto
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ url('/texto/Artigos') }}">Artigos</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/artigo') }}">Artigos</a></li>
                         <li><a class="dropdown-item" href="{{ url('/texto/Editoriais') }}">Editoriais</a></li>
                     </ul>
                 </li>

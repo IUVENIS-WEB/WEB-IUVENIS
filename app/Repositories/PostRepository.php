@@ -185,4 +185,11 @@ class PostRepository extends Repository implements IPostRepository
         public function postViewCount($id){
                 return PostViews::where([['post_id', '=', $id]])->get()->count();
         }
+
+        public function getPostsByEscritor($id){
+                return Post::where([
+                        ['excluido', '=', 0],
+                        ['autor_id', '=', $id]
+                ])->get()->all();
+        }
 }

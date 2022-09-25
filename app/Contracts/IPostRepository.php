@@ -8,4 +8,5 @@ interface IPostRepository{
     function getPostsUser($id, $tipo = null );
     function mostRecentEvent();
     function postViewCount($id);
+    function getPostsByEscritor($id);
 }
