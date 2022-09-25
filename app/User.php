@@ -34,4 +34,9 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany('\App\Post', 'autor_id');
     }
+
+    public function getNomeCompletoAttribute()
+    {
+        return $this->attributes['nome'].' '.$this->attributes['sobrenome'];
+    }
 }
