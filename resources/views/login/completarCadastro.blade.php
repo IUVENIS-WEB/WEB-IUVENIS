@@ -46,7 +46,7 @@
                     <i id="hide2" class="fa fa-eye-slash"></i>
                 </i>
             </label>
-            <input type="date" id="date" name="nascimento" required>
+            Data de nascimento: <input type="date" id="date" name="nascimento" required>
             <input type="submit" id="submit" value="Criar conta">
         </form>
         <div class="comando-login">
