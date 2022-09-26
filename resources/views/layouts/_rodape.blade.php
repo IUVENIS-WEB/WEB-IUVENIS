@@ -20,9 +20,9 @@
             <h2>Conteúdo</h2>
             <ul>
                 <li><a href="{{ url('/explorar') }}">Explorar</a></li>
-                <li><a href="{{ url('/artigos') }}">Artigos</a></li>
-                <li><a href="{{ url('/videos') }}">Vídeos</a></li>
-                <li><a href="{{ url('/eventos') }}">Eventos</a></li>
+                <li><a href="{{ url('/artigo') }}">Artigos</a></li>
+                <li><a href="{{ url('/video') }}">Vídeos</a></li>
+                <li><a href="{{ url('/evento') }}">Eventos</a></li>
             </ul>
         </div>
 

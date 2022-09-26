@@ -1,0 +1,1 @@
+<img style="margin-top: 0.8rem; align-self:start;" width="{{$width or 'auto'}}" height="{{$height or 'auto'}}" src={{asset('assets/'.$icon)}}>

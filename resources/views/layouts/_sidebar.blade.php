@@ -1,16 +1,15 @@
 @inject('tagRepository', 'App\Contracts\ITagRepository')
 @inject('postRepository', 'App\Contracts\IPostRepository')
 <div class="sidebar">
-    @if (isset($tipo) && $tipo == 'user')
+    @if (isset($tipo) && $tipo == 'escritor')
         <div class="conteudo-sidebar sticky-bottom">
             <div class="perfil-escritor-sidebar">
-                <div class="imagem-perfil-sidebar-escritor"><img src=" {{ asset('images/users/' . $user->foto) }}"
-                        alt="foto de perfil"></div>
+                <div class="imagem-perfil-sidebar-escritor">@include('layouts._foto_perfil', ['user'=>$escritor])</div>
                 <div class="nome-publicações">
-                    <h3>{{ $user->nome . ' ' . $user->sobrenome }}</h3>
+                    <h3>{{ $escritor->nome . ' ' . $escritor->sobrenome }}</h3>
                     <p>{{ count($posts) }} Publicações</p>
                 </div>
-                <p> {{ $user->descricao }}</p>
+                <p> {{ $escritor->descricao }}</p>
             </div>
             <div class="conteudo-sidebar">
 
@@ -118,9 +117,9 @@
                 </div>
                 <div class="rodape-sidebar">
                     <a href="{{ url('/explorar') }}">Explorar</a>
-                    <a href="{{ url('/artigos') }}">Artigos</a>
-                    <a href="{{ url('/videos') }}">Vídeos</a>
-                    <a href="{{ url('/eventos') }}">Eventos</a>
+                    <a href="{{ url('/artigo') }}">Artigos</a>
+                    <a href="{{ url('/video') }}">Vídeos</a>
+                    <a href="{{ url('/evento') }}">Eventos</a>
                     <a href="{{ url('/login') }}">Login</a>
                     <a href="{{ url('/sobre') }}">Sobre</a>
                     <a href="{{ url('/contato') }}">Contato</a>

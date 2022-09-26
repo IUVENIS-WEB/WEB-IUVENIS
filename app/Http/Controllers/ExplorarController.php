@@ -21,12 +21,14 @@ class ExplorarController extends Controller
         return view('explorar.index', [ 'posts' => $posts]);
     }
 
-    public function escritor(IEscritorRepository $escritorRepository, $id)
+    public function escritor(IEscritorRepository $escritorRepository, IPostRepository $postRepository, $id)
     {
-        $escritores = $escritorRepository->getEscritor($id);
-        $escrit = $escritores[0];
-        $user = $escritores[1];
-        return view('explorar.escritor', ['posts' => $escrit, 'escritor' => $user]);
+        $escritor = $escritorRepository->getEscritores([$id]);
+        if(!$escritor){
+            return back();
+        }
+        $posts = $postRepository->getPostsByEscritor($id);
+        return view('explorar.escritor', ['posts' => $posts, 'escritor' => $escritor[0]]);
     }
 
 }

@@ -1,6 +1,5 @@
 @include('layouts._lista_posts_template', [
-    'title' => 'Explorar',
+    'title' => 'Vídeos',
     'css' => 'explorar.css',
-    'icon' => 'explorar-icon.png'
+    'icon' => 'video_icon.svg',
 ])
-
