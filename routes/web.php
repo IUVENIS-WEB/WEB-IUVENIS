@@ -76,6 +76,7 @@ Route::get('/eventos', ['as' => 'eventos.index', 'uses' => 'EventosController@in
 Route::get('/getColecaos', ['as' => 'colecao.getColecaos', 'uses' => 'ColecaoController@getColecaos']);
 Route::post('/salvaPost', ['as' => 'colecao.salvaPost', 'uses' => 'ColecaoController@salvaPost']);
 Route::post('/salvaColecao', ['as' => 'colecao.salvaColecao', 'uses' => 'ColecaoController@salvaColecao']);
+Route::get('/user/colecaos',['as'=> 'colecao.user', 'uses' => 'ColecaoController@getColecaosByUser']);
 
 
 Route::post('/envioContato', ['as' => 'iuvenis.envioContato.', 'uses' => 'EnvioController@envioContato']);
@@ -98,3 +99,4 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::group(['middlewere' => ['auth', 'Verificausuario:organizacao']], function(){
     // ...
 });
+

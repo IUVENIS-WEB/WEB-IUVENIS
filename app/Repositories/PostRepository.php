@@ -132,7 +132,7 @@ class PostRepository extends Repository implements IPostRepository
                         ->where([
                                 ['colecaos.creator_id', '=', $id]
                         ])
-                        ->select(['colecaos.id', 'colecaos.nome'])
+                        ->select(['colecaos.id', 'colecaos.nome', 'colecaos.updated_at'])
                         ->get()
                         ->all();
                 return $data;
