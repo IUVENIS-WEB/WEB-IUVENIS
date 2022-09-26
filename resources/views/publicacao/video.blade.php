@@ -62,7 +62,7 @@ $editing = isset($post);
                     for="imagem" class="file-forms" id="imagem-label"><i class="fa-solid fa-file-arrow-up"></i>Selecionar
                     imagem</label></input>
             </div>
-            <label for="descricao">Descricao*</label>
+            <label for="descricao">Descrição*</label>
             @if ($editing)
                 <textarea id="resumo" name="resumo" required>{{ $post->resumo }}</textarea>
             @else

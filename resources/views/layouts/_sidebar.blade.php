@@ -7,6 +7,7 @@
                 <div class="imagem-perfil-sidebar-escritor">@include('layouts._foto_perfil', ['user'=>$escritor])</div>
                 <div class="nome-publicações">
                     <h3>{{ $escritor->nome . ' ' . $escritor->sobrenome }}</h3>
+                    <p>{{$escritor->bio}}</p>
                     <p>{{ count($posts) }} Publicações</p>
                 </div>
                 <p> {{ $escritor->descricao }}</p>
