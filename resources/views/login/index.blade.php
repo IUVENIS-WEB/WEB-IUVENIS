@@ -50,6 +50,9 @@
             <div class="comando-cadastro">
                 <p>Não possui uma conta? <a href="{{action('LoginController@cadastro')}}">Cadastrar</a></p>
             </div>
+            <div class="comando-cadastro">
+                <p><a href="{{url('/')}}">Continuar sem login</a></p>
+            </div>
         </div>
     </main>
 
