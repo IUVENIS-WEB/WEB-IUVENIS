@@ -22,7 +22,7 @@
          
          <p>Email: {{ $data['email']}}</P> <br>
          <p>Telefone: {{ $data['tel']}}</P> <br>
-         <p>Comentario: {{ $data['comentario']}}</P>
+         <p>Comentário: {{ $data['comentario']}}</P>
 
       </tr>
    </table> 
