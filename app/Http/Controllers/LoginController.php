@@ -53,6 +53,9 @@ class LoginController extends Controller
     public function redefinirSenha($email, $token)
     {
         $toke = \App\PasswordReset::where('email', '=', $email)->get()->first();
+        if(!isset($toke)){
+            return back();
+        }
         if ($toke->token != $token) {
             return redirect('/');
         } else {

@@ -38,7 +38,7 @@ Route::get('/publicar/evento',['as'=>'publicacao.evento', 'uses'=>'PublicacaoCon
 
 //ENVIO DE POST
 Route::post('/publicar/texto/new',['as'=>'publicacao.new_texto', 'uses'=>'PublicacaoController@novo_artigo'])->middleware('Escritor');
-Route::get('/publicar/evento/{postId?}',['as'=>'publicacao.artigo', 'uses'=>'PublicacaoController@form_evento']);
+Route::get('/publicar/evento/{postId?}',['as'=>'publicacao.evento', 'uses'=>'PublicacaoController@form_evento']);
 Route::post('/publicar/evento/new',['as'=>'publicacao.new_evento', 'uses'=>'PublicacaoController@novo_evento']);
 Route::post('/publicar/video/new',['as'=>'publicacao.new_video', 'uses'=>'PublicacaoController@novo_video']);
 
