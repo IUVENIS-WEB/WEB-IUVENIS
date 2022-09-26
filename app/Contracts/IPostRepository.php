@@ -9,4 +9,5 @@ interface IPostRepository{
     function mostRecentEvent();
     function postViewCount($id);
     function getPostsByEscritor($id);
+    function getPostsByTag($tagId);
 }

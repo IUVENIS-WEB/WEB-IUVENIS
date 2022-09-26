@@ -192,4 +192,15 @@ class PostRepository extends Repository implements IPostRepository
                         ['autor_id', '=', $id]
                 ])->get()->all();
         }
+
+        public function getPostsByTag($tagId){
+                return DB::table('posts')
+                ->join('post_tags', 'post_tags.post_id', '=', 'posts.id')
+                ->where([
+                        ['excluido', '=', 0],
+                        ['comentario', '=', 0],
+                        ['tag_id', '=', $tagId]
+                ])
+                ->get();
+        }
 }
