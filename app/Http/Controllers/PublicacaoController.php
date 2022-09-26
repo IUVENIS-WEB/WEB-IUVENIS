@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 use App\Contracts\ITagRepository;
+use App\Post;
 use Exception;
 class PublicacaoController extends Controller
 {
@@ -130,42 +131,67 @@ class PublicacaoController extends Controller
 
         return redirect('/publicacoes/texto');
     }
-    public function form_evento(ITagRepository $iTagRepository)
+    public function form_evento(ITagRepository $iTagRepository,$postId = null)
     {
         if(!(Auth::user() && Auth::user()->organizacao())) return redirect('/');
         {
             $id = Auth::user();
+            $post = \App\Post::find($postId);
             $tags = $iTagRepository->getAll();
-            return view('publicacao.evento', ['user' => $id, 'tipo' => 'evento', 'tags' => $tags]);
+            if ($post && $post->autor_id != Auth::user()->id) return back();
+            $tags = [];
+            if ($post) {
+                $tags = $post->tags->map(function ($item, $keys) {
+                    return $item->id;
+                });
+            }
+            return view('publicacao.evento', ['user' => $id, 'tipo' => 'evento', 'tags' => $tags, 'post' => $post]);
         }
         
     }
     public function novo_evento(Request $req){
         $fields = Input::all();
-        
-        //Validação
-        $rules = [
-            'link' => 'required|active_url',
-            'titulo' => 'required',
-            'imagem' => 'required|image',
-            'resumo' => 'required',
-            'data' => 'required|date'
-        ];
-        $messages = [
-            'link.required' => 'O campo \'Link\' é obrigatório.',
-            'titulo.required' => 'O campo \'Título da publicação\' é obrigatório.',
-            'imagem.required' => 'O campo \'Thimbnail da publicação\' é obrigatório.',
-            'resumo.required' => 'O campo \'Resumo\' é obrigatório.',
-            'data.required' => 'O campo \'Data\' é obrigatório.',
-            'data.date' => 'O campo \'Data\' precisa estar em um formato válido.',
-            'link.active_url' => 'O campo \'Link\' deve receber uma URL válida.',
-            'imagem.image' => 'O campo \'Thimbnail da publicação\' deve receber uma imagem válida.'
-        ];
+        if(isset($fields["id"]))
+        {
+            $rules = [
+                'link' => 'required|active_url',
+                'titulo' => 'required',
+                'resumo' => 'required',
+                'data' => 'required|date'
+            ];
+            $messages = [
+                'link.required' => 'O campo \'Link\' é obrigatório.',
+                'titulo.required' => 'O campo \'Título da publicação\' é obrigatório.',
+                'resumo.required' => 'O campo \'Resumo\' é obrigatório.',
+                'data.required' => 'O campo \'Data\' é obrigatório.',
+                'data.date' => 'O campo \'Data\' precisa estar em um formato válido.',
+                'link.active_url' => 'O campo \'Link\' deve receber uma URL válida.',
+            ];
+        }
+        else{
+            $rules = [
+                'link' => 'required|active_url',
+                'titulo' => 'required',
+                'imagem' => 'required|image',
+                'resumo' => 'required',
+                'data' => 'required|date'
+            ];
+            $messages = [
+                'link.required' => 'O campo \'Link\' é obrigatório.',
+                'titulo.required' => 'O campo \'Título da publicação\' é obrigatório.',
+                'imagem.required' => 'O campo \'Thimbnail da publicação\' é obrigatório.',
+                'resumo.required' => 'O campo \'Resumo\' é obrigatório.',
+                'data.required' => 'O campo \'Data\' é obrigatório.',
+                'data.date' => 'O campo \'Data\' precisa estar em um formato válido.',
+                'link.active_url' => 'O campo \'Link\' deve receber uma URL válida.',
+                'imagem.image' => 'O campo \'Thimbnail da publicação\' deve receber uma imagem válida.'
+            ];
+        }
         $validator = Validator::make($fields, $rules, $messages);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator->errors());
         }
-        $post = new \App\Post();
+
 
 
         //Salvando os arquivos na pasta pública
@@ -175,7 +201,16 @@ class PublicacaoController extends Controller
         //Todos os arquivos que foi feito upload podem ser encontrados
         //com '$req->file('nomedocampo')' e posteriormente podem ser guardados em public/storage/caminhoquevocecolocar
         //com '->store('caminhoquevocecolcoar')'
-        $imageName = asset('storage/'.$req->file('imagem')->store('images/posts', 'public'));
+        if(isset($fields["id"]))
+        {
+            $post = \App\Post::find($fields["id"]);
+            $originalPost = \App\Post::find($req->id);
+            $imageName = $originalPost->imagem; 
+
+        }else{
+            $post = new \App\Post();
+            $imageName = asset('storage/'.$req->file('imagem')->store('images/posts', 'public'));
+        }
 
         if(isset($fields['arquivo'])){
             $post->arquivo = asset('storage/'.$req->file('arquivo')->store('files/', 'public'));
@@ -188,8 +223,22 @@ class PublicacaoController extends Controller
         $post->tipo = 'evento';
         $post->organizacao_id = Auth::user()->organizacao->id;
         $post->autor_id = Auth::user()->id;
-
+        
+        
         $post->save();
+        if (isset($fields['tags'])) {
+            if ($fields["id"]) {
+                \App\PostTags::where([
+                    ['post_id', '=', $post->id],
+                ])
+                    ->whereIn(
+                        'tag_id',
+                        $post->tags->map(function ($e) {
+                            return $e->id;
+                        })
+                    )->delete();
+            }
+        }
         if(isset($fields['tags'])){
             foreach($fields['tags'] as $tagId){
                 \App\PostTags::create(['post_id' => $post->id, 'tag_id' => $tagId]);
