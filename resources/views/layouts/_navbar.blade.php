@@ -39,7 +39,7 @@
                     </ul>
                 </li>
                 <li class="nav-item eventos">
-                    <a class="nav-link active" aria-current="page" href="{{ route('eventos.index') }}">Eventos</a>
+                    <a class="nav-link active" aria-current="page" href="{{ url('evento') }}">Eventos</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
