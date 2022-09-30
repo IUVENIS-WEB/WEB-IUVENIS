@@ -28,7 +28,8 @@ class PostController extends Controller
     public function index(\App\Post $post, IPostRepository $postRepository){
         PostViews::createViewLog($post);
         return view('posts.index', [
-            'post' => $post, 
+            'post' => $post,
+            'comentarios' => $postRepository->comentariosByPostId($post->id),
             'views'=> $postRepository->postViewCount($post->id)
         ]);
     }

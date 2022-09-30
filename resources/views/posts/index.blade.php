@@ -96,6 +96,74 @@
                             @endif
                         </div>
             </div>
+            <div class="line-horizontal-conteudo dois"></div>
+                <h5 class="subtitulo-conteudo subtitulo-comentarios">Comentários</h5>
+                <div class="comentarios">
+                    <form action="">
+                        <textarea name="" id="textarea" class='autoExpand' placeholder="Deixe um comentário..." rows='1' data-min-rows='1' maxlength="1000"></textarea>
+                        <div class="comentario-form-btns">
+                            <input type="reset" id="cancelar" class="display-none" value="Cancelar">
+                            <input type="submit" id="submit" value="Comentar" disabled>
+                        </div>
+                    </form>
+                    <div class="comentario">
+                        <div class="imagem-perfil-comentario"><img src="assets/tabate.png" alt="foto de perfil"></div>
+                        <div class="comentario-direita">
+                            <div class="comentario-direita-nome">
+                                <p>Tabate Soares</p>
+                                <p>22 de abril 2020</p>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque condimentum nisl nisl,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque condimentum nisl nisl,</p>
+                            <form action="" id="form-reply">
+                                <textarea name="" id="textarea-reply" class='autoExpand' placeholder="responder..." rows='1' data-min-rows='1' maxlength="1000"></textarea>
+                                <div class="comentario-form-btns">
+                                    <input type="reset" id="cancelar-reply" value="Cancelar">
+                                    <input type="submit" id="submit-reply" value="responder" disabled>
+                                </div>
+                            </form>
+                            <div class="actions-comentario">
+                                <button class="btn btn-primary ver-respostas" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                    Ver respostas
+                                </button>
+                                <button class="btn btn-primary ver-respostas responder" id="reply-responder">Responder</button>
+                                <div class="collapse" id="collapseExample">
+                                    <div class="comentarios replies">
+                                        <div class="comentario">
+                                            <div class="imagem-perfil-comentario"><img src="assets/tabate.png" alt="foto de perfil"></div>
+                                            <div class="comentario-direita">
+                                                <div class="comentario-direita-nome">
+                                                    <p>Tabate Soares</p>
+                                                    <p>22 de abril 2020</p>
+                                                </div>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque condimentum nisl nisl,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque condimentum nisl nisl,</p>
+                                            </div>
+                                        </div>
+                                        <div class="comentario">
+                                            <div class="imagem-perfil-comentario"><img src="assets/tabate.png" alt="foto de perfil"></div>
+                                            <div class="comentario-direita">
+                                                <div class="comentario-direita-nome">
+                                                    <p>Tabate Soares</p>
+                                                    <p>22 de abril 2020</p>
+                                                </div>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque condimentum nisl nisl,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque condimentum nisl nisl,</p>
+                                            </div>
+                                        </div>
+                                        <div class="comentario">
+                                            <div class="imagem-perfil-comentario"><img src="assets/tabate.png" alt="foto de perfil"></div>
+                                            <div class="comentario-direita">
+                                                <div class="comentario-direita-nome">
+                                                    <p>Tabate Soares</p>
+                                                    <p>22 de abril 2020</p>
+                                                </div>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque condimentum nisl nisl,Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque condimentum nisl nisl,</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
         @include('layouts._sidebar', [
             ($tipo = 'user'),
@@ -125,4 +193,108 @@
             </div>
         </div>
     </div>
+    <!-- validação - criação de uma nova coleção-->
+<script>
+
+    //javascript para fazer um comentário 
+    const textarea = document.getElementById("textarea");
+    const submit = document.getElementById("submit");
+    const cancelar = document.getElementById("cancelar");
+
+
+    textarea.addEventListener('input',()=>{
+			if(textarea.value === ""){
+                submit.disabled = "disabled";
+                cancelar.disabled ="desabled";
+                cancelar.classList.remove("display-block");
+                cancelar.classList.add("display-none");
+			}else{
+                submit.removeAttribute('disabled');
+                cancelar.removeAttribute("disabled")
+                cancelar.classList.remove("display-none");
+                cancelar.classList.add("display-block");
+			}
+            
+		});
+
+    cancelar.addEventListener("click", function() {
+            submit.disabled = "disabled";
+            cancelar.disabled ="desabled";
+            cancelar.classList.remove("display-block");
+            cancelar.classList.add("display-none");
+            textarea.rows="1";
+            textarea.value = "";
+        });
+
+
+
+
+
+        //javascript para responder um comentário
+        const textareaReply = document.getElementById("textarea-reply");
+        const submitReply = document.getElementById("submit-reply");
+        const cancelarReply = document.getElementById("cancelar-reply");
+        const formReply = document.getElementById("form-reply");
+        const replyresponder = document.getElementById("reply-responder")
+
+        textareaReply.addEventListener('input',()=>{
+			if(textareaReply.value === ""){
+                submitReply.disabled = "disabled";
+			}else{
+                submitReply.removeAttribute('disabled');
+			}
+            
+		});
+        cancelarReply.addEventListener("click", function() {
+            textareaReply.rows="1";
+            textareaReply.value = "";
+            formReply.style.display="none";
+        });
+
+        replyresponder.addEventListener("click", function(){
+            formReply.style.display="flex"
+        });
+
+
+
+
+
+        //javascript que funciona para os dois tipo de comentário
+        //serve para a textbox aumentar conforme o usuario escreve e quebra a linha 
+        function getScrollHeight(elm){
+        var savedValue = elm.value
+        elm.value = ''
+        elm._baseScrollHeight = elm.scrollHeight
+        elm.value = savedValue
+        }
+
+        function onExpandableTextareaInput({ target:elm }){
+        // make sure the input event originated from a textarea and it's desired to be auto-expandable
+        if( !elm.classList.contains('autoExpand') || !elm.nodeName == 'TEXTAREA' ) return
+        
+        var minRows = elm.getAttribute('data-min-rows')|0, rows;
+        !elm._baseScrollHeight && getScrollHeight(elm)
+
+        elm.rows = minRows
+        rows = Math.ceil((elm.scrollHeight - elm._baseScrollHeight) / 25)
+        elm.rows = minRows + rows
+        }
+        // global delegated event listener
+        document.addEventListener('input', onExpandableTextareaInput)
+
+
+        //javascript para a validacao do nome da colecao 
+        const nomeColecao = document.getElementById("nomeColecao");
+        const submitColecao = document.getElementById("submitColecao");
+
+        nomeColecao.addEventListener('input',()=>{
+			if(nomeColecao.value === ""){
+                submitColecao.disabled = "disabled";
+
+			}else{
+                submitColecao.removeAttribute('disabled');
+			}
+		});
+
+</script>
 @endsection

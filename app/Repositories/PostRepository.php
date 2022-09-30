@@ -203,4 +203,12 @@ class PostRepository extends Repository implements IPostRepository
                 ])
                 ->get();
         }
+
+        function comentariosByPostId($postId){
+                return Post::where([
+                        ['excluido', '=', 0],
+                        ['comentario', '=', 1],
+                        ['pai_id', '=', $postId]
+                ])->get()->all();
+        }
 }
