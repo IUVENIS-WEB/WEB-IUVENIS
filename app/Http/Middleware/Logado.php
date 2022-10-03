@@ -17,16 +17,7 @@ class Logado
      */
     public function handle($request, Closure $next)
     {
-        if ( !auth()->check() )
-         return redirect()->route('usuariologado');
-
-     $usuariologado = auth()->user()->usuariologado;
-
-     if ( $usuariologado )
-         return back();
-
-        return $next($request);
-        if( Auth::check() == true)
+        if(Auth::check())
         {
             return $next($request); 
         }
