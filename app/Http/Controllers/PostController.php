@@ -32,4 +32,11 @@ class PostController extends Controller
             'views'=> $postRepository->postViewCount($post->id)
         ]);
     }
+    public function getPostsByColecao($idColecao, IPostRepository $postRepository)
+    {
+        $postscolecao = $postRepository->getPostsByColecao($idColecao);
+        $posts = $postscolecao[0];
+        $colecao = $postscolecao[1];
+        return view('perfil.postsColecao', ['posts' => $posts, 'colecao' => $colecao]);
+    }
 }

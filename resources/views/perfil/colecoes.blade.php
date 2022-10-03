@@ -25,16 +25,18 @@
             </div>
             <div class="cards">
                 @forelse ($colecoes as $dado)
-                    <div class="card">
-                        <div class="texto-colecao">
-                            @php
-                                $resumo = strlen($dado->nome) > 100 ? substr($dado->nome,0,100)."..." : $dado->nome;
-                            @endphp
-                        <h2>{{ $resumo }}</h2>
-                            <p>{{ date('y/m/Y', strtotime($dado->updated_at)) }}</p>
+                    <a class="linkPost" href="{{Route('colecao.posts', ['id' => $dado->id])}}">
+                        <div class="card">
+                            <div class="texto-colecao">
+                                @php
+                                    $resumo = strlen($dado->nome) > 100 ? substr($dado->nome,0,100)."..." : $dado->nome;
+                                @endphp
+                            <h2>{{ $resumo }}</h2>
+                                <p>{{ date('y/m/Y', strtotime($dado->updated_at)) }}</p>
+                            </div>
+                            <div class="imagem-colecao"><img src="assets/capa.png" alt=""></div>
                         </div>
-                        <div class="imagem-colecao"><img src="assets/capa.png" alt=""></div>
-                    </div>
+                    </a>
                 @empty
                     
                 @endforelse

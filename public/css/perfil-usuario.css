@@ -423,6 +423,9 @@ h5{
     width: 100%;
     height: 3rem;
 }
+.linkPost{
+    color: var(--preto);
+}
 
 .imagem-colecao-modal{
     border-radius: 9px;

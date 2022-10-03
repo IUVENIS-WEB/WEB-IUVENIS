@@ -77,6 +77,7 @@ Route::get('/getColecaos', ['as' => 'colecao.getColecaos', 'uses' => 'ColecaoCon
 Route::post('/salvaPost', ['as' => 'colecao.salvaPost', 'uses' => 'ColecaoController@salvaPost']);
 Route::post('/salvaColecao', ['as' => 'colecao.salvaColecao', 'uses' => 'ColecaoController@salvaColecao']);
 Route::get('/user/colecaos',['as'=> 'colecao.user', 'uses' => 'ColecaoController@getColecaosByUser']);
+Route::get('/colecao/{id}',['as'=>'colecao.posts', 'uses' => 'PostController@getPostsByColecao']);
 
 
 Route::post('/envioContato', ['as' => 'iuvenis.envioContato.', 'uses' => 'EnvioController@envioContato']);
