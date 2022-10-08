@@ -37,6 +37,7 @@ class PostController extends Controller
         $postscolecao = $postRepository->getPostsByColecao($idColecao);
         $posts = $postscolecao[0];
         $colecao = $postscolecao[1];
+
         return view('perfil.postsColecao', ['posts' => $posts, 'colecao' => $colecao]);
     }
 }

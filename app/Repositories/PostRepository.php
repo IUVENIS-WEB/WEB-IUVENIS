@@ -188,9 +188,8 @@ class PostRepository extends Repository implements IPostRepository
         
         public function getPostsByColecao($id)
         {
-                $posts = DB::table('salvos')
+                $posts = Post::join('salvos', 'salvos.post_id','=','posts.id')
                 ->join('colecaos', 'colecaos.id', '=', 'salvos.colecao_id')
-                ->join('posts', 'posts.id','=','salvos.post_id')
                 ->join('users', 'users.id', '=', 'posts.autor_id')
                 ->join('post_tags', 'post_tags.post_id', '=', 'salvos.post_id')
                 ->join('tags', 'post_tags.tag_id', '=', 'tags.id')
@@ -199,18 +198,7 @@ class PostRepository extends Repository implements IPostRepository
                         ['posts.excluido', '=', 0],
                         ['posts.comentario', '=', 0],
                 ])
-                ->select(DB::raw('tags.nome as tags_nome' ),
-                        'users.foto',
-                        'users.nome',
-                        'users.sobrenome',
-                        'salvos.post_id',
-                        'posts.titulo',
-                        'posts.updated_at',
-                        'posts.resumo',
-                        'posts.updated_at',
-                        'posts.imagem',
-                        'posts.tipo'
-                )
+                
                 ->get();
                 //dd($posts);
                 $colecao = DB::table('colecaos')

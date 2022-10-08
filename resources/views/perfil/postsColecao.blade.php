@@ -3,62 +3,31 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/explorar.css') }}">
 @endsection
+@inject('salvoRepository', 'App\Contracts\ISalvoRepository')
+@php
+$colecoes = $salvoRepository->getColecoes();
+$loggedIn = Auth::check();
+@endphp
 
 @section('content')
     <main class="container">
         <div class="conteudo">
             <div class="titulo">
                 <div class="titulo-top">
-                    <img src="{{ URL::asset('images/assets/aprendizado.png') }}">
+                    <svg width="50" height="50" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="17.5" cy="17.5" r="17.5" fill="#C4C4C4"/>
+                        <path d="M12 11V24.6677C12 25.5468 13.0527 25.9981 13.6894 25.3921L17.0388 22.2043C17.4384 21.824 18.0704 21.8391 18.4514 22.238L21.2769 25.196C21.8999 25.8483 23 25.4073 23 24.5053V11C23 10.4477 22.5523 10 22 10H13C12.4477 10 12 10.4477 12 11Z" fill="#253042" stroke="#253042" stroke-width="2"/>
+                        </svg>
                     <h1>{{$colecao->nome}}</h1>
                 </div>
                 <div class="line-horizontal-conteudo"></div>
             </div>
             <div class="cards">
                 @forelse ($posts as $post)
-                <div class="card">
-                    <a href="">
-                        <div class="autoria">
-                            <div class="imagem-perfil menor"><img
-                                    src="{{ asset('images/users/' . $post->foto) }}" alt="foto de perfil"></div>
-                            <p>{{ $post->nome . ' ' . $post->sobrenome }}</p>
-                            <div class="circulo"></div>
-                            <p class="data">{{ date('y/m/Y', strtotime($post->updated_at)) }}</p>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="conteudo-card">
-                            <div class="card-texto">
-                                <h2>{{ $post->titulo }}</h2>
-                                <p style="">
-                                    @php
-                                        $resumo = strlen($post->resumo) > 100 ? substr($post->resumo,0,100)."..." : $post->resumo;
-                                    @endphp
-                                    {{ $resumo }}
-                                </p>
-                            </div>
-                            <div class="imagem-card"><img src="{{$post->imagem}}"></div>
-                        </div>
-                    </a>
-                    <div class="bottom-card">
-                        <div class="direita-bottom-card">
-                            
-                            <p>{{ $post->tipo }}</p>
-                        </div>
-                        <div class="esquerda-bottom-card">
-                            <div class="dropdown-center">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCenterBtn"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bookmark">
-                                        <i class="fa-regular fa-bookmark"></i>
-                                        <i class="fa-solid fa-bookmark"></i>
-                                    </i>
-                                </button>
-                            </div>
-                            <i class="fa-solid fa-share-from-square"></i>
-                        </div>
+                
+                    @include('layouts._card_post', ['post' => $post])
+                    <div class="line-horizontal-conteudo"></div>
                     </div>
-                </div>
                 @empty
                     <small>Não há posts no momento :(</small>
                 @endforelse

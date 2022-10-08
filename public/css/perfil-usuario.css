@@ -155,7 +155,7 @@ a{
 
 .card h2{
     white-space: nowrap; 
-    overflow-x: hidden;
+    overflow: hidden;
     text-overflow: ellipsis; 
     padding: 0.5rem 0 0 0.5rem;
     font-weight: var(--semibold);
