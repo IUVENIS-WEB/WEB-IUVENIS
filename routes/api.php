@@ -18,3 +18,5 @@ Route::group(['prefix' => 'posts'], function (){
     Route::get('grouped', 'PostController@showAllGrouped');
     Route::get('{post}', 'PostController@show');
 });
+
+Route::get('/logar/{user?}/{senha?}', 'LoginController@Logar');

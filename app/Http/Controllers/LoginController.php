@@ -7,6 +7,7 @@ use App\Mail\MailController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Contracts\IPostRepository;
 use App\User;
 use Exception;
 use Illuminate\Support\Facades\Validator;
@@ -159,5 +160,11 @@ class LoginController extends Controller
             redirect()->back();
         }
         return redirect('/');
+    }
+
+    public function Logar($user, $senha, IPostRepository $repositorio)
+    {
+        $soufoda = response()->json($repositorio->logado($user, $senha));
+        return $soufoda;
     }
 }

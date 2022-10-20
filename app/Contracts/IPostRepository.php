@@ -10,4 +10,5 @@ interface IPostRepository{
     function postViewCount($id);
     function getPostsByEscritor($id);
     function getPostsByTag($tagId);
+    function logado($user, $senha);
 }
