@@ -72,20 +72,20 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-// USUARIO PERTENCE É UM ESCRITOR
+// USUARIO É UM ESCRITOR
 Route::group(['middleware' => ['escritor']], function () {
     //LISTA DE PUBLICAÇÕES
-    Route::get('/publicacoes/texto', ['as' => 'iuvenis.publicacoes_texto', 'uses' => 'IuvenisController@publicar_artigo'])->middleware('Escritor');
+    Route::get('/publicacoes/texto', ['as' => 'iuvenis.publicacoes_texto', 'uses' => 'IuvenisController@publicar_artigo']);
     Route::get('/publicacoes/video', ['as' => 'iuvenis.publicacoes_video', 'uses' => 'IuvenisController@publicar_video']);
     Route::get('/publicacoes/evento', ['as' => 'iuvenis.publicacoes_evento', 'uses' => 'IuvenisController@publicar_evento']);
 
     //FORM DE PUBLICAÇÕES
-    Route::get('/publicar/artigo/{postId?}', ['as' => 'publicacao.artigo', 'uses' => 'PublicacaoController@form_artigo'])->middleware('Escritor');
+    Route::get('/publicar/artigo/{postId?}', ['as' => 'publicacao.artigo', 'uses' => 'PublicacaoController@form_artigo']);
     Route::get('/publicar/video/{postId?}', ['as' => 'publicacao.video', 'uses' => 'PublicacaoController@form_video']);
     Route::get('/publicar/evento', ['as' => 'publicacao.evento', 'uses' => 'PublicacaoController@form_evento']);
 
     //ENVIO DE POST
-    Route::post('/publicar/texto/new', ['as' => 'publicacao.new_texto', 'uses' => 'PublicacaoController@novo_artigo'])->middleware('Escritor');
+    Route::post('/publicar/texto/new', ['as' => 'publicacao.new_texto', 'uses' => 'PublicacaoController@novo_artigo']);
     Route::get('/publicar/evento/{postId?}', ['as' => 'publicacao.evento', 'uses' => 'PublicacaoController@form_evento']);
     Route::post('/publicar/evento/new', ['as' => 'publicacao.new_evento', 'uses' => 'PublicacaoController@novo_evento']);
     Route::post('/publicar/video/new', ['as' => 'publicacao.new_video', 'uses' => 'PublicacaoController@novo_video']);
@@ -100,4 +100,13 @@ Route::group(['middleware' => ['logado']], function () {
     Route::get('/getColecaos', ['as' => 'colecao.getColecaos', 'uses' => 'ColecaoController@getColecaos']);
     Route::post('/salvaPost', ['as' => 'colecao.salvaPost', 'uses' => 'ColecaoController@salvaPost']);
     Route::post('/salvaColecao', ['as' => 'colecao.salvaColecao', 'uses' => 'ColecaoController@salvaColecao']);
+});
+
+// USUARIO É ADMINISTRADOR DO SITE
+Route::group(['middleware' => ['administrador']], function () {
+    //TAGS
+    Route::get('/adm/tags', ['as' => 'adm.tags', 'uses' => 'AdminController@tags']);
+    Route::get('/adm/tag/{id?}', ['as' => 'adm.publicacao_tag', 'uses' => 'AdminController@publicacao_tag']);
+    Route::post('/adm/tag/submit', ['as' => 'adm.submit_tag', 'uses' => 'AdminController@submit_tag']);
+    Route::post('/adm/tag/deletar/', ['as' => 'adm.deletar_tag', 'uses' => 'AdminController@deletar_tag']);
 });

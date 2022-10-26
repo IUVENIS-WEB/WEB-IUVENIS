@@ -57,8 +57,8 @@
                         </i>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownCenterBtn">
-                        <li><button type="button" onclick="changeId(this)" class="dropdown-item exclusao" data-post-id="{{$post->id}}" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-trash-can"></i> excluir</button></li>
-                        <li><a class="dropdown-item" href=" {{ url('/publicar/'.strtolower($tipo).'/'. $post->id) }}"><i class="fa-solid fa-pen-clip"></i> editar</a></li>     
+                        <li><button type="button" onclick="changeId(this)" class="dropdown-item exclusao" data-post-id="{{$post->id}}" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-trash-can"></i> Excluir</button></li>
+                        <li><a class="dropdown-item" href=" {{ url('/publicar/'.strtolower($tipo).'/'. $post->id) }}"><i class="fa-solid fa-pen-clip"></i> Editar</a></li>     
                     </ul>
                 </div>
             </div>
@@ -80,7 +80,7 @@
             <p>Essa ação é irreversível</p>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn cancelar" data-bs-dismiss="modal" aria-label="Close">cancelar</button>
+            <button type="button" class="btn cancelar" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
             <form action="{{action('PublicacaoController@deletar_post')}}" method="POST">
                 {{ csrf_field() }}
                 <input type="hidden" name="id" id="deleteId">
