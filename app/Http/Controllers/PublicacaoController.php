@@ -209,11 +209,11 @@ class PublicacaoController extends Controller
 
         }else{
             $post = new \App\Post();
-            $imageName = asset('storage/'.$req->file('imagem')->store('images/posts', 'public'));
+            $imageName = $req->file('imagem')->store('images/posts', 'public');
         }
 
         if(isset($fields['arquivo'])){
-            $post->arquivo = asset('storage/'.$req->file('arquivo')->store('files/', 'public'));
+            $post->arquivo = $req->file('arquivo')->store('files/', 'public');
         }
         $post->data_evento = $fields['data'];
         $post->titulo = $fields['titulo'];

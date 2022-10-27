@@ -21,6 +21,9 @@ class Escritor
         if (Auth::check()) {
             $escritor = Auth::user();
             if ($escritor->organizacao_id == null) {
+                if($escritor->adm_power){
+                    return redirect('adm/tags');
+                }
                 return back();
             }
             return $next($request);
