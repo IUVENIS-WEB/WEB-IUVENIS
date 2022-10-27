@@ -102,8 +102,11 @@ Route::group(['middleware' => ['logado']], function () {
     Route::post('/salvaColecao', ['as' => 'colecao.salvaColecao', 'uses' => 'ColecaoController@salvaColecao']);
 
     //CONFIGURAÇÕES DO PERFIL
-    Route::get('/conta', ['as' => 'conta.index', 'uses' => 'UserController@index']);
-    Route::post('/conta/edit', ['as' => 'conta.edit', 'uses' => 'UserController@edit']);
+    Route::get('/conta/publica', ['as' => 'conta.index', 'uses' => 'UserController@index']);
+    Route::post('/conta/publica/edit', ['as' => 'conta.edit', 'uses' => 'UserController@edit']);
+    
+    Route::get('/conta/privada', ['as' => 'conta.privada', 'uses' => 'UserController@conta_privada']);
+    Route::post('/conta/privada/edit', ['as' => 'conta.privada_edit', 'uses' => 'UserController@privada_edit']);
 });
 
 // USUARIO É ADMINISTRADOR DO SITE

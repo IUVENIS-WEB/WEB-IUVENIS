@@ -14,8 +14,8 @@
             <div class="titulo-bottom">
                 <div class="titulo-bottom-conteudo">
                     <div class="titulo-links">
-                        <a href="#" class="pagina-atual">Perfil público</a>
-                        <a href="#">Informações pessoais</a>
+                        <a href="{{route('conta.index')}}" class="pagina-atual">Perfil público</a>
+                        <a href="{{route('conta.privada')}}">Informações pessoais</a>
                     </div>
                     <div class="titulo-botoes">
                         <input type="reset" form="salvar" value="Cancelar" class="reset" />

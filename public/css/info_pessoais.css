@@ -235,7 +235,50 @@ a{
 }
 
 
+form{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 4rem;
+}
 
+input{
+    border-radius: 8px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--cinza-claro);
+    height: 2.4rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem 0 1rem;
+
+}
+
+#email{
+    width: 19.5rem;
+}
+
+input[type="submit"] {
+    background: var(--azul-claro);
+    color: white;
+    border-style: none;
+    width: 5rem;
+    border-radius:5px;
+}
+
+input[type="submit"]:disabled{
+    background-color: var(--cinza-claro);
+}
+
+input[type="submit"], input[type="reset"] {
+    font-size: 0.8rem;
+    height: 1.5rem;
+    padding: 0 !important;
+}
+
+input.reset {
+    background-color: white;
+    border-style: none;
+    width: 4rem;
+}
 
 .input-email{
     width: fit-content;
@@ -258,14 +301,14 @@ a{
     margin: 0px;
 }
 
-button{
+a.button{
     color: var(--azul-escuro);
     font-size: 0.8rem;
     font-weight: var(--semibold);
     background-color: var(--cinza-claro);
     padding: 5px 20px 5px 20px;
     border-radius: 30px;
-
+    cursor: pointer;
 }
 
 button:hover{

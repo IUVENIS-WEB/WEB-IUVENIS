@@ -40,10 +40,37 @@ class UserController extends Controller
         //Tratamento do arquivo
         $foto = $req->file('foto');
         $caminhoRelativo = $user->foto;
-        if(isset($foto)){
+        if (isset($foto)) {
             $caminhoRelativo = $foto->store('images/users', 'public');
         }
         $user->foto = $caminhoRelativo;
+
+        $user->save();
+        return back();
+    }
+
+    public function conta_privada()
+    {
+        return view('conta.privada', ['user' => Auth::user()]);
+    }
+
+    public function privada_edit(Request $req)
+    {
+        //Validação
+        $rules = [
+            'email' => 'email|required',
+        ];
+        $messages = [
+            'email.required' => 'O campo \'Email\' é obrigatório.',
+            'email.email' => 'O campo \'Email\' deve ser um email válido.',
+        ];
+        $validator = Validator::make(Input::all(), $rules, $messages);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors());
+        }
+
+        $user = Auth::user();
+        $user->email = $req->email;
 
         $user->save();
         return back();
