@@ -20,8 +20,7 @@
                         @forelse ($postRepository->getMostViewedEscritor(4) as $user)
                             <a href="{{ url('/escritor/' . $user->id) }}">
                                 <div class="escritor-perfil-sidebar">
-                                    <div class="imagem-perfil-sidebar"><img
-                                            src="{{ asset('images/users/' . $user->foto) }}" alt="foto de perfil"></div>
+                                    <div class="imagem-perfil-sidebar">@include('layouts._foto_perfil')</div>
                                     <div class="nome-descricao-escritor">
                                         <h4>{{ $user->nome . ' ' . $user->sobrenome }}</h4>
                                         <p>{{ $user->bio }}</p>
@@ -64,9 +63,7 @@
                         @forelse ($postRepository->getMostViewedEscritor(4) as $user)
                             <a href="{{ url('/escritor/' . $user->id) }}">
                                 <div class="escritor-perfil-sidebar">
-                                    <div class="imagem-perfil-sidebar"><img
-                                            src="{{ asset('images/users/' . $user->foto) }}" alt="foto de perfil">
-                                    </div>
+                                    <div class="imagem-perfil-sidebar">@include('layouts._foto_perfil', ['user' => $user])</div>
                                     <div class="nome-descricao-escritor">
                                         <h4>{{ $user->nome . ' ' . $user->sobrenome }}</h4>
                                         <p>{{ $user->bio }}</p>
@@ -87,9 +84,7 @@
                                 <a href="{{ url('/posts/' . $saved->post_id) }}">
                                     <div class="conteudo-salvo">
                                         <div class="autoria">
-                                            <div class="imagem-perfil"><img
-                                                    src="{{ asset('images/users/' . $saved->foto) }}"
-                                                    alt="foto de perfil"></div>
+                                            <div class="imagem-perfil">@include('layouts._foto_perfil', ['user' => $saved])</div>
                                             <a href="{{ url('/escritor/' . $saved->autor_id) }}">
                                                 <p>{{ $saved->nome . ' ' . $saved->sobrenome }}</p>
                                             </a>
