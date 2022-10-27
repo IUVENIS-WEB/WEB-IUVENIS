@@ -35,7 +35,7 @@
                 <input type="text" id="email" name="email" required value="{{ $user->email }}">
             </form>
             <div class="buttons">
-                <a href="#" class="button">Reconfigurar senha</a>
+                <a href="{{route('login.recuperarSenha', ['email' => $user->email])}}" class="button">Reconfigurar senha</a>
                 @if (!$user->organizacao_id)
                     <a href="#" class="button">Criar Organização</a>
                 @endif
