@@ -28,20 +28,7 @@
                 <div class="line-horizontal-conteudo"></div>
             </div>
         </div>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                    @if (session('fail.errors'))
-                        @foreach (session('fail.errors') as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    @endif
-                </ul>
-            </div>
-        @endif
+        @include('layouts._error_list')
         <form action="{{ route('adm.submit_tag') }}" id="publicar-artigo" method="POST">
             {{ csrf_field() }}
             <label for="nome">Nome da tag</label>

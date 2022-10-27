@@ -62,7 +62,7 @@
                         <li id="fazer-login-mais"><a class="dropdown-item" href="#">Fazer login</a></li>
                     </ul>
                 </li>
-                @if(Auth::user() && Auth::user()->organizacao)
+                @if(Auth::user() &&( Auth::user()->organizacao || Auth::user()->adm_power))
                   <li class="nav-item ">
                     <a class="nav-link active" aria-current="page" href="{{ route('iuvenis.publicacoes_texto') }}">Criar</a>
                   </li>
@@ -82,7 +82,7 @@
             <div class="dropstart">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCenterBtn"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    <div class="imagem-perfil-navbar"><img src="{{ asset('images/users/' . $id->foto) }}"
+                    <div class="imagem-perfil-navbar"><img src="{{ Storage::url($id->foto) }}"
                             alt="foto de perfil"></div>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownCenterBtn" id="dropdown-perfil">
