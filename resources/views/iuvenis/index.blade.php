@@ -71,8 +71,7 @@
                 <div class="cards">
                     @forelse ($escritores as $escritor)
                         <div class="card-escritor a">
-                            <div class="imagem-card"><img src="{{ URL::asset('images/users/'.$escritor->foto) }}"
-                                    alt="foto de perfil"></div>
+                            <div class="imagem-card">@include('layouts._foto_perfil', ['user' => $escritor])
                             <p>{{$escritor->nome.' '.$escritor->sobrenome}}</p>
                             <h6>{{$escritor->bio}}</h6>
                             <a href="{{ url('/escritor/'.$escritor->id) }}">

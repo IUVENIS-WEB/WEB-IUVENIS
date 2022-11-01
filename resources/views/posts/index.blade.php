@@ -14,8 +14,7 @@
                 </div>
                 <div class="titulo-top">
                     <div class="nome-escritor-salvar">
-                        <div class="imagem-perfil-escritor"><img src="{{ asset('images/users/' .$post->autor->foto) }}"
-                                alt="foto de perfil"></div>
+                        <div class="imagem-perfil-escritor">@include('layouts._foto_perfil', ['user' => $post->autor])</div>
                         <div class="nome-escritor-direita">
                             <h5>{{ $post->autor->nome }} {{ $post->autor->sobrenome }}</h5>
                             <p>{{ date('d/m/Y', strtotime($post->updated_at)) }}</p>

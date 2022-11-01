@@ -10,7 +10,7 @@
         </form>
         <div class="dropstart">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCenterBtn" data-bs-toggle="dropdown" aria-expanded="false">
-                <div class="imagem-perfil-navbar"><img src="{{asset('images/users/' . Auth::user()->foto)}}" alt="foto de perfil"></div>
+                <div class="imagem-perfil-navbar"><img src="{{Storage::url(Auth::user()->foto)}}" alt="foto de perfil"></div>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownCenterBtn">
                 <li><a class="dropdown-item" href="/publicar/artigo"><svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">

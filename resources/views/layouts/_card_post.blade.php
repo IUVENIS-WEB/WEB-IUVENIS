@@ -1,8 +1,7 @@
 <div class="card">
     <a href="">
         <div class="autoria">
-            <div class="imagem-perfil menor"><img
-                    src="{{ asset('images/users/' . $post->autor->foto) }}" alt="foto de perfil"></div>
+            <div class="imagem-perfil menor">@include('layouts._foto_perfil', ['user' => $post->autor])</div>
             <p>{{ $post->autor->nome . ' ' . $post->autor->sobrenome }}</p>
             <div class="circulo"></div>
             <p class="data">{{ date('y/m/Y', strtotime($post->updated_at)) }}</p>

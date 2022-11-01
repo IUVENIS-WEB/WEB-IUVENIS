@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Middleware;
 
@@ -16,21 +16,19 @@ use App\Contracts\IPostRepository;
 class Escritor
 {
 
-public function handle($request, Closure $next)
-{
-    if(Auth::check())
+    public function handle($request, Closure $next)
     {
-        $escritor = Auth::user();
-        if($escritor->organizacao_id == null)
-        {
+        if (Auth::check()) {
+            $escritor = Auth::user();
+            if ($escritor->organizacao_id == null) {
+                if($escritor->adm_power){
+                    return redirect('adm/tags');
+                }
+                return back();
+            }
+            return $next($request);
+        } else {
             return back();
         }
-        return $next($request);
-    }else
-    {
-        return back();
-
     }
-}
-
 }

@@ -1,1 +1,1 @@
-<img src=" {{ asset('images/users/' . $user->foto) }}" onerror="this.src='{{asset('images/users/sem_foto_perfil.jpg')}}'" alt="foto de perfil">
+<img src=" {{ Storage::url($user->foto) }}" onerror="this.src='{{asset('images/users/sem_foto_perfil.jpg')}}'" alt="foto de perfil">

@@ -22,6 +22,6 @@ class TagRepository extends Repository implements ITagRepository
         }
 
         function getAll(){
-                return Tag::all();
+                return Tag::where([['excluido', '=', false]])->get();
         }
 }

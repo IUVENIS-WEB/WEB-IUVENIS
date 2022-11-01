@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
-class Verificausuario
+class Administrador
 {
     /**
      * Handle an incoming request.
@@ -15,6 +16,9 @@ class Verificausuario
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if(Auth::check() && Auth::user()->adm_power){
+            return $next($request);
+        }
+        return back();
     }
 }
