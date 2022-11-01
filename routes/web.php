@@ -50,7 +50,6 @@ Route::post('/cadastrar', ['as' => 'login.cadastrar', 'uses' => 'LoginController
 //DESCOBERTA DE CONTEÚDO
 Route::get('/explorar', ['as' => 'explorar.index', 'uses' => 'ExplorarController@index']);
 Route::get('/tag/{tag}', ['as' => 'tag.index', 'uses' => 'TagController@index'])
-<<<<<<< HEAD
 ->where('tag', '\d+');
 Route::get('/evento', ['as' => 'eventos.index', 'uses' => 'EventosController@index']);
 Route::get('/escritor/{id}',['as'=>'explorar.escritor', 'uses'=>'ExplorarController@escritor']);
@@ -63,14 +62,6 @@ Route::get('/video', ['as'=>'video.index', 'uses'=>'VideoController@index']);
 Route::get('/getColecaos', ['as' => 'colecao.getColecaos', 'uses' => 'ColecaoController@getColecaos']);
 Route::post('/salvaPost', ['as' => 'colecao.salvaPost', 'uses' => 'ColecaoController@salvaPost']);
 Route::post('/salvaColecao', ['as' => 'colecao.salvaColecao', 'uses' => 'ColecaoController@salvaColecao']);
-=======
-    ->where('tag', '\d+');
-Route::get('/eventos', ['as' => 'eventos.index', 'uses' => 'EventosController@index']);
-Route::get('/escritor/{id}', ['as' => 'explorar.escritor', 'uses' => 'ExplorarController@escritor']);
-Route::get('/posts/{post}', ['as' => 'posts.index', 'uses' => 'PostController@index']);
-Route::get('/artigo', ['as' => 'artigo.index', 'uses' => 'ArtigoController@index']);
-Route::get('/video', ['as' => 'video.index', 'uses' => 'VideoController@index']);
->>>>>>> Development
 
 
 Route::post('/envioContato', ['as' => 'iuvenis.envioContato.', 'uses' => 'EnvioController@envioContato']);
