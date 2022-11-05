@@ -41,7 +41,7 @@
                 <div class="line"></div>
             </div>
 
-            <a href="">
+            <a href="{{ url('auth/google') }}">
                 <div class="input-field">
                     <i class="fab fa-brands fa-google"></i>
                     <span>Continuar com Google</span>

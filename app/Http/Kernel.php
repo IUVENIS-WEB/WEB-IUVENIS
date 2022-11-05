@@ -19,7 +19,7 @@ class Kernel extends HttpKernel
         //\Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,  //adc recentemente para teste
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
        // \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class, //adc recentemente para teste
-        \App\Http\Middleware\CorsMiddleware::class,
+       // \App\Http\Middleware\CorsMiddleware::class,
         
     ];
 

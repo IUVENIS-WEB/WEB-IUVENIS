@@ -146,16 +146,19 @@ class LoginController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator->errors());
         }
-
+       // dd($req);
         //Criação do usuário
         try{
-            $user = User::create([
-                'email' => $req->email,
-                'password' => Hash::make($req->password),
-                'nascimento' => $req->nascimento,
-                'nome' => $req->nome,
-                'sobrenome' => $req->sobrenome
-            ]);
+            
+            $user = new User();
+
+              $user->email = $req->email;
+              $user->password =  Hash::make($req->password);
+              $user->nascimento = $req->nascimento;
+              $user->nome = $req->nome;
+              $user->sobrenome = $req->sobrenome;
+              $user->save();
+
             Auth::login($user);
         }
         catch(Exception $e){
