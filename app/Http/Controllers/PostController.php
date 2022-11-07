@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 use App\Post;
 use App\PostViews;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 
 class PostController extends Controller
@@ -26,7 +27,10 @@ class PostController extends Controller
     }
 
     public function index(\App\Post $post, IPostRepository $postRepository){
-        PostViews::createViewLog($post);
+        $logged = Auth::check();
+        if(empty($post) || $post->comentario) return back();
+        if($post->excluido && !($logged && Auth::user()->adm_power)) return back();
+        //PostViews::createViewLog($post);
         return view('posts.index', [
             'post' => $post, 
             'views'=> $postRepository->postViewCount($post->id)
