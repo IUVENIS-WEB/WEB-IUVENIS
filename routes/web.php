@@ -116,4 +116,6 @@ Route::group(['middleware' => ['administrador']], function () {
     Route::get('/adm/tag/{id?}', ['as' => 'adm.publicacao_tag', 'uses' => 'AdminController@publicacao_tag']);
     Route::post('/adm/tag/submit', ['as' => 'adm.submit_tag', 'uses' => 'AdminController@submit_tag']);
     Route::post('/adm/tag/deletar/', ['as' => 'adm.deletar_tag', 'uses' => 'AdminController@deletar_tag']);
+
+    Route::get('/denuncias', ['as' => 'adm.denuncias', 'uses' => 'AdminController@denuncias']);
 });
