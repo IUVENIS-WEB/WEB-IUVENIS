@@ -118,4 +118,6 @@ Route::group(['middleware' => ['administrador']], function () {
     Route::post('/adm/tag/deletar/', ['as' => 'adm.deletar_tag', 'uses' => 'AdminController@deletar_tag']);
 
     Route::get('/denuncias', ['as' => 'adm.denuncias', 'uses' => 'AdminController@denuncias']);
+    Route::get('/denuncias/{post}/excluir', ['as' => 'adm.excluir_post', 'uses' => 'AdminController@excluir_post']);
+    Route::get('/denuncias/{post}/revogar', ['as' => 'adm.revogar', 'uses' => 'AdminController@revogar']);
 });

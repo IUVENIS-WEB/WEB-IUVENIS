@@ -67,4 +67,21 @@ class AdminController extends Controller
         $posts = $iPostRepository->postsDenunciados();
         return view('admin.denuncias', ['posts' => $posts]);
     }
+
+    public function excluir_post(\App\Post $post){
+        if(!$post->excluido || $post->denunciasContagem < 5){
+            return back();
+        }
+
+        $post->denunciasContagem = 0;
+        $post->save();
+        return redirect('/denuncias');
+    }
+
+    public function revogar(\App\Post $post){
+        $post->excluido = false;
+        $post->denunciasContagem = 0;
+        $post->save();
+        return redirect('/denuncias');
+    }
 }

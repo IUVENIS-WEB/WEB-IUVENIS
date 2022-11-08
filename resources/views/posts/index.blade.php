@@ -8,6 +8,10 @@
     <main class="container">
         <div class="conteudo">
             <div class="titulo">
+                <div class="titulo-botoes mb-5">
+                    <a class="btn btn-primary text-white" href="{{route('adm.revogar', ['post'=> $post])}}">Revogar post</a>
+                    <a class="btn btn-danger text-white" href="{{route('adm.excluir_post', ['post' => $post])}}">Excluir post</a>
+                </div>
                 <div class="organizacao-publicacao">
                     <p>publicado em <a
                             href="{{ url('/organizacao/' . $post->organizacao->id) }}">{{ $post->organizacao->nome }}</a></p>

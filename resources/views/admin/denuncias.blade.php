@@ -1,5 +1,5 @@
 @php
-    $tipo = 'denuncias';
+    $tipo = 'denuncia';
 @endphp
 @extends('layouts.publicarLayout')
 @section('title', 'Denúncias')
@@ -41,6 +41,7 @@
                     </a>
                 </div>
             @empty
+                Que bom! Não há mais nenhum post bloqueado.
             @endforelse
         </div>
     </div>
