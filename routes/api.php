@@ -1,5 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use app\Http\Middleware;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +22,8 @@ Route::group(['prefix' => 'posts'], function (){
 });
 
 Route::get('/logar/{user?}/{senha?}', 'LoginController@Logar');
+
+    
+    Route::get('/Tokin/{token?}', 'LoginController@Conferir_tokin')->middleware('Api_token');
+    
+

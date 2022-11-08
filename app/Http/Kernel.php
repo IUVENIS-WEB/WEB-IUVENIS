@@ -61,5 +61,6 @@ class Kernel extends HttpKernel
         'usuariologado' => \App\Http\Middleware\Verificausuario::class,
         'Escritor' => \App\Http\Middleware\Escritor::class,
         'logado' => \App\Http\Middleware\Logado::class,
+        'Api_token' => \App\Http\Middleware\Api_token::class,
     ];
 }

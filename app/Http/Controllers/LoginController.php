@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use App\classes\responseMessage;
 
 class LoginController extends Controller
 {
@@ -164,7 +165,20 @@ class LoginController extends Controller
 
     public function Logar($user, $senha, IPostRepository $repositorio)
     {
-        $soufoda = response()->json($repositorio->logado($user, $senha));
-        return $soufoda;
+        return response()->json($repositorio->logado($user, $senha));
+    }
+
+    public function Conferir_tokin($token)
+    {
+        $mensagem = new responseMessage;
+        $mensagem->message(true, null, null);
+        return response()->json($mensagem);
+    }
+
+    public function Mensagem_expirada()
+    {
+        $mensagem = new responseMessage;
+        $mensagem->message(false, 'Data de expiracao', null);
+        return response()->json($mensagem);
     }
 }

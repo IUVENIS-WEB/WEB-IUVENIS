@@ -18,6 +18,11 @@ class responseMessage  {
                 $mensagem = 'A senha está incorreta';
             }
 
+            if($tipoErro == 'Data de expiracao')
+            {
+                $mensagem = 'O token expirou';
+            }
+
             $this->message = $mensagem;
             $this->success = false;
             $this->token = false;
