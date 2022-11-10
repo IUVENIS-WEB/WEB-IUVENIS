@@ -24,6 +24,6 @@ Route::group(['prefix' => 'posts'], function (){
 Route::get('/logar/{user?}/{senha?}', 'LoginController@Logar');
 
     
-    Route::get('/Tokin/{token?}', 'LoginController@Conferir_tokin')->middleware('Api_token');
+    Route::get('/Token/{token?}', 'LoginController@Conferir_token')->middleware('Api_token');
     
 

@@ -64,7 +64,7 @@ Route::get('/redefinirSenha/{email}/{token}',['as'=>'login.redefinirSenha', 'use
 Route::put('/definirNovaSenha',['as'=>'login.definirNovaSenha', 'uses' =>'LoginController@definirNovaSenha']);
 Route::post('/attempt',['as'=>'login.attempt', 'uses'=>'LoginController@attempt']);
 Route::post('/cadastrar',['as'=>'login.cadastrar', 'uses'=>'LoginController@cadastrar']);
-Route::get('Tokin/tokin', 'LoginController@Mensagem_expirada');
+Route::get('Token/token', 'LoginController@Mensagem_expirada');
 
 
 //DESCOBERTA DE CONTEÚDO

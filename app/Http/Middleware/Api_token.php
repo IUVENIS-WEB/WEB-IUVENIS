@@ -30,7 +30,7 @@ class Api_token
 
         if($confere_token == null)
         {            
-            return redirect('/Tokin/tokin');
+            return redirect('/Token/token');
         }
 
         if($confere_token != null)
@@ -43,7 +43,7 @@ class Api_token
                            ['token', '=', $request->token]
                         ])
                       ->delete();
-                return redirect('/Tokin/tokin');
+                return redirect('/Token/token');
             }
             
             return $next($request);

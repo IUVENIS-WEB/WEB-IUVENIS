@@ -146,6 +146,8 @@ class LoginController extends Controller
             return redirect()->back()->withErrors($validator->errors());
         }
 
+    
+
         //Criação do usuário
         try{
             $user = User::create([
@@ -168,7 +170,7 @@ class LoginController extends Controller
         return response()->json($repositorio->logado($user, $senha));
     }
 
-    public function Conferir_tokin($token)
+    public function Conferir_token($token)
     {
         $mensagem = new responseMessage;
         $mensagem->message(true, null, null);
