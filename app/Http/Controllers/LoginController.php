@@ -154,6 +154,7 @@ class LoginController extends Controller
 
               $user->email = $req->email;
               $user->password =  Hash::make($req->password);
+              $user->foto = '/images/users/sem_foto_perfil.jpg';
               $user->nascimento = $req->nascimento;
               $user->nome = $req->nome;
               $user->sobrenome = $req->sobrenome;
