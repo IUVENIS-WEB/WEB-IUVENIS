@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="cards">
-                <img style="margin: 1em; width: 30vw" src="{{$post->imagem}}">
+                <img style="margin: 1em; width: 30vw" src="{{asset( $post->imagem)}}">
                 <h1>{{ $post->titulo }}</h1>
                 <div class="tags-artigo">
                     @forelse ($post->tags as $tag)

@@ -43,7 +43,7 @@ class UserController extends Controller
         if (isset($foto)) {
             $caminhoRelativo = $foto->store('images/users', 'public');
         }
-        $user->foto = $caminhoRelativo;
+        $user->foto = '/'.$caminhoRelativo;
 
         $user->save();
         return back();

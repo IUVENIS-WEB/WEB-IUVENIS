@@ -82,7 +82,7 @@
             <div class="dropstart">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCenterBtn"
                     data-bs-toggle="dropdown" aria-expanded="false">
-                    <div class="imagem-perfil-navbar"><img src="{{ Storage::url($id->foto) }}"
+                    <div class="imagem-perfil-navbar"><img src="{{ asset('storage' . $id->foto) }}"
                             alt="foto de perfil"></div>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownCenterBtn" id="dropdown-perfil">

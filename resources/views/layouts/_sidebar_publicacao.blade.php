@@ -32,7 +32,7 @@
         ],
         [
             'tipo' => 'conta',
-            'route' => route('iuvenis.publicacoes_evento'),
+            'route' => route('conta.index'),
             'icon' => asset('assets/config_icon.svg'),
             'text' => 'Conta',
             'condition' => ['organizacao_id', '!=', null],

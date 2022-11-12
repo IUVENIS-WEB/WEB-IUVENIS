@@ -57,7 +57,7 @@
 
             //adicionando a foto atual
             if('{{$user->foto}}'){
-                display_image.style.backgroundImage = 'url({{Storage::url($user->foto)}})';
+                display_image.style.backgroundImage = 'url({{asset('storage' . $user->foto)}})';
             }
             else{
                 display_image.style.backgroundImage = 'url({{asset('images/users/sem_foto_perfil.jpg')}})';
