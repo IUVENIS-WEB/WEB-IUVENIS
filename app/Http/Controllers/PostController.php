@@ -36,4 +36,16 @@ class PostController extends Controller
             'views'=> $postRepository->postViewCount($post->id)
         ]);
     }
+
+    public function denuncia(\App\Post $post){
+        if(!$post) return back();
+        $post->denunciasContagem++;
+        if($post->denunciasContagem > 5){
+            $post->excluido = true;
+            $post->save();
+            return redirect('/');
+        }
+        $post->save();
+        return back();
+    }
 }
