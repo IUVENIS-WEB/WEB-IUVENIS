@@ -130,7 +130,7 @@ class LoginController extends Controller
             'nome' => 'required',
             'sobrenome' => 'required',
             'password' => 'required|min:7',
-            'nascimento' => 'required|date'
+            'confirm_password' => 'required|min:7|same:password',
         ];
         $messages = [
             'email.required' => 'O email é obrigatório.',
@@ -139,8 +139,10 @@ class LoginController extends Controller
             'nome.required' => 'O nome é obrigatório.',
             'sobrenome.required' => 'O sobrenome é obrigatório.',
             'password.min' => 'A senha deve ter no mínimo 7 (sete) caracteres.',
-            'nascimento.required' => 'A data de nascimento é obrigatória.',
-            'nascimento.date' => 'A data de nascimento deve ser uma data válida.'
+            'password.required' => 'A senha é um campo obrigatório.',
+            'confirm_password.required' => 'A confirmação de senha é um campo obrigatório.',
+            'confirm_password.min' => 'A senha deve ter no mínimo 7 (sete) caracteres.',
+            'confirm_password.same' => 'A senha não é a mesma no campos \'Senha\' e \'Confirmar Senha\'.',
         ];
         $validator = Validator::make(Input::all(), $rules, $messages);
         if ($validator->fails()) {
@@ -149,17 +151,13 @@ class LoginController extends Controller
        // dd($req);
         //Criação do usuário
         try{
-            
-            $user = new User();
-
-              $user->email = $req->email;
-              $user->password =  Hash::make($req->password);
-              $user->foto = '/images/users/sem_foto_perfil.jpg';
-              $user->nascimento = $req->nascimento;
-              $user->nome = $req->nome;
-              $user->sobrenome = $req->sobrenome;
-              $user->save();
-
+            $user = User::create([
+                'email' => $req->email,
+                'password' => Hash::make($req->password),
+                'nascimento' => Carbon::create($req->ano, $req->mes, $req->dia),
+                'nome' => $req->nome,
+                'sobrenome' => $req->sobrenome
+            ]);
             Auth::login($user);
         }
         catch(Exception $e){

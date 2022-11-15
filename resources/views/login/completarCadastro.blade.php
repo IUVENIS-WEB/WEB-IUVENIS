@@ -46,7 +46,14 @@
                     <i id="hide2" class="fa fa-eye-slash"></i>
                 </i>
             </label>
-            Data de nascimento: <input type="date" id="date" name="nascimento" required>
+            <label class="passBox">
+                <input type="password" id="password" name="confirm_password" placeholder="Confirmar Senha">
+                <i class="eye" onclick="hide()">
+                    <i id="hide1" class="fa fa-eye"></i>
+                    <i id="hide2" class="fa fa-eye-slash"></i>
+                </i>
+            </label>
+            Data de nascimento: @include('layouts._date_picker')
             <input type="submit" id="submit" value="Criar conta">
         </form>
         <div class="comando-login">
