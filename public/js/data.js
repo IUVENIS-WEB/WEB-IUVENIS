@@ -17,13 +17,16 @@ const months = {
   "Dezembro" : 12,
 };
 
+const monthsKeys = Object.keys(months);
+
 (function populateMonths() {
-  for (let i = 0; i < months.length; i++) {
+  for (let i = 0; i < monthsKeys.length; i++) {
     const option = document.createElement("option");
-    option.textContent = months[i];
+    option.textContent = monthsKeys[i];
+    option.value = months[monthsKeys[i]];
     monthSelect.appendChild(option);
   }
-  monthSelect.value = "Janeiro";
+  monthSelect.value = 1; //Janeiro
 })();
 
 let previousDay;

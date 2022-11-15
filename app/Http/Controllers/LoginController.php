@@ -148,13 +148,13 @@ class LoginController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator->errors());
         }
-        dd($req);
+
         //Criação do usuário
         try{
             $user = User::create([
                 'email' => $req->email,
                 'password' => Hash::make($req->password),
-                'nascimento' => $req->nascimento,
+                'nascimento' => Carbon::create($req->ano, $req->mes, $req->dia),
                 'nome' => $req->nome,
                 'sobrenome' => $req->sobrenome
             ]);
