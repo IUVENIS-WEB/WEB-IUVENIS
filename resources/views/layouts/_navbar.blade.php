@@ -86,13 +86,8 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownCenterBtn" id="dropdown-perfil">
 
-                    <li><a class="dropdown-item" href="#">
-                            <svg width="19" height="15" viewBox="0 0 14 16" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M0 2V13.9663C0 15.6415 1.93638 16.5744 3.24649 15.5303L6.02574 13.3153C6.78263 12.7121 7.86286 12.7375 8.59065 13.3755L10.6816 15.2085C11.9743 16.3418 14 15.4238 14 13.7046V2C14 0.895431 13.1046 0 12 0H2C0.895431 0 0 0.895427 0 2Z"
-                                    fill="#253042" />
-                            </svg>
+                    <li><a class="dropdown-item" href="{{route('colecao.user')}}">
+                            @include('layouts._icon', ['icon' => 'flag.svg'])
                             Coleções</a></li>
                     <li>
                         <hr class="dropdown-divider">

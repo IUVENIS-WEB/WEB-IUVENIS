@@ -10,18 +10,20 @@
         <div class="conteudo">
             <div class="titulo">
                 <div class="titulo-top">
-                    <svg width="30" height="30" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="17.5" cy="17.5" r="17.5" fill="#C4C4C4"/>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M7 22.8699C13.2748 19.0569 21.7647 19.0377 28.5537 23.1135C26.7673 27.2685 22.6372 30.1781 17.8276 30.1781C12.9245 30.1781 8.72762 27.1543 7 22.8699Z" fill="#213042"/>
-                        <circle cx="18.0537" cy="11.5" r="5.5" fill="#213042"/>
-                    </svg> 
-                    <h1>perfil</h1>
+                    @include('layouts._icon', ['icon' => 'configuracoes_icon.svg'])
+                    <h1>Configurações</h1>
                 </div>
-                <div class="titulo-links">
-                    <a href="#" class="pagina-atual" >Coleções</a>
-                    <a href="#">Editar perfil</a>
+                <div class="titulo-bottom">
+                    <div class="titulo-bottom-conteudo">
+                        <div class="titulo-links">
+                            <a href="{{route('conta.index')}}">Perfil público</a>
+                            <a href="{{route('conta.privada')}}">Informações pessoais</a>
+                            <a href="{{route('colecao.user')}}" class="pagina-atual">Coleções</a>
+                        </div>
+                    </div>
+    
+                    <div class="line-horizontal-conteudo"></div>
                 </div>
-                <div class="line-horizontal-conteudo"></div>
             </div>
             <div class="cards">
                 @forelse ($colecoes as $dado)
@@ -34,7 +36,6 @@
                             <h2>{{ $resumo }}</h2>
                                 <p>{{ date('y/m/Y', strtotime($dado->updated_at)) }}</p>
                             </div>
-                            <div class="imagem-colecao"><img src="assets/capa.png" alt=""></div>
                         </div>
                     </a>
                 @empty

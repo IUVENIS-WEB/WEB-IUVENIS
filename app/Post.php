@@ -18,10 +18,14 @@ class Post extends Model
 
     function salvos()
     {
-        return $this->belongsToMany('App\Salvo', 'salvos');
+        return $this->hasMany('App\Salvo');
     }
 
     function organizacao(){
         return $this->belongsTo('\App\Organizacao');
+    }
+
+    function colecoes(){
+        return $this->hasManyThrough('\App\Colecao', '\App\Salvo');
     }
 }

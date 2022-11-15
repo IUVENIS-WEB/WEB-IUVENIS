@@ -14,8 +14,9 @@
             <div class="titulo-bottom">
                 <div class="titulo-bottom-conteudo">
                     <div class="titulo-links">
-                        <a href="{{ route('conta.index') }}">Perfil público</a>
-                        <a href="{{ route('conta.privada') }}"class="pagina-atual">Informações pessoais</a>
+                        <a href="{{route('conta.index')}}">Perfil público</a>
+                        <a href="{{route('conta.privada')}}" class="pagina-atual">Informações pessoais</a>
+                        <a href="{{route('colecao.user')}}">Coleções</a>
                     </div>
                     <div class="titulo-botoes">
                         <input type="reset" form="salvar" value="Cancelar" class="reset" />

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Colecao;
 use App\Contracts\IPostRepository;
 use App\Post;
 use App\PostViews;
@@ -202,26 +203,11 @@ class PostRepository extends Repository implements IPostRepository
 
         public function getPostsByColecao($id)
         {
-                $posts = Post::join('salvos', 'salvos.post_id', '=', 'posts.id')
-                        ->join('colecaos', 'colecaos.id', '=', 'salvos.colecao_id')
-                        ->join('users', 'users.id', '=', 'posts.autor_id')
-                        ->join('post_tags', 'post_tags.post_id', '=', 'salvos.post_id')
-                        ->join('tags', 'post_tags.tag_id', '=', 'tags.id')
-                        ->where([
-                                ['salvos.colecao_id', '=', $id],
-                                ['posts.excluido', '=', 0],
-                                ['posts.comentario', '=', 0],
-                        ])
 
-                        ->get();
-                //dd($posts);
-                $colecao = DB::table('colecaos')
-                        ->where([
-                                ['colecaos.id', '=', $id]
-                        ])
-                        ->select(
-                                'colecaos.nome'
-                        )->first();
+                $colecao = Colecao::find($id);
+                $posts = $colecao->salvos->map(function ($salvo){
+                        return $salvo->post;
+                });
                 return [$posts, $colecao];
         }
         public function postRecomendado()

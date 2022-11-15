@@ -91,7 +91,7 @@
                                         </div>
                                         <h4>{{ $saved->titulo }}</h4>
                                         <div class="autoria">
-                                            <p class="data">{{ date('y/m/Y', strtotime($post->updated_at)) }}</p>
+                                            <p class="data">{{ date('y/m/Y', strtotime($saved->updated_at)) }}</p>
                                             <div class="circulo"></div>
                                             <p class="data">{{ $saved->tipo }}</p>
                                         </div>
