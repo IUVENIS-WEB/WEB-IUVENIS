@@ -356,6 +356,22 @@ h1{
     height: 48px;
     width: 48px;
 }
+.imagem-perfil{
+    border-radius: 200px;
+    height: 27px;
+    width: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--azul-escuro);
+}
+
+.imagem-perfil img{
+    border-radius: 30px;
+    height: 25px;
+    width: 25px;
+    object-fit: cover;
+}
 
 .imagem-perfil-sidebar img{
     border-radius: 30px;
