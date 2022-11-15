@@ -7,13 +7,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use App\Contracts\IUserRepository;
-use App\User;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\DB;
 use App\Mail\MailController;
-use Illuminate\Support\Collection;
-use Exception;
-use Illuminate\Support\Facades\Response;
 
 class UserController extends Controller
 {
