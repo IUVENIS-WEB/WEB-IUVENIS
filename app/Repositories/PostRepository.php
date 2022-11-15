@@ -141,7 +141,7 @@ class PostRepository extends Repository implements IPostRepository
                         ->where([
                                 ['colecaos.creator_id', '=', $id]
                         ])
-                        ->select(['colecaos.id', 'colecaos.nome'])
+                        ->select(['colecaos.id', 'colecaos.nome', 'colecaos.updated_at'])
                         ->get()
                         ->all();
                 return $data;
@@ -194,66 +194,29 @@ class PostRepository extends Repository implements IPostRepository
         public function postViewCount($id){
                 return PostViews::where([['post_id', '=', $id]])->get()->count();
         }
-
-        public function getPostsByEscritor($id){
-                return Post::where([
-                        ['excluido', '=', 0],
-                        ['autor_id', '=', $id]
-                ])->get()->all();
-        }
-
-        public function getPostsByTag($tagId){
-                return DB::table('posts')
-                ->join('post_tags', 'post_tags.post_id', '=', 'posts.id')
+        
+        public function getPostsByColecao($id)
+        {
+                $posts = Post::join('salvos', 'salvos.post_id','=','posts.id')
+                ->join('colecaos', 'colecaos.id', '=', 'salvos.colecao_id')
+                ->join('users', 'users.id', '=', 'posts.autor_id')
+                ->join('post_tags', 'post_tags.post_id', '=', 'salvos.post_id')
+                ->join('tags', 'post_tags.tag_id', '=', 'tags.id')
                 ->where([
-                        ['excluido', '=', 0],
-                        ['comentario', '=', 0],
-                        ['tag_id', '=', $tagId]
+                        ['salvos.colecao_id','=',$id],
+                        ['posts.excluido', '=', 0],
+                        ['posts.comentario', '=', 0],
                 ])
-                ->get();
-        }
-
-        public function postsDenunciados(){
-                return Post::where([
-                        ['excluido', '=', 1],
-                        ['denunciasContagem', '>=', 5]
-                ])
-                ->get()->all();
-        }
-        public function getComentarioPostbyIdPai($id){
-                return $data =DB::table('posts')
-                         ->join('users', 'users.id', '=', 'posts.autor_id')
-                         ->where([
-                                 ['posts.comentario','=','1'],
-                                 ['posts.pai_id','=',$id]
-                         ])
-                         ->orderBy('posts.created_at', 'asc')
-                        ->get();
-         }
-         public function getColecoesByUser($id){
-                $data = DB::table('colecaos')
-                        ->where([
-                                ['colecaos.creator_id','=',$id]
-                        ])
-                        ->select(['colecaos.id', 'colecaos.nome'])
-                       ->get()
-                       ->all();
-                return $data;
-        }
-        public function getPostByIdColecoes($id){
-               return $data = DB::table('salvos')       
-                        ->join('posts','posts.id','=','salvos.post_id')
-                        ->where([
-                                ['salvos.colecao_id','=',$id]
-                        ])
-                        ->get()
-                        ->all();
                 
-        }
-        public function postRecomendado(){
-                $postId = DB::table('post_views')
-                ->select(DB::raw('count(id) as \'count\', id'))
-                ->groupBy(['id', 'post_id']);
-                return $postId;
+                ->get();
+                //dd($posts);
+                $colecao = DB::table('colecaos')
+                        ->where([
+                                ['colecaos.id', '=', $id]
+                        ])
+                        ->select(
+                                'colecaos.nome'
+                        )->first();
+                return [$posts, $colecao];
         }
 }

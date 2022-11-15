@@ -10,6 +10,7 @@ interface IPostRepository{
     function getPostByIdColecoes($id);
     function postRecomendado();
     function getPostsUser($id, $tipo = null );
+    function getPostsByColecao($id);
     function mostRecentEvent();
     function postViewCount($id);
     function getPostsByEscritor($id);

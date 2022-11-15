@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Colecao;
 use App\Contracts\ISalvoRepository;
 use App\Repositories\SalvoRepository;
+use App\Repositories\PostRepository;
 use App\Salvo;
 use Exception;
 use Illuminate\Http\Request;
@@ -53,5 +54,16 @@ class ColecaoController extends Controller
             ]);
         }
         return response()->json(['success' => true, 'data' => $colecao]);
+    }
+    public function getColecaosByUser(PostRepository $postRepository)
+    {
+        if(Auth::check())
+        {
+            $id = Auth::user()->id;
+            $colecoes = $postRepository->getColecoesByUser($id);
+            //dd($colecoes);
+            return view('perfil.colecoes', ['colecoes'=>$colecoes]);
+        }
+        return view('login.index');
     }
 }
