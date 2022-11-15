@@ -17,7 +17,7 @@ class AdminController extends Controller
     public function tags()
     {
         $tags = $this->tagRepository->getAll();
-        return view('admin.tags', ['tags' => $tags, 'tipo'=> 'tags']);
+        return view('admin.tags', ['tags' => $tags, 'tipo' => 'tags']);
     }
 
     public function deletar_tag(Request $req)
@@ -47,18 +47,41 @@ class AdminController extends Controller
             $tag = null;
             if ($editing) {
                 $tag = \App\Tag::find($req->id);
-                if(!$tag) throw new Exception('Tag não encontrada.');
+                if (!$tag) throw new Exception('Tag não encontrada.');
                 $tag->nome = $req->nome;
-            }
-            else{
+            } else {
                 $tag = \App\Tag::create(['nome' => $req->nome]);
             }
             $tag->save();
 
             return redirect('/adm/tags');
         } catch (Exception $e) {
-           
+
             return back()->withErrors(['errors' => $e->getMessage()]);
         }
+    }
+
+    public function denuncias(\App\Contracts\IPostRepository $iPostRepository)
+    {
+        //retornar todas as denúncias presentes no sistema
+        $posts = $iPostRepository->postsDenunciados();
+        return view('admin.denuncias', ['posts' => $posts]);
+    }
+
+    public function excluir_post(\App\Post $post){
+        if(!$post->excluido || $post->denunciasContagem < 5){
+            return back();
+        }
+
+        $post->denunciasContagem = 0;
+        $post->save();
+        return redirect('/denuncias');
+    }
+
+    public function revogar(\App\Post $post){
+        $post->excluido = false;
+        $post->denunciasContagem = 0;
+        $post->save();
+        return redirect('/denuncias');
     }
 }

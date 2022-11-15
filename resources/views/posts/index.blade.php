@@ -8,9 +8,18 @@
     <main class="container">
         <div class="conteudo">
             <div class="titulo">
+                @if ($post->excluido && $post->denunciasContagem >= 5)
+                    <div class="titulo-botoes mb-5">
+                        <a class="btn btn-primary text-white" href="{{ route('adm.revogar', ['post' => $post]) }}">Revogar
+                            post</a>
+                        <a class="btn btn-danger text-white" href="{{ route('adm.excluir_post', ['post' => $post]) }}">Excluir
+                            post</a>
+                    </div>
+                @endif
                 <div class="organizacao-publicacao">
                     <p>publicado em <a
-                            href="{{ url('/organizacao/' . $post->organizacao->id) }}">{{ $post->organizacao->nome }}</a></p>
+                            href="{{ url('/organizacao/' . $post->organizacao->id) }}">{{ $post->organizacao->nome }}</a>
+                    </p>
                 </div>
                 <div class="titulo-top">
                     <div class="nome-escritor-salvar">
@@ -21,6 +30,14 @@
                         </div>
                     </div>
                     <div class="esquerda-bottom-card">
+                        @if (Auth::check())
+                            <button type="button" class="mais" data-bs-toggle="modal" data-bs-target="#denuncia">
+                                @include('layouts._icon', [
+                                    'icon' => 'denuncia-icon-fill.svg',
+                                    'width' => '28px',
+                                ])
+                            </button>
+                        @endif
                         <div class="dropdown-center">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCenterBtn"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -58,7 +75,7 @@
                     @empty
                     @endforelse
                 </div>
-                <p><i class="fa-solid fa-eye"></i> {{$views}} visualizações</p>
+                <p><i class="fa-solid fa-eye"></i> {{ $views }} visualizações</p>
                 @if (strtolower($post->tipo) == 'video')
                     <iframe height="500" src="{{ $post->embed }}" frameborder="5"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -121,6 +138,23 @@
                         <button type="submit" id="submit" class="btn btn-primary" disabled>Salvar</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal" tabindex="-1" id="denuncia" tabindex="-1" aria-labelledby="denuncia" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Denúncia</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Deseja mesmo denunciar este post?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="submit" class="btn btn-danger"><a class="text-white"
+                            href="{{ route('posts.denuncia', ['post' => $post]) }}">Denunciar</a></button>
+                </div>
             </div>
         </div>
     </div>

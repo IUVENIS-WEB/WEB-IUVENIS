@@ -204,4 +204,12 @@ class PostRepository extends Repository implements IPostRepository
                 ])
                 ->get();
         }
+
+        public function postsDenunciados(){
+                return Post::where([
+                        ['excluido', '=', 1],
+                        ['denunciasContagem', '>=', 5]
+                ])
+                ->get()->all();
+        }
 }

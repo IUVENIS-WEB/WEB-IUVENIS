@@ -37,6 +37,13 @@
             'text' => 'Conta',
             'condition' => ['organizacao_id', '!=', null],
         ],
+        [
+            'tipo' => 'denuncia',
+            'route' => route('adm.denuncias'),
+            'icon' => asset('assets/denuncia-icon.svg'),
+            'text' => 'Denúncias',
+            'condition' => ['adm_power', '=', true],
+        ],
     ];
     $matchTipo = false;
 @endphp

@@ -56,7 +56,7 @@ Route::get('/escritor/{id}', ['as' => 'explorar.escritor', 'uses' => 'ExplorarCo
 Route::get('/posts/{post}', ['as' => 'posts.index', 'uses' => 'PostController@index']);
 Route::get('/artigo', ['as' => 'artigo.index', 'uses' => 'ArtigoController@index']);
 Route::get('/video', ['as' => 'video.index', 'uses' => 'VideoController@index']);
-
+Route::get('/denuncias/{post}/', ['as' => 'posts.denuncia', 'uses' => 'PostController@denuncia']);
 
 Route::post('/envioContato', ['as' => 'iuvenis.envioContato.', 'uses' => 'EnvioController@envioContato']);
 Route::get('/contato', ['as' => 'iuvenis.contato.', 'uses' => 'IuvenisController@contato']);
@@ -116,4 +116,8 @@ Route::group(['middleware' => ['administrador']], function () {
     Route::get('/adm/tag/{id?}', ['as' => 'adm.publicacao_tag', 'uses' => 'AdminController@publicacao_tag']);
     Route::post('/adm/tag/submit', ['as' => 'adm.submit_tag', 'uses' => 'AdminController@submit_tag']);
     Route::post('/adm/tag/deletar/', ['as' => 'adm.deletar_tag', 'uses' => 'AdminController@deletar_tag']);
+
+    Route::get('/denuncias', ['as' => 'adm.denuncias', 'uses' => 'AdminController@denuncias']);
+    Route::get('/denuncias/{post}/excluir', ['as' => 'adm.excluir_post', 'uses' => 'AdminController@excluir_post']);
+    Route::get('/denuncias/{post}/revogar', ['as' => 'adm.revogar', 'uses' => 'AdminController@revogar']);
 });
