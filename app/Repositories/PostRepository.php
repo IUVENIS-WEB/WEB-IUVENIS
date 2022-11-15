@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Contracts\IPostRepository;
 use App\Post;
 use App\PostViews;
+use Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use stdClass;
@@ -99,6 +100,8 @@ class PostRepository extends Repository implements IPostRepository
                                         'users.foto',
                                         'users.nome',
                                         'users.sobrenome',
+                                        'posts.id',
+                                        'posts.imagem',
                                         'posts.tipo',
                                         'posts.titulo',
                                         'tags.nome',
@@ -108,10 +111,15 @@ class PostRepository extends Repository implements IPostRepository
                 )->groupBy('nome');
 
                 $response = collect([]);
-                foreach ($data as $posts) {
+                foreach($data as $posts){
                         $obj = new stdClass();
                         $obj->tag = $posts->all()[0]->nome;
-                        $obj->posts = $posts->all();
+                        $obj->posts = $posts->map(function ($item){
+                                $item->foto = request()->getSchemeAndHttpHost().'/images/users/'.$item->foto;
+                                $item->imagem = request()->getSchemeAndHttpHost().'/images/posts/'.$item->imagem;
+                                return $item;
+                        })->all();
+
                         $response->push($obj);
                 }
                 return $response;
@@ -211,5 +219,41 @@ class PostRepository extends Repository implements IPostRepository
                         ['denunciasContagem', '>=', 5]
                 ])
                 ->get()->all();
+        }
+        public function getComentarioPostbyIdPai($id){
+                return $data =DB::table('posts')
+                         ->join('users', 'users.id', '=', 'posts.autor_id')
+                         ->where([
+                                 ['posts.comentario','=','1'],
+                                 ['posts.pai_id','=',$id]
+                         ])
+                         ->orderBy('posts.created_at', 'asc')
+                        ->get();
+         }
+         public function getColecoesByUser($id){
+                $data = DB::table('colecaos')
+                        ->where([
+                                ['colecaos.creator_id','=',$id]
+                        ])
+                        ->select(['colecaos.id', 'colecaos.nome'])
+                       ->get()
+                       ->all();
+                return $data;
+        }
+        public function getPostByIdColecoes($id){
+               return $data = DB::table('salvos')       
+                        ->join('posts','posts.id','=','salvos.post_id')
+                        ->where([
+                                ['salvos.colecao_id','=',$id]
+                        ])
+                        ->get()
+                        ->all();
+                
+        }
+        public function postRecomendado(){
+                $postId = DB::table('post_views')
+                ->select(DB::raw('count(id) as \'count\', id'))
+                ->groupBy(['id', 'post_id']);
+                return $postId;
         }
 }

@@ -6,10 +6,9 @@ use App\Contracts\IUserRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
-
 class UserRepositoryProvider extends ServiceProvider
 {
-     /**
+    /**
      * Bootstrap the application services.
      *
      * @return void
