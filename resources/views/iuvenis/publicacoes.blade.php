@@ -29,7 +29,7 @@
         </div>
         <div class="lista-posts">
             <a href="{{route('publicacao.'.strtolower($tipo))}}" class="publicar-novo">  
-                <img src="assets/adicionar-icon.svg" alt="">
+                @include('layouts._icon', ['icon' => 'adicionar-icon.svg'])
                 <div>Publicar novo {{$tipo_ortografico}} </div>
             </a>
 
@@ -92,7 +92,6 @@
     </div>
 
 <!-- bootstrap-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <script>
     let id = null
     function changeId(post){
