@@ -70,8 +70,8 @@
                 <p>Veja quem produz todo o conteúdo por aqui ;)</p>
                 <div class="cards">
                     @forelse ($escritores as $escritor)
-                        <div class="card-escritor a">
-                            <div class="imagem-card">@include('layouts._foto_perfil', ['user' => $escritor])
+                        <div class="card-escritor">
+                            <div class="imagem-card">@include('layouts._foto_perfil', ['user' => $escritor])</div>
                             <p>{{$escritor->nome.' '.$escritor->sobrenome}}</p>
                             <h6>{{$escritor->bio}}</h6>
                             <a href="{{ url('/escritor/'.$escritor->id) }}">
