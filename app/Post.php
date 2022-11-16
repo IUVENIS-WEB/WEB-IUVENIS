@@ -28,4 +28,8 @@ class Post extends Model
     function colecoes(){
         return $this->hasManyThrough('\App\Colecao', '\App\Salvo');
     }
+
+    function views(){
+        return $this->hasMany('App\PostViews');
+    }
 }

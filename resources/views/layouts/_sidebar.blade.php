@@ -17,13 +17,13 @@
                 <div class="escritores-recomendados">
                     <h4>Conheça os escritores</h4>
                     <div class="escritores">
-                        @forelse ($postRepository->getMostViewedEscritor(4) as $user)
-                            <a href="{{ url('/escritor/' . $user->id) }}">
+                        @forelse ($postRepository->getMostViewedEscritor(4) as $post)
+                            <a href="{{ url('/escritor/' . $post->autor->id) }}">
                                 <div class="escritor-perfil-sidebar">
-                                    <div class="imagem-perfil-sidebar">@include('layouts._foto_perfil')</div>
+                                    <div class="imagem-perfil-sidebar">@include('layouts._foto_perfil', ['user' => $post->autor])</div>
                                     <div class="nome-descricao-escritor">
-                                        <h4>{{ $user->nome . ' ' . $user->sobrenome }}</h4>
-                                        <p>{{ $user->bio }}</p>
+                                        <h4>{{ $post->autor->nome . ' ' . $post->autor->sobrenome }}</h4>
+                                        <p>{{ $post->autor->bio }}</p>
                                     </div>
                                 </div>
                             </a>
@@ -60,13 +60,13 @@
                 <div class="escritores-recomendados">
                     <h4>Conheça os escritores</h4>
                     <div class="escritores">
-                        @forelse ($postRepository->getMostViewedEscritor(4) as $user)
-                            <a href="{{ url('/escritor/' . $user->id) }}">
+                        @forelse ($postRepository->getMostViewedEscritor(4) as $post)
+                            <a href="{{ url('/escritor/' . $post->autor->id) }}">
                                 <div class="escritor-perfil-sidebar">
-                                    <div class="imagem-perfil-sidebar">@include('layouts._foto_perfil', ['user' => $user])</div>
+                                    <div class="imagem-perfil-sidebar">@include('layouts._foto_perfil', ['user' => $post->autor])</div>
                                     <div class="nome-descricao-escritor">
-                                        <h4>{{ $user->nome . ' ' . $user->sobrenome }}</h4>
-                                        <p>{{ $user->bio }}</p>
+                                        <h4>{{ $post->autor->nome . ' ' . $post->autor->sobrenome }}</h4>
+                                        <p>{{ $post->autor->bio }}</p>
                                     </div>
                                 </div>
                             </a>
