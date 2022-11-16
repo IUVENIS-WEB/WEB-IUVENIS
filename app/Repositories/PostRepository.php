@@ -200,9 +200,19 @@ class PostRepository extends Repository implements IPostRepository
         public function postRecomendado()
         {
                 $postId = DB::table('post_views')
-                        ->select(DB::raw('count(id) as \'count\', id'))
-                        ->groupBy(['id', 'post_id']);
-                return $postId;
+                        ->select(DB::raw('count(post_id) as \'count\', post_id'))
+                        ->groupBy(['post_id'])
+                        ->orderBy('count', 'desc')
+                        ->get()
+                        ->first();
+                return DB::table('posts')
+                ->select(DB::raw('posts.id, posts.titulo, posts.imagem'))
+                ->where('id', '=', $postId->post_id)
+                ->get()->first() 
+                
+                ?? DB::table('posts')
+                ->select(DB::raw('posts.id, posts.titulo, posts.imagem'))
+                ->get()->first();       
         }
         public function postsDenunciados()
         {
@@ -230,5 +240,15 @@ class PostRepository extends Repository implements IPostRepository
                                 ['tag_id', '=', $tagId]
                         ])
                         ->get();
+        }
+
+        public function postsWithTags()
+        {
+                return DB::table('posts')
+                ->leftJoin('post_tags', 'posts.id', '=', 'post_tags.post_id')
+                ->leftJoin('tags', 'post_tags.tag_id', '=', 'tags.id')
+                ->select(DB::raw('posts.id, posts.titulo, posts.imagem, tags.nome as tag'))
+                ->distinct()
+                ->get();
         }
 }

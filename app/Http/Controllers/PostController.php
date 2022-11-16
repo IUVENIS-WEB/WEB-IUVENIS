@@ -30,7 +30,7 @@ class PostController extends Controller
     }
 
     public function showAllGrouped(IPostRepository $postRepository){
-        return response()->json($postRepository->groupedPostsByTag());
+        return response()->json($postRepository->postsWithTags());
     }
 
     public function getComentarioByIdPai(IPostRepository $postRepository, $id){
@@ -40,7 +40,7 @@ class PostController extends Controller
         $logged = Auth::check();
         if(empty($post) || $post->comentario) return back();
         if($post->excluido && !($logged && Auth::user()->adm_power)) return back();
-        //PostViews::createViewLog($post);
+        PostViews::createViewLog($post);
         return view('posts.index', [
             'post' => $post, 
             'views'=> $postRepository->postViewCount($post->id)

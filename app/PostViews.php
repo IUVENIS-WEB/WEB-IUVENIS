@@ -10,14 +10,17 @@ class PostViews extends Model
 {
     public static function createViewLog($post)
     {
-        $user = Auth::user();
+        //$user = Auth::user();
         $postsViews = new PostViews();
         $postsViews->post_id = $post->id;
         $postsViews->url = request()->url();
         $postsViews->session_id = request()->getSession()->getId();
-        $postsViews->user_id = isset($user)? $user->id : null;
+        
+        //if($user) $postsViews->user_id = $user->id;
+
         $postsViews->ip = request()->getClientIp();
         $postsViews->agent = request()->header('User-Agent');
+        // dd($postsViews);
         $postsViews->save();
     }
 }

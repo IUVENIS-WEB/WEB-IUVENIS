@@ -16,4 +16,5 @@ interface IPostRepository{
     function getPostsByEscritor($id);
     function getPostsByTag($tagId);
     function postsDenunciados();
+    function postsWithTags();
 }
