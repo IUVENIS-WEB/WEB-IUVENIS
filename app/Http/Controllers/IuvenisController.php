@@ -87,5 +87,10 @@ class IuvenisController extends Controller
             return redirect('/login');
         }
     }
+    public function sobre(IEscritorRepository $escritorRepository)
+    {
+        $escritores = $escritorRepository->getEscritores([], 4);
+        return view('iuvenis.sobre', ['escritores'=>$escritores]);
+    }
 
 }
