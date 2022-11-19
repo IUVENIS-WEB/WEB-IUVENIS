@@ -324,89 +324,9 @@ h4{
 
 
 /*---------------- navbar ----------------*/
-nav{
-    margin-bottom: auto;
-    width: 100%;
-    background-color: white;
-    box-shadow: 0px 4px 6px rgb(179, 176, 176);
+.navbar{
     position: fixed;
-    height: 50px;
-    align-self: flex-start;
-    display: flex;
-    justify-content: center;
-    padding: 0 1rem 0 1rem;
-    z-index: 500;
 }
-
-.conteudo-navbar{
-    height: 100%;
-    display: flex;
-    align-items: center;
-    max-width: 1500px;
-    width: 100%;
-    justify-content: left;
-    justify-content: space-between;
-    column-gap: 1rem;
-}
-
-.conteudo-navbar form{
-    height: 36px;
-    max-width: 21rem;
-    width: 100%;
-}
-
-.imagem-perfil-navbar{
-    border-radius: 72px;
-    height: 36px;
-    width: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--azul-escuro);
-    transition: all 0.3s ease;
-
-}
-
-.imagem-perfil-navbar img{
-    border-radius: 72px;
-    height: 36px;
-    width: 36px;
-    object-fit: cover;
-    transition: all 0.3s ease;
-}
-
-nav .btn, .nav .btn:hover,nav .btn:visited,nav .btn:active{
-    background-color: rgba(255, 0, 0, 0);
-    border-style: none;
-    padding: 0;
-    line-height: 0;
-    border-radius: 0;
-    border-radius: 72px;
-}
-
-.nav .btn.show:focus, nav .btn:active:focus, .nav .btn-check:active+.btn:focus, nav .btn-check:checked+.btn:focus, nav .btn.active:focus, nav .btn-secondary .dropdown-toggle .show{
-    box-shadow: none;
-    border-style: none;
-    background-color: rgba(255, 0, 0, 0);
-}
-
-.btn-check:active+.btn, .btn-check:checked+.btn, .btn.active, .btn.show, .btn:active, nav .btn:hover {
-    color: rgba(255, 0, 0, 0);
-    background-color: rgba(255, 0, 0, 0);
-    border-color: rgba(255, 0, 0, 0);
-}
-
-nav .dropdown-menu{
-    min-width: 18rem;
-    font-family: 'Source Sans Pro', sans-serif;
-    transform: translate3d(0px, 42px, 0px) !important;
-
-}
-
-.dropdown-menu .dropdown-item svg{
-    width: 16px;
-}
-
 
 /*-------footer--------*/
 
