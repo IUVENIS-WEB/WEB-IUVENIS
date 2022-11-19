@@ -1,5 +1,5 @@
 @include('layouts._lista_posts_template', [
-    'title' => 'Explorar',
+    'title' => 'Pesquisa',
     'css' => 'explorar.css',
     'icon' => 'explorar-icon.png'
 ])
