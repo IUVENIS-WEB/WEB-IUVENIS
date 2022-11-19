@@ -315,8 +315,12 @@ class PublicacaoController extends Controller
         $post->resumo = $fields['resumo'];
         if($imageName != '') $post->imagem = $imageName;
         $post->tipo = 'video';
-        $post->embed = $fields['link'];
-        
+        $link_separado = explode('/', $fields['link'], 5);
+        $ultimo = $link_separado[count($link_separado) -1 ];
+        $ultimo = explode('=',$ultimo,2);
+        $ultimo = $ultimo[count($ultimo)-1];
+        $post->embed = $ultimo;
+
         //O usuário pode mudar de organização
         if (!$editing) {
             $post->organizacao_id = Auth::user()->organizacao->id;

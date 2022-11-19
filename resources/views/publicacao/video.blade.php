@@ -43,7 +43,7 @@ $editing = isset($post);
             {{ csrf_field() }}
             <label for="link">Link do Embed do Youtube*</label>
             @if ($editing)
-                <input type="text" name="link" id="link" required value="{{ $post->embed }}">
+                <input type="text" name="link" id="link" required value="https://www.youtube.com/embed/{{ $post->embed }}">
             @else
                 <input type="text" name="link" id="link" required>
             @endif
