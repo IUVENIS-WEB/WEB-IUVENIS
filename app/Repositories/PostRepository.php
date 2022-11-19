@@ -251,4 +251,24 @@ class PostRepository extends Repository implements IPostRepository
                 ->distinct()
                 ->get();
         }
+        public function getPostsByName($nome,$tagIdArray = [],$tipo = [])
+        {
+                if (!$tipo) {
+                        $tipo = ['evento', 'artigo', 'video'];
+                }
+                $response = Post::with([
+                        'tags' => function ($q) use ($tagIdArray) {
+                                $q->when($tagIdArray, function ($query) use ($tagIdArray) {
+                                        $query->whereIn('tags.id', $tagIdArray);
+                                });
+                        },
+                        'autor'
+                ])
+                ->where('titulo','like','%'.$nome.'%')
+                ->whereIn('tipo', $tipo)
+                ->orderBy('created_at', 'desc')
+                ->take(10)
+                ->get();
+                return $response;
+        }
 }

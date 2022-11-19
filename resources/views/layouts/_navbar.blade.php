@@ -71,8 +71,9 @@
         </div>
         @if (Auth::check())
             <div class="pesquisa-login  mr-auto ">
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+                <form action="{{URL('/navbar_pesquisa')}}" method="post" class="d-flex" role="search">
+                {{csrf_field()}} 
+                <input class="form-control me-2" type="text" name="pesquisa" id="pesquisa"  placeholder="Pesquisar" aria-label="Search">
                 </form>
             </div>
 
@@ -107,8 +108,9 @@
             </div>
         @else
             <div class="pesquisa-login flex mr-auto navbar-brand">
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+                <form action="{{URL('/navbar_pesquisa')}}" method="post" class="d-flex" role="search">
+                {{ csrf_field() }}  
+                <input class="form-control me-2" type="text" name="pesquisa" id="pesquisa" placeholder="Pesquisar" aria-label="Search">
                 </form>
                 <a href="{{ route('login.index') }}"> <button type="button" class="btn btn-fazer-login"> Fazer
                         login</button> </a>

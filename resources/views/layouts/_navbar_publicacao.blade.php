@@ -5,8 +5,9 @@
     </a>
         
 
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+        <form action="{{URL('/navbar_pesquisa')}}" method="post" class="d-flex" role="search">
+            <input class="form-control me-2" type="text" name="pesquisa" id="pesquisa"  placeholder="Pesquisar" aria-label="Search">
+            {{ csrf_field() }}
         </form>
         <div class="dropstart">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCenterBtn" data-bs-toggle="dropdown" aria-expanded="false">
