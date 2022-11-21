@@ -585,7 +585,7 @@ input.reset {
 /*---------------- navbar ----------------*/
 nav{
     margin-bottom: auto;
-    width: 100%;
+    width: 101%;
     background-color: white;
     box-shadow: 0px 4px 6px rgb(179, 176, 176);
     position: fixed;
@@ -609,12 +609,14 @@ nav{
 }
 
 .conteudo-navbar form{
+    margin-top: 30px;
     height: 36px;
     max-width: 21rem;
     width: 100%;
 }
 
 .imagem-perfil-navbar{
+    margin-right: 100px;
     border-radius: 72px;
     height: 36px;
     width: 36px;
