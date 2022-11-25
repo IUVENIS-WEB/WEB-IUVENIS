@@ -44,6 +44,14 @@
             'text' => 'Denúncias',
             'condition' => ['adm_power', '=', true],
         ],
+
+        [
+            'tipo' => 'organizacoes',
+            'route' => route('adm.organizacoes'),
+            'icon' => asset('assets/organizacoes-icon.svg'),
+            'text' => 'Organizações',
+            'condition' => ['adm_power', '=', true],
+        ],
     ];
     $matchTipo = false;
 @endphp
