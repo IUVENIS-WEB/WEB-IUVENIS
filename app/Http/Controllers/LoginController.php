@@ -148,17 +148,20 @@ class LoginController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator->errors());
         }
-       // dd($req);
-        //Criação do usuário
-        try{
-            $user = User::create([
-                'email' => $req->email,
-                'password' => Hash::make($req->password),
-                'nascimento' => Carbon::create($req->ano, $req->mes, $req->dia),
-                'nome' => $req->nome,
-                'sobrenome' => $req->sobrenome
-            ]);
-            Auth::login($user);
+      
+        $nascimento = $req->ano."-".$req->mes."-".$req->dia;
+            //Criação do usuário
+            try{
+                
+                $user = new User();
+    
+                  $user->email = $req->email;
+                  $user->password =  Hash::make($req->password);
+                  $user->nascimento = $nascimento;
+                  $user->nome = $req->nome;
+                  $user->sobrenome = $req->sobrenome;
+                  $user->save();
+                Auth::login($user);
         }
         catch(Exception $e){
             redirect()->back();
