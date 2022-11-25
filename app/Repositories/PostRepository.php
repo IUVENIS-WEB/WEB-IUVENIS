@@ -247,7 +247,7 @@ class PostRepository extends Repository implements IPostRepository
                 return DB::table('posts')
                 ->leftJoin('post_tags', 'posts.id', '=', 'post_tags.post_id')
                 ->leftJoin('tags', 'post_tags.tag_id', '=', 'tags.id')
-                ->select(DB::raw('posts.id, posts.titulo, posts.imagem, tags.nome as tag'))
+                ->select(DB::raw('posts.*, tags.nome as tag'))
                 ->distinct()
                 ->get();
         }
