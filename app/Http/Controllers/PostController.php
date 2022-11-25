@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Response;
 class PostController extends Controller
 {
     public function show(Post $post){
-        return $post->excluido ? [] : $post;
+        return $post->excluido ? [] : Post::with('autor')->find($post->id);
     }
 
     public function showAll(){
