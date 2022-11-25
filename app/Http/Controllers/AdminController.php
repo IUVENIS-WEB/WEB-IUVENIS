@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use \App\Tag;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
+use App\Contracts\IOrganizacaoRepository;
+use App\Repositories\OrganizacaoRepository;
 
 class AdminController extends Controller
 {
@@ -90,16 +92,17 @@ class AdminController extends Controller
 
     public function organizacoes(IOrganizacaoRepository $organizacaoRepository){
         $organizacoes = $organizacaoRepository->getPublicados();
-        return view('admin.organizacoes',['tipo'=>'organizacoes', 'organizacoes' => $organizacoes]);
+        return view('perfil.organizacoes',['tipo'=>'organizacoes', 'organizacoes' => $organizacoes]);
       
     }
 
     public function organizacoes_form(){
-        return view('admin.organizacoes_form',['tipo'=>'organizacoes']);
+        return view('perfil.organizacoes_form',['tipo'=>'organizacoes']);
       
     }
 
-    public function organizacoes_submit(Request $req){
+    public function organizacoes_submit(Request $req, IOrganizacaoRepository $organizacaoRepository){
+        $organizacoes = $organizacaoRepository->getPublicados();
         $fields = Input::all();
         $editing = isset($fields['id']);
 
@@ -160,5 +163,7 @@ class AdminController extends Controller
         $organizacao->nome_lider=$req["nome-lider"];
         $organizacao->post_count=0;
         $organizacao->save();
+
+        return view('perfil.organizacoes',['tipo'=>'organizacoes', 'organizacoes' => $organizacoes]);
     }
 }

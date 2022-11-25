@@ -14,7 +14,7 @@ class Organizacao extends Model
         return $this->hasMany('App\Post');
     }
     protected $guarded = [
-        'nome', 'resumo', 'descricao', 'logo', 'logo_alternativa', 'publicado','user_id',
+        'nome', 'descricao', 'logo', 'logo_alternativa', 'publicado','user_id',
         'tipo_organizacaos','detalhes','link','assunto','nome_lider','post_count','id'
     ];
 }

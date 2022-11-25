@@ -18,8 +18,8 @@
                 <div class="titulo-bottom">
                     <div class="titulo-bottom-conteudo">
                         <div class="titulo-links">
-                            <a href="{{route('adm.organizacoes')}}">Todas as organizações</a>
-                            <a href="{{route('adm.organizacaos_form')}}" class="pagina-atual">Criar organização</a>
+                            <a href="{{route('perfil.organizacoes')}}">Todas as organizações</a>
+                            <a href="{{route('perfil.organizacaos_form')}}" class="pagina-atual">Criar organização</a>
                         </div>
                         <div class="titulo-botoes">
                             <input type="reset" form="publicar-artigo" value="Cancelar" class="reset" />
@@ -45,7 +45,7 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{route('adm.organizacoes_submit')}}" method="POST" id="publicar-artigo" 
+            <form action="{{route('perfil.organizacoes_submit')}}" method="POST" id="publicar-artigo" 
                 enctype=multipart/form-data>
                 {{ csrf_field() }}
                 <label for="nome-organizacao">Nome da organização*</label>

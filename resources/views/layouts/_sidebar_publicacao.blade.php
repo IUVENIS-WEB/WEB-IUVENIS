@@ -35,7 +35,7 @@
             'route' => route('conta.index'),
             'icon' => asset('assets/config_icon.svg'),
             'text' => 'Conta',
-            'condition' => ['organizacao_id', '!=', null],
+            'condition' => isset($user),
         ],
         [
             'tipo' => 'denuncia',
@@ -47,10 +47,10 @@
 
         [
             'tipo' => 'organizacoes',
-            'route' => route('adm.organizacoes'),
+            'route' => route('perfil.organizacoes'),
             'icon' => asset('assets/organizacoes-icon.svg'),
             'text' => 'Organizações',
-            'condition' => ['adm_power', '=', true],
+            'condition' => isset($user),
         ],
     ];
     $matchTipo = false;

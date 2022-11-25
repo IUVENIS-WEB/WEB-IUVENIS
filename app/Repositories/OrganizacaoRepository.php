@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Colecao;
-use App\Contracts\IPostRepository;
+use App\Contracts\IOrganizacaoRepository;
 use App\Organizacao;
 use App\PostViews;
 use Request;
@@ -14,14 +14,16 @@ use stdClass;
 class OrganizacaoRepository extends Repository implements IOrganizacaoRepository
 {
     public function getPublicados(){
-        Organizacao::where('publicado', '=', true)
+        $organizacao = Organizacao::where('publicado', '=', true)
         ->get()
         ->all();
+        return $organizacao;
     }
     public function getNaoVerificados()
     {
-        Organizacao::where('publicado', '=', false)
+        $organizacao = Organizacao::where('publicado', '=', false)
         ->get()
         ->all();
+        return $organizacao;
     }
 }
