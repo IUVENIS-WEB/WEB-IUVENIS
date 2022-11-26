@@ -77,7 +77,7 @@
                 </div>
                 <p><i class="fa-solid fa-eye"></i> {{ $views }} visualizações</p>
                 @if (strtolower($post->tipo) == 'video')
-                    <iframe height="500" src="{{ $post->embed }}" frameborder="5"
+                    <iframe height="500" src="https://www.youtube.com/embed/{{ $post->embed }}" frameborder="5"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 @endif
