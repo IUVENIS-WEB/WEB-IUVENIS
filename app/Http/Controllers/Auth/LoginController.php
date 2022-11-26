@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Laravel\Socialite\Facades\Socialite;
+use Socialite;
 use Illuminate\Support\Facades\Auth;
 use Exception;
 use App\User;
@@ -49,42 +49,40 @@ class LoginController extends Controller
 
     public function handleGoogleCallback()
     {
-        try{
-            //dd(Socialite::driver('google')->user());
-            $user = Socialite::driver('google')->user(); 
-            //dd($user);
+        try {
+            // dd(Socialite::driver('google')->user());
+            $user =  Socialite::driver('google')->user();
+            // dd($user);
             session(['user' => $user]);
-        }catch(Exception $e){
+            $authUser = User::where('google_id', $user->id)->first();
+            if ($authUser) {
+                Auth::login($authUser, true);
+                return redirect()->route('iuvenis.index');
+            }
+            return view('login.google.formData');
+        } catch (Exception $e) {
             redirect()->back();
         }
-        $authUser = User::where('google_id', $user->id)->first();
-        if($authUser)
-        {
-            Auth::login($authUser, true);
-            return redirect()->route('iuvenis.index');
-        }
-        return view('login.google.formData');
     }
     public function formData(Request $request)
     {
         $user = $request->session()->get('user');
         //dd($user);
-        $authUser = $this->createUser($user,$request->data);
+        $authUser = $this->createUser($user, $request->data);
         Auth::login($authUser, true);
         return redirect()->route('iuvenis.index');
     }
-    
+
     public function createUser($user, $data)
     {
-        
+
         $authUser = User::where('google_id', $user->id)->first();
-        if($authUser)
-        {
+        if ($authUser) {
             return $authUser;
         }
         $newUser = new User();
 
-        $newUser->nome= $user->name;
+        $newUser->nome = $user->name;
         $newUser->google_id = $user->id;
         $newUser->nascimento = $data;
         $newUser->email = $user->email;
