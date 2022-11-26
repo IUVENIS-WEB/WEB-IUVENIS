@@ -61,7 +61,7 @@ Route::get('/video', ['as' => 'video.index', 'uses' => 'VideoController@index'])
 Route::get('/denuncias/{post}/', ['as' => 'posts.denuncia', 'uses' => 'PostController@denuncia']);
 Route::get('/user/colecaos',['as'=> 'colecao.user', 'uses' => 'ColecaoController@getColecaosByUser']);
 Route::get('/colecao/{id}',['as'=>'colecao.posts', 'uses' => 'PostController@getPostsByColecao']);
-
+Route::get('/sobre',['as'=>'iuvenis.sobre', 'uses' => 'IuvenisController@sobre']);
 Route::post('/envioContato', ['as' => 'iuvenis.envioContato.', 'uses' => 'EnvioController@envioContato']);
 Route::get('/contato', ['as' => 'iuvenis.contato.', 'uses' => 'IuvenisController@contato']);
 
