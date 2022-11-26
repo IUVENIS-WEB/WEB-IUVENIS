@@ -18,4 +18,5 @@ interface IPostRepository{
     function postsDenunciados();
     function postsWithTags();
     function logado($user, $senha);
+    function getPostsByName($nome,$tagIdArray = [],$tipo = []);
 }
