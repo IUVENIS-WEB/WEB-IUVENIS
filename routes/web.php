@@ -46,6 +46,13 @@ Route::get('/redefinirSenha/{email}/{token}', ['as' => 'login.redefinirSenha', '
 Route::put('/definirNovaSenha', ['as' => 'login.definirNovaSenha', 'uses' => 'LoginController@definirNovaSenha']);
 Route::post('/attempt', ['as' => 'login.attempt', 'uses' => 'LoginController@attempt']);
 Route::post('/cadastrar', ['as' => 'login.cadastrar', 'uses' => 'LoginController@cadastrar']);
+//LOGIN GOOGLE
+Route::get('google', function () {
+    return view('googleAuth');
+});
+Route::post('formDataNascimento',['as'=>'google.login.formdata', 'uses'=> 'Auth\LoginController@formData']);
+Route::get('auth/google',['as'=>'google.login.auth', 'uses'=> 'Auth\LoginController@redirectToGoogle']);
+Route::get('auth/google/callback',['as'=>'google.login.callback', 'uses'=> 'Auth\LoginController@handleGoogleCallback']);
 Route::get('Token/token', 'LoginController@Mensagem_expirada');
 
 
