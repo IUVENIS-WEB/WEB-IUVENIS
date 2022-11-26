@@ -84,7 +84,6 @@ a{
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 0.5rem;
     margin-bottom: 1rem;
     transition: all 0.3s ease;
 
@@ -93,6 +92,14 @@ a{
 .perfil h3{
     font-size: var(--geral);
     font-weight: var(--semibold);
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+.perfil p{
+    font-size: 1rem;
+    font-weight: var(--semibold);
+    color: var(--azul-claro);
 }
 
 .perfil .imagem-perfil{
@@ -166,20 +173,21 @@ a{
         display: none;
     }
 
-    .perfil h3{
+    .perfil h3, .perfil p{
         display: none;
      
     }
     .perfil .imagem-perfil{
         border-radius: 72px;
-        height: 36px;
-        width: 36px;
+        height: 38px;
+        width: 38px;
+        background-color: var(--azul-claro);
     }
     
     .perfil img{
         border-radius: 72px;
-        height: 36px;
-        width: 36px;
+        height: 32px;
+        width: 32px;
     }
 
     .botao{
@@ -198,7 +206,6 @@ a{
 .titulo{
     margin-bottom: 1.8rem;
     background: rgba(255, 255, 255, 0.65);
-    border-radius: 16px;
     backdrop-filter: blur(11.1px);
     -webkit-backdrop-filter: blur(11.1px);
     position: -webkit-sticky;
@@ -215,6 +222,18 @@ a{
 
 .titulo-bottom{
     padding-top: 0.5rem;
+}
+
+.titulo-bottom-conteudo{
+    display: flex;
+    justify-content: space-between;
+}
+
+.titulo-botoes{
+    display: flex;
+    column-gap: 1rem;
+    padding-right: 1rem;
+    height: 2rem;
 }
 
 .titulo-top svg{
@@ -262,70 +281,17 @@ a{
     background-color: var(--cinza-claro);
 }
 
+
+
 /*---Botões---*/
 .lista-posts{
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
     padding-right: 2rem;
     min-width: 530px;
-}
-
-
-/*---Botão adicionar novo post---*/
-
-.publicar-novo{
-    background-color: var(--cinza-claro2);
-    border-radius: 7px;
-    border-width: 2px;
-    border-color: var(--cinza);
-    border-style: dashed;
-    color: var(--cinza);
-    display: flex;
-    width: 90%;
-    padding-left: 2rem;
-    height: 3rem;
-    align-items: center;
-    margin-bottom: 2rem;
-    position: relative;
     column-gap: 1rem;
-    transition: all 0.3s ease;
-}
-
-.publicar-novo::before{
-    content: "";
-    background-color: var(--cinza-claro);
-    position: absolute;
-    height: 1px;
-    width: 100%;
-    left: 0px;
-    top: 4rem;
-}
-
-.publicar-novo div{
-    font-size: var(--menor);
-    justify-self: center;
-}
-
-.publicar-novo img{
-    height: 24px;
-}
-
-.publicar-novo:hover{
-    color: var(--cinza);
-    letter-spacing: 0.5px;
-}
-
-.titulo-post, .organizacao-post{
-    white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-}
-
-.participante{
-    margin-right: 17px;
-    min-width: fit-content;
+    min-width: 655px;
 }
 
 
@@ -335,13 +301,15 @@ a{
     display: flex;
     border: solid 2px var(--azul-claro);
     border-radius: 7px;
-    width: 90%;
-    height: 4rem;
+    width: 100%;
+    max-width: 300px;
     background-color: var(--azul-claro2);
     color: var(--azul-claro);
     padding: 0rem 1rem 0rem 1rem;
     cursor: pointer;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
+    position: relative;
+    transition: all 0.3s ease;
 }
 
 .conteudo-btn-post{
@@ -350,26 +318,7 @@ a{
     width: 100%;
     align-self: center;
     margin-top: 0.6rem;
-    column-gap: 0.8rem;
-}
-
-.btn-publicacao svg{
-    min-width: 22px;
-    max-width: 22px;
-    margin-right: 1rem;
-    align-self: center;
-}
-
-input[type="submit"] {
-    background: var(--azul-claro);
-    color: white;
-    border-style: none;
-    width: 5rem;
-    border-radius:5px;
-}
-
-.btn-publicacao svg path{
-    fill: var(--azul-claro) !important;
+    flex-direction: column;
 }
 
 .btn-publicacao p{
@@ -381,10 +330,54 @@ input[type="submit"] {
     font-size: 0.8rem;
 }
 
+.titulo-denuncia{
+    white-space: nowrap; 
+    width: 100%;
+    max-width: 300px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 48px;
+    color: var(--azul-escuro);
+    margin-bottom: 1rem;
+}
 
-.espacamento{
-    content: "";
-    min-width: 17px;
+
+.btn-publicacao::before{
+    position: absolute;
+    content: "Analisar";
+    width: fit-content;
+    padding: 0.1rem 0.8rem 0.1rem 0.8rem;
+    color: #00000000;
+    background-color: #00000000;
+    border-radius: 15px;
+    top: -2px;
+    align-self: center;
+    left: 107px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    overflow: hidden;
+}
+
+.btn-publicacao:hover::before{
+    position: absolute;
+    content: "Analisar";
+    width: fit-content;
+    padding: 0.1rem 0.8rem 0.1rem 0.8rem;
+    color: white;
+    background-color: var(--azul-claro);
+    border-radius: 15px;
+    top: -15px;
+    align-self: center;
+    left: 110px;
+   
+}
+
+.btn-publicacao:hover{
+    letter-spacing: 0.5px;
+    max-width: 305px;
+    padding: 0rem 1.5rem 0rem 1.5rem;
+    border-style: solid;
+    margin-top: 0.5rem;
 }
 /*---tres pontos---*/
 .dropstart{
@@ -395,6 +388,24 @@ input[type="submit"] {
     font-size: 1.3rem;
     color: var(--azul-claro);
 }
+
+.btn-publicacao .btn, .btn-publicacao .btn:hover,.btn-publicacao .btn:visited,.btn-publicacao .btn:active{
+    background-color: rgba(255, 0, 0, 0);
+    border-style: none;
+    padding: 0.3;
+    padding-right: 0;
+    line-height: 0;
+    border-radius: 0;
+}
+
+.dropstart .dropdown-toggle::before {
+    display: none;
+}
+
+
+
+
+
 
 .btn-publicacao .btn, .btn-publicacao .btn:hover,.btn-publicacao .btn:visited,.btn-publicacao .btn:active{
     background-color: rgba(255, 0, 0, 0);
@@ -432,22 +443,145 @@ input[type="submit"] {
     color: var(--vermelho);
 }
 
-@media (max-width: 905px){
-    .data-post{
-        display: none;
-    }
+.form-control{
+    margin-top: 0.8rem;
+}
 
-    main.container{
-        justify-content: left;
-    }
- }
+/*----------------formulario----------------*/
+form{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 4rem;
+}
 
- @media (max-width: 770px){
-    .organizacao-post{
-        display: none;
-    }
- }
+input, .tag-criada, #resumo, #tags{
+    border-radius: 8px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--cinza-claro);
+    height: 2.4rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem 0 1rem;
 
+}
+
+#tags{
+    width: fit-content;
+    min-width: 10rem;
+    background-color: white;
+    -webkit-appearance: none;
+    margin-bottom: 0;
+    background-image: url(assets/seta.svg);
+    background-repeat: no-repeat;
+    background-position: 95% center;
+    padding-right: 2rem;
+
+}
+
+.display-none{
+    display: none;
+}
+
+#nome-tag{
+    width: 20rem;
+}
+
+
+.reset{
+    border-style: solid;
+}
+
+.form-flex input{
+    margin-bottom: 0.8rem;
+}
+
+/* ------ botao add -------*/
+.botao-adicionar{
+    height: 2.4rem;
+    background-color: var(--cinza-claro2);
+    border-radius: 7px;
+    border-width: 2px;
+    border-color: var(--cinza);
+    border-style: dashed;
+    color: var(--cinza);
+    display: flex;
+    padding: 0 2.3rem 0 2rem;
+    height: 2.4rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+    column-gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.botao-adicionar:hover{
+    color: var(--cinza);
+    letter-spacing: 0.5px;
+}
+/* ------ botao add -------*/
+
+input#arquivo, input#imagem{
+    display: none;
+}
+
+input[type="submit"] {
+    background: var(--azul-claro);
+    color: white;
+    border-style: none;
+    width: 5rem;
+    border-radius:5px;
+}
+
+input[type="submit"], input[type="reset"] {
+    font-size: 0.8rem;
+    height: 1.5rem;
+    padding: 0 !important;
+}
+
+input.reset {
+    background-color: white;
+    border-style: none;
+    width: 4rem;
+}
+
+.form-flex{
+    display: flex;
+    column-gap: 0.8rem;
+    row-gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.2rem;
+    transition: all 0.3s ease;
+    margin-bottom: 0.8rem;
+
+}
+
+.form-flex input{
+    margin: 0 !important;
+    width: fit-content;
+    max-width: 20rem ;
+    min-width: 10rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--cinza-claro);
+    text-align: center;
+    padding-left: 1.8rem;
+    padding-right: 1.8rem;
+}
+
+.form-flex input:hover{
+    color: var(--vermelho);
+    border-color: var(--vermelho);
+    letter-spacing: 2px;
+    background-image: url(assets/x.svg);
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+
+.aviso-tags{
+    color: var(--cinza-claro);
+    font-size: 0.8rem;
+    margin-bottom: 1.8rem;
+}
 
 /*----------------moodal - coleções----------------*/
 .modal-dialog{
@@ -528,7 +662,7 @@ nav{
 .conteudo-navbar form{
     height: 36px;
     max-width: 21rem;
-    width: 50%;
+    width: 100%;
 }
 
 .imagem-perfil-navbar{
@@ -579,23 +713,11 @@ nav .dropdown-menu{
 
 }
 
-.dropdown-item{
-    margin-top: 20px;
-    max-width: 16px;
-    margin-left: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .dropdown-menu .dropdown-item svg{
     width: 16px;
 }
 
-.pesquisa-bottom{
-    width: 50%;
-    margin-left: 53px;
-}
+
 
 
 

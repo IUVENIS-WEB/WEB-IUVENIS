@@ -1,4 +1,4 @@
-    @extends('layouts.publicarLayout')
+@extends('layouts.publicarLayout')
     @section('title', 'Organizações')
     @section('css')
     <link rel="stylesheet" href="{{ URL::asset('css/organizacao-criar.css') }}">
@@ -19,13 +19,16 @@
                     <div class="titulo-bottom-conteudo">
                         <div class="titulo-links">
 
-                            <a href="{{route('perfil.organizacaos_form')}}" class="pagina-atual">Criar organização</a>
+                        <a href="{{route('perfil.organizacoes')}}" >Participantes </a>
+                        <a href="{{route('perfil.organizacao_informacoes')}}" class="pagina-atual"  >Informações</a>
                         </div>
+
                         <div class="titulo-botoes">
                             <input type="reset" form="publicar-artigo" value="Cancelar" class="reset" />
-                            <input type="submit" form="publicar-artigo" value="Enviar Pedido" />
+                            <input type="submit" form="publicar-artigo" value="Enviar" />
                         </div>
                     </div>
+                    
 
                     <div class="line-horizontal-conteudo"></div>
                 </div>
@@ -45,35 +48,59 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{route('perfil.organizacoes_submit')}}" method="POST" id="publicar-artigo" 
+            <form action="{{route('perfil.organizacao_update')}}" method="POST" id="publicar-artigo" 
                 enctype=multipart/form-data>
                 {{ csrf_field() }}
                 <label for="nome-organizacao">Nome da organização*</label>
-                <input type="text" id="nome-organizacao" name="nome-organizacao" required>
+                <input type="text" id="nome-organizacao" name="nome-organizacao" value="{{$organizacao->nome}}" required>
                 <label for="nome-linder">Nome do lider*</label>
-                <input type="text" id="nome-lider" name="nome-lider" required> 
+                <input type="text" id="nome-lider" name="nome-lider" value="{{$organizacao->nome_lider}}" required> 
                 <label for="assunto">Assunto*</label>
-                <input type="text" id="assunto" name="assunto" required placeholder="Sexualidade, Diversidade ...">
+                <input type="text" id="assunto" name="assunto" value="{{$organizacao->assunto}}" required placeholder="Sexualidade, Diversidade ...">
                 <label for="link">Link*</label>
-                <input type="text" id="link" name="link" required>
+                <input type="text" id="link" name="link" value="{{$organizacao->link}}" required>
                 <span class="aviso-tags">Insira um link que comprove a atividade da organização, como o link para o Diretório dos Grupo de Pesquisa no Brasil Lattes ou website da organização</span>
                 <label for="detalhes">Detalhes</label>
-                <textarea id="resumo" name="detalhes" required></textarea>
+                <textarea id="resumo" name="detalhes" required>{{$organizacao->detalhes}} </textarea>
                 <label>Tipo de organização*</label>
+                
                 <div class="organizacao">
+                    @if($organizacao->tipo_organizacaos==2)
                     <div>
                         <input type="radio" id="grupo" name="organizacao" value="Grupo de pesquisa certificado pelo CNPq" checked>
                         <label for="grupo">Grupo de pesquisa certificado pelo CNPq</label>
                     </div>
+                    @else
+                    <div>
+                        <input type="radio" id="grupo" name="organizacao" value="Grupo de pesquisa certificado pelo CNPq" >
+                        <label for="grupo">Grupo de pesquisa certificado pelo CNPq</label>
+                    </div>
+                    @endif
+                    @if($organizacao->tipo_organizacaos==1)
+                    <div>
+                        <input type="radio" id="ong" name="organizacao" value="ONG" checked>
+                        <label for="ong">ONG</label>
+                    </div>
+                    @else
                     <div>
                         <input type="radio" id="ong" name="organizacao" value="ONG">
                         <label for="ong">ONG</label>
                     </div>
+                    @endif
+                    @if($organizacao->tipo_organizacaos==0)
+                    <div>
+                        <input type="radio" id="outro" name="organizacao" value="Outro"checked>
+                        <label for="outro">Outro</label>
+                    </div>
+                    @else
                     <div>
                         <input type="radio" id="outro" name="organizacao" value="Outro">
                         <label for="outro">Outro</label>
                     </div>
+                    @endif
+                    
                 </div>
+
             </form>
         </div>
         <!-- bootstrap-->

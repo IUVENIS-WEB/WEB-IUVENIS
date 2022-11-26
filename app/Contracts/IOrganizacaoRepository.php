@@ -1,6 +1,6 @@
 <?php
 namespace App\Contracts;
 interface IOrganizacaoRepository{
-    public function getPublicados();
+    public function Participantes($user);
     public function getNaoVerificados();
 }

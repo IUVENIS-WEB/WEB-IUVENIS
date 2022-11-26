@@ -1,5 +1,34 @@
 @php
     $user = Auth::user();
+    $tipo_usuario; 
+    if(isset($user->organizacao_id) && is_null($user->adm_power))
+    {
+        $tipo_usuario= [
+            'tipo' => 'organizacoes',
+            'route' => route('perfil.organizacoes'),
+            'icon' => asset('assets/organizacoes-icon.svg'),
+            'text' => 'Organizações',
+            'condition' => ['organizacao_id', '!=', null],
+        ];
+    }
+    else if(isset($user->adm_power)){
+    $tipo_usuario= $tipo_usuario= [
+            'tipo' => 'organizacoes',
+            'route' => route('adm.organizacao_autorizar'),
+            'icon' => asset('assets/organizacoes-icon.svg'),
+            'text' => 'Organizações',
+            'condition' => ['adm_power', '!=', null],
+        ];      
+    }
+    else{
+        $tipo_usuario= $tipo_usuario= [
+            'tipo' => 'organizacoes',
+            'route' => route('perfil.organizacoes'),
+            'icon' => asset('assets/organizacoes-icon.svg'),
+            'text' => 'Organizações',
+            'condition' => [$user, '!=', null],
+        ];
+    } 
     //Todos os itens da sidebar estão dispostos aqui para melhor organização
     $items = [
         [
@@ -45,13 +74,7 @@
             'condition' => ['adm_power', '=', true],
         ],
 
-        [
-            'tipo' => 'organizacoes',
-            'route' => route('perfil.organizacoes'),
-            'icon' => asset('assets/organizacoes-icon.svg'),
-            'text' => 'Organizações',
-            'condition' => isset($user),
-        ],
+       $tipo_usuario
     ];
     $matchTipo = false;
 @endphp

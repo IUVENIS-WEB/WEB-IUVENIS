@@ -84,7 +84,6 @@ a{
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 0.5rem;
     margin-bottom: 1rem;
     transition: all 0.3s ease;
 
@@ -93,6 +92,14 @@ a{
 .perfil h3{
     font-size: var(--geral);
     font-weight: var(--semibold);
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+.perfil p{
+    font-size: 1rem;
+    font-weight: var(--semibold);
+    color: var(--azul-claro);
 }
 
 .perfil .imagem-perfil{
@@ -166,20 +173,21 @@ a{
         display: none;
     }
 
-    .perfil h3{
+    .perfil h3, .perfil p{
         display: none;
      
     }
     .perfil .imagem-perfil{
         border-radius: 72px;
-        height: 36px;
-        width: 36px;
+        height: 38px;
+        width: 38px;
+        background-color: var(--azul-claro);
     }
     
     .perfil img{
         border-radius: 72px;
-        height: 36px;
-        width: 36px;
+        height: 32px;
+        width: 32px;
     }
 
     .botao{
@@ -198,7 +206,6 @@ a{
 .titulo{
     margin-bottom: 1.8rem;
     background: rgba(255, 255, 255, 0.65);
-    border-radius: 16px;
     backdrop-filter: blur(11.1px);
     -webkit-backdrop-filter: blur(11.1px);
     position: -webkit-sticky;
@@ -215,6 +222,18 @@ a{
 
 .titulo-bottom{
     padding-top: 0.5rem;
+}
+
+.titulo-bottom-conteudo{
+    display: flex;
+    justify-content: space-between;
+}
+
+.titulo-botoes{
+    display: flex;
+    column-gap: 1rem;
+    padding-right: 1rem;
+    height: 2rem;
 }
 
 .titulo-top svg{
@@ -262,130 +281,101 @@ a{
     background-color: var(--cinza-claro);
 }
 
-/*---Botões---*/
-.lista-posts{
+.form-control{
+    margin-top: 0.8rem;
+}
+
+
+/*--------form-------*/
+#publicar-artigo{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding-right: 2rem;
-    min-width: 530px;
+    padding-bottom: 4rem;
 }
 
-
-/*---Botão adicionar novo post---*/
-
-.publicar-novo{
-    background-color: var(--cinza-claro2);
-    border-radius: 7px;
+#publicar-artigo .input{
+    border-radius: 8px;
+    border-style: solid;
     border-width: 2px;
-    border-color: var(--cinza);
-    border-style: dashed;
-    color: var(--cinza);
-    display: flex;
-    width: 90%;
-    padding-left: 2rem;
-    height: 3rem;
+    border-color: var(--cinza-claro);
+    height: 2.4rem;
+    padding: 0 1rem 0 1rem;
+    width: 640px;
+    margin: 0  0 2rem 0 !important;
     align-items: center;
-    margin-bottom: 2rem;
-    position: relative;
-    column-gap: 1rem;
-    transition: all 0.3s ease;
+    display: flex;
+
+
 }
 
-.publicar-novo::before{
-    content: "";
-    background-color: var(--cinza-claro);
-    position: absolute;
-    height: 1px;
-    width: 100%;
-    left: 0px;
-    top: 4rem;
-}
-
-.publicar-novo div{
-    font-size: var(--menor);
-    justify-self: center;
-}
-
-.publicar-novo img{
-    height: 24px;
-}
-
-.publicar-novo:hover{
-    color: var(--cinza);
-    letter-spacing: 0.5px;
-}
-
-.titulo-post, .organizacao-post{
+.titulo-denuncia{
+    overflow:scroll;
     white-space: nowrap; 
-    overflow: hidden;
-    text-overflow: ellipsis;
-
 }
 
-.participante{
-    margin-right: 17px;
-    min-width: fit-content;
+.resumo{
+    border-radius: 8px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--cinza-claro);
+    height: 2.4rem;
+    padding: 0 1rem 0 1rem;
+    width: 640px !important;
+    margin: 0 !important;
+    height: fit-content !important;
+    max-height: 30rem;
+    word-break: break-word;
+    padding: 1rem;
+    overflow: scroll;
 }
 
+.reset{
+    border-style: solid;
+}
 
-/*---Publicações---*/
-
-.btn-publicacao{
+.organizacao{
     display: flex;
-    border: solid 2px var(--azul-claro);
-    border-radius: 7px;
-    width: 90%;
-    height: 4rem;
-    background-color: var(--azul-claro2);
-    color: var(--azul-claro);
-    padding: 0rem 1rem 0rem 1rem;
-    cursor: pointer;
-    margin-bottom: 0.8rem;
+    column-gap: 1rem;
+    align-items: center;
+    height: 14px;
 }
 
-.conteudo-btn-post{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    align-self: center;
-    margin-top: 0.6rem;
-    column-gap: 0.8rem;
-}
+/* ------ botao add -------*/
 
-.btn-publicacao svg{
-    min-width: 22px;
-    max-width: 22px;
-    margin-right: 1rem;
-    align-self: center;
+input#arquivo, input#imagem{
+    display: none;
 }
 
 input[type="submit"] {
     background: var(--azul-claro);
     color: white;
     border-style: none;
-    width: 5rem;
+    width: 7rem;
     border-radius:5px;
 }
 
-.btn-publicacao svg path{
-    fill: var(--azul-claro) !important;
-}
-
-.btn-publicacao p{
-    color: var(--azul-escuro);
-    font-size: var(--menor);
-}
-
-.titulo-btn-publicacao{
+input[type="submit"], input[type="reset"] {
     font-size: 0.8rem;
+    height: 1.5rem;
+    padding: 0 !important;
+}
+
+input.reset {
+    background-color: white;
+    border-style: none;
+    width: 4rem;
+}
+
+.aviso-tags{
+    color: var(--cinza-claro);
+    font-size: 0.8rem;
+    margin-bottom: 1.8rem;
 }
 
 
-.espacamento{
-    content: "";
-    min-width: 17px;
-}
+
+
+
 /*---tres pontos---*/
 .dropstart{
     align-self: center;
@@ -395,6 +385,24 @@ input[type="submit"] {
     font-size: 1.3rem;
     color: var(--azul-claro);
 }
+
+.btn-publicacao .btn, .btn-publicacao .btn:hover,.btn-publicacao .btn:visited,.btn-publicacao .btn:active{
+    background-color: rgba(255, 0, 0, 0);
+    border-style: none;
+    padding: 0.3;
+    padding-right: 0;
+    line-height: 0;
+    border-radius: 0;
+}
+
+.dropstart .dropdown-toggle::before {
+    display: none;
+}
+
+
+
+
+
 
 .btn-publicacao .btn, .btn-publicacao .btn:hover,.btn-publicacao .btn:visited,.btn-publicacao .btn:active{
     background-color: rgba(255, 0, 0, 0);
@@ -431,74 +439,39 @@ input[type="submit"] {
 .dropdown-menu .exclusao{
     color: var(--vermelho);
 }
-
-@media (max-width: 905px){
-    .data-post{
-        display: none;
-    }
-
-    main.container{
-        justify-content: left;
-    }
- }
-
- @media (max-width: 770px){
-    .organizacao-post{
-        display: none;
-    }
- }
-
-
-/*----------------moodal - coleções----------------*/
-.modal-dialog{
-    max-width: 300px;
-}
-
-.modal{
-    z-index: 100000;
-}
-.modal-body{
+/*----------------formulario----------------*/
+form{
     display: flex;
     flex-direction: column;
+    padding-bottom: 4rem;
+}
+
+.reset{
+    border-style: solid;
+}
+/* ------ botao add -------*/
+.botao-adicionar{
+    height: 2.4rem;
+    background-color: var(--cinza-claro2);
+    border-radius: 7px;
+    border-width: 2px;
+    border-color: var(--cinza);
+    border-style: dashed;
+    color: var(--cinza);
+    display: flex;
+    padding: 0 2.3rem 0 2rem;
+    height: 2.4rem;
     align-items: center;
-    justify-content: center;
-    padding-left: 2rem;
-    padding-right: 2rem;
-}
-.modal-body i{
-    font-size: 4rem;
-    color: var(--vermelho);
-    margin-bottom: 1rem;
-}
-.modal-body h4{
-    font-size: var(--geral);
-    font-weight: var(--semibold);
-    text-align: center;
-}
-.modal-body p{
-    font-size: var(--menor);
-    font-weight: var(--regular);
-    text-align: center;
-}
-.modal-header{
-    border-style: none;
+    margin-bottom: 2rem;
+    position: relative;
+    column-gap: 1rem;
+    transition: all 0.3s ease;
 }
 
-.modal-footer{
-    border-style: none;
+.botao-adicionar:hover{
+    color: var(--cinza);
+    letter-spacing: 0.5px;
 }
-
-.modal-footer .cancelar{
-    background-color: var(--cinza-claro);
-    border-style: none;
-}
-.modal-footer .excluir{
-    background-color: var(--azul-claro);
-    color: white;
-    border-style: none;
-}
-
-
 /*---------------- navbar ----------------*/
 nav{
     margin-bottom: auto;
@@ -528,7 +501,7 @@ nav{
 .conteudo-navbar form{
     height: 36px;
     max-width: 21rem;
-    width: 50%;
+    width: 100%;
 }
 
 .imagem-perfil-navbar{
@@ -579,23 +552,11 @@ nav .dropdown-menu{
 
 }
 
-.dropdown-item{
-    margin-top: 20px;
-    max-width: 16px;
-    margin-left: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .dropdown-menu .dropdown-item svg{
     width: 16px;
 }
 
-.pesquisa-bottom{
-    width: 50%;
-    margin-left: 53px;
-}
+
 
 
 

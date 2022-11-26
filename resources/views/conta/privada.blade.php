@@ -38,9 +38,9 @@
             <div class="buttons">
                 <a href="{{route('login.recuperarSenha', ['email' => $user->email])}}" class="button">Reconfigurar senha</a>
                 @if (!$user->organizacao_id)
-                    <a href="#" class="button">Criar Organização</a>
+                    <a href="{{route('perfil.organizacaos_form')}}" class="button">Criar Organização</a>
                 @endif
-                <a href="#" class="button">Excluir conta</a>
+                <!-- <a href="#" class="button">Excluir conta</a> -->
             </div>
             {{-- 
             <p class="titulo-email">E-mail</p>

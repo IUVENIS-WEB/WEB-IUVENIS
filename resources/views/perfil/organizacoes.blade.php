@@ -20,87 +20,48 @@
                 <div class="titulo-bottom">
                     <div class="titulo-bottom-conteudo">
                         <div class="titulo-links">
-                        <a href="{{route('perfil.organizacoes')}}" class="pagina-atual" >Todas as organizações</a>
-                        <a href="{{route('perfil.organizacaos_form')}}" >Criar organização</a>
+                        <a href="{{route('perfil.organizacoes')}}" class="pagina-atual" >Participantes </a>
+                        <a href="{{route('perfil.organizacao_informacoes')}}" >Informações</a>
                         </div>
                     </div>
 
                     <div class="line-horizontal-conteudo"></div>
                 </div>
+                
             </div>
+
+            <div class="pesquisa-bottom">
+            <form action="{{route('pefil.organizacao_adicionar')}}" method="POST" class="d-flex" role="search">
+            {{ csrf_field() }} <input class="form-control me-2" name="email" type="text" placeholder="Inserir usuário" aria-label="Search">
+                <input type="submit" value="Adicionar"> </input>
+
+                </form>
+                </div>
+                <br>
+
             <div class="lista-posts">
-                <a href="{{route('perfil.organizacaos_form')}}" class="publicar-novo">  
-                    <img src="assets/adicionar-icon.svg" alt="">
-                    <div>Criar nova organização</div>
-                </a>
-                @if(isset($user))
-                    @forelse($organizacoes as $organizacao)
-                    <div class="btn-publicacao">
-                        <svg width="33" height="25" viewBox="0 0 33 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9.4875 3.64062C9.4875 5.27012 8.19328 6.59375 6.6 6.59375C5.00672 6.59375 3.7125 5.27012 3.7125 3.64062C3.7125 2.01113 5.00672 0.6875 6.6 0.6875C8.19328 0.6875 9.4875 2.01113 9.4875 3.64062ZM3.3 11.9568C2.78437 12.5475 2.475 13.3332 2.475 14.1875C2.475 15.0418 2.78437 15.8275 3.3 16.4182V11.9568ZM10.7456 9.35703C9.21422 10.7439 8.25 12.7742 8.25 15.0312C8.25 16.84 8.86875 18.5012 9.9 19.8037V20.9375C9.9 21.8709 9.16266 22.625 8.25 22.625H4.95C4.03734 22.625 3.3 21.8709 3.3 20.9375V19.5242C1.35094 18.575 0 16.5447 0 14.1875C0 10.9232 2.58328 8.28125 5.775 8.28125H7.425C8.6625 8.28125 9.80719 8.67676 10.7456 9.35176V9.35703ZM23.1 20.9375V19.8037C24.1312 18.5012 24.75 16.84 24.75 15.0312C24.75 12.7742 23.7858 10.7439 22.2544 9.35176C23.1928 8.67676 24.3375 8.28125 25.575 8.28125H27.225C30.4167 8.28125 33 10.9232 33 14.1875C33 16.5447 31.6491 18.575 29.7 19.5242V20.9375C29.7 21.8709 28.9627 22.625 28.05 22.625H24.75C23.8373 22.625 23.1 21.8709 23.1 20.9375ZM29.2875 3.64062C29.2875 5.27012 27.9933 6.59375 26.4 6.59375C24.8067 6.59375 23.5125 5.27012 23.5125 3.64062C23.5125 2.01113 24.8067 0.6875 26.4 0.6875C27.9933 0.6875 29.2875 2.01113 29.2875 3.64062ZM29.7 11.9568V16.4234C30.2156 15.8275 30.525 15.0471 30.525 14.1928C30.525 13.3385 30.2156 12.5527 29.7 11.9621V11.9568ZM16.5 7.4375C14.6798 7.4375 13.2 5.92402 13.2 4.0625C13.2 2.20098 14.6798 0.6875 16.5 0.6875C18.3202 0.6875 19.8 2.20098 19.8 4.0625C19.8 5.92402 18.3202 7.4375 16.5 7.4375ZM12.375 15.0312C12.375 15.8855 12.6844 16.666 13.2 17.2619V12.8006C12.6844 13.3965 12.375 14.177 12.375 15.0312ZM19.8 12.8006V17.2672C20.3156 16.6713 20.625 15.8908 20.625 15.0365C20.625 14.1822 20.3156 13.3965 19.8 12.8059V12.8006ZM23.1 15.0312C23.1 17.3885 21.7491 19.4188 19.8 20.368V22.625C19.8 23.5584 19.0627 24.3125 18.15 24.3125H14.85C13.9373 24.3125 13.2 23.5584 13.2 22.625V20.368C11.2509 19.4188 9.9 17.3885 9.9 15.0312C9.9 11.767 12.4833 9.125 15.675 9.125H17.325C20.5167 9.125 23.1 11.767 23.1 15.0312Z" fill="#5E6368"/>
-                        </svg>
-                        <a class="conteudo-btn-post">
-                            <div class="titulo-post">
-                                <div class="titulo-btn-publicacao">Nome</div>
-                                <p>{{$organizacao->nome}}</p>
-                            </div>
-                         </a>
-                            <div class="organizacao-post participante">
-                                <div class="titulo-btn-publicacao">Situação</div>
-                                @if($user->organizacao_id == $organizacao->id)
-                                <p>Participante</p>
-                                @endif
-                                @if(($user->organizacao_id != $organizacao->id) && ($user->id != $organizacao->user_id))
-                                <p>Leitor</p>
-                                @endif
-                                @if($user->id == $organizacao->user_id)
-                                <p>Líder</p>
-                                @endif
-                            </div>
-                        @if($user->id == $organizacao->user_id)
-                        <div class="dropstart">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCenterBtn" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bookmark">
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                </i>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownCenterBtn">
-                                <li><button type="button" class="dropdown-item exclusao" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-trash-can"></i> excluir</button></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-pen-clip"></i> editar</a></li>     
-                            </ul>
+            @forelse($organizacoes as $organizacao)
+            <div class="btn-publicacao">
+                    <svg width="21" height="24" viewBox="0 0 21 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 16.6201C5.96896 12.9928 14.0452 12.9744 20.5035 16.8515C18.8042 20.8041 14.8753 23.572 10.2999 23.572C5.63581 23.572 1.6435 20.6957 0 16.6201Z" fill="#2D88ED"/>
+                        <circle cx="10.5152" cy="5.80404" r="5.23202" fill="#2D88ED"/>
+                    </svg>
+                    <a class="conteudo-btn-post">
+                        <div class="titulo-post">
+                            <div class="titulo-btn-publicacao">Nome</div>
+                            <p>{{$organizacao->nome}}</p>
                         </div>
-                        <div class="modal" tabindex="-1" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-            <h4>Tem certeza que deseja excluir a publicação?</h4>
-            <p>Essa ação é irreversível</p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn cancelar" data-bs-dismiss="modal" aria-label="Close">cancelar</button>
-            <button type="button" class="btn excluir">Excluir</button>
-        </div>
-      </div>
-    </div>
-    </div>
-                        @else
-                        <div class="dropstart">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCenterBtn" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bookmark">
-                                    <p>   </p>
-                                </i>
-                            </button>
-                        </div>
-                        @endif
-                     </div>
-                    @empty
-                        <h6>Infelizmente não conseguimos encontrar essa informação para você neste momento ;(</h6>
-                    @endforelse 
-                @endif             
+                    </a>
+                    @if($organizacao->id==Auth::user()->id)
+                    @else
+                <a href="/organizacao_user/{{$organizacao->id}}">   <i class="fa-solid fa-xmark dropdown-item x " data-bs-toggle="modal" data-bs-target="#exampleModal"></i>  </a>
+                    @endif
+   
+            </div>  
+            @empty
+            <p>Nenhum usuário participando!! </p>
+            @endforelse
+                     
             </div>
         </div>
     </main>
