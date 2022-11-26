@@ -33,7 +33,7 @@ Route::get('/texto/{filtro}', ['as' => 'iuvenis.texto', 'uses' => 'IuvenisContro
 Route::get('/video', ['as' => 'iuvenis.video', 'uses' => 'IuvenisController@video']);
 Route::get('/organizacoes', ['as' => 'iuvenis.organizacoes', 'uses' => 'IuvenisController@organizacoes']);
 Route::get('/pesquisar/{busca}', ['as' => 'iuvenis.pesquisar', 'uses' => 'IuvenisController@pesquisar']);
-
+Route::post('/navbar_pesquisa',['as'=>'iuvenis.pesquisa','uses'=>'IuvenisController@navbar_pesquisa']);
 //LOGIN
 Route::get('/login', ['as' => 'login.index', 'uses' => 'LoginController@index']);
 Route::get('/cadastro', ['as' => 'login.cadastro', 'uses' => 'LoginController@cadastro']);

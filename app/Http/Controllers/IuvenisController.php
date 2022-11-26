@@ -87,7 +87,11 @@ class IuvenisController extends Controller
             return redirect('/login');
         }
     }
-    public function sobre(IEscritorRepository $escritorRepository)
+    public function navbar_pesquisa(Request $req,IPostRepository $postRepository){
+        $posts = $postRepository->getPostsByName($req->pesquisa);
+        $recentEvent = $postRepository->mostRecentEvent();
+        return view('pesquisa.index', [ 'posts' => $posts]);
+    }    public function sobre(IEscritorRepository $escritorRepository)
     {
         $escritores = $escritorRepository->getEscritores([], 4);
         return view('iuvenis.sobre', ['escritores'=>$escritores]);
