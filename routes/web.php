@@ -46,6 +46,8 @@ Route::get('/redefinirSenha/{email}/{token}', ['as' => 'login.redefinirSenha', '
 Route::put('/definirNovaSenha', ['as' => 'login.definirNovaSenha', 'uses' => 'LoginController@definirNovaSenha']);
 Route::post('/attempt', ['as' => 'login.attempt', 'uses' => 'LoginController@attempt']);
 Route::post('/cadastrar', ['as' => 'login.cadastrar', 'uses' => 'LoginController@cadastrar']);
+Route::get('Token/token', 'LoginController@Mensagem_expirada');
+
 
 //DESCOBERTA DE CONTEÚDO
 Route::get('/explorar', ['as' => 'explorar.index', 'uses' => 'ExplorarController@index']);

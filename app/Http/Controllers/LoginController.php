@@ -7,12 +7,14 @@ use App\Mail\MailController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Contracts\IPostRepository;
 use App\User;
 use Exception;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use App\classes\responseMessage;
 
 class LoginController extends Controller
 {
@@ -148,7 +150,7 @@ class LoginController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator->errors());
         }
-       // dd($req);
+
         //Criação do usuário
         try{
             $user = User::create([
@@ -164,5 +166,24 @@ class LoginController extends Controller
             redirect()->back();
         }
         return redirect('/');
+    }
+
+    public function Logar($user, $senha, IPostRepository $repositorio)
+    {
+        return response()->json($repositorio->logado($user, $senha));
+    }
+
+    public function Conferir_token($token)
+    {
+        $mensagem = new responseMessage;
+        $mensagem->message(true, null, null);
+        return response()->json($mensagem);
+    }
+
+    public function Mensagem_expirada()
+    {
+        $mensagem = new responseMessage;
+        $mensagem->message(false, 'Data de expiracao', null);
+        return response()->json($mensagem);
     }
 }

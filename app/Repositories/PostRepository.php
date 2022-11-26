@@ -6,10 +6,15 @@ use App\Colecao;
 use App\Contracts\IPostRepository;
 use App\Post;
 use App\PostViews;
+use App\classes\responsemessage;
 use Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use stdClass;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
+use App\Repositories\ApiTokens;
+
 
 class PostRepository extends Repository implements IPostRepository
 {
@@ -250,5 +255,81 @@ class PostRepository extends Repository implements IPostRepository
                 ->select(DB::raw('posts.*, tags.nome as tag'))
                 ->distinct()
                 ->get();
+        }
+
+        public function logado($user, $senha)
+        {
+               
+                $logar = DB::table('users')
+                           ->where([
+                                       ['email', '=', $user]
+                           ])
+                           ->select([
+                                   'id',
+                                   'email',
+                                   'password'
+                           ])
+                           ->first();
+                if($logar ==null)
+                {
+                       $mensagem = new responseMessage;
+                       $mensagem->message(false, 'email', null);
+                       return $mensagem;
+                }
+                $codsenha = Hash::check($senha, $logar->password);
+                if($codsenha == false)
+                {
+                        $mensagem = new responseMessage;
+                        $mensagem->message(false, 'senha', null);
+                       return $mensagem;
+
+                }
+
+                $data = Carbon::now();
+                $dataExpiracao = Carbon::now()->addDay(30);
+                
+                $token_gerado = str_random(60);
+                
+                $token = DB::table('api_tokens')
+                            ->where([
+                                    ['user_id', '=', $logar->id]
+                            ])
+                            ->select([
+                                    'token',
+                                    'id'
+                            ])
+                            ->first();
+
+                if($token != null)
+                {
+                        DB::table('api_tokens')
+                            ->where([
+                                    ['user_id', '=', $logar->id]
+                            ])
+                            ->delete();
+                }
+  
+                DB::table('api_tokens')
+                        ->insert([
+                        'created_at' => $data,
+                        'updated_at' => $data,
+                        'user_id' => $logar->id,
+                        'token' => $token_gerado,
+                        'data_expiracao' => $dataExpiracao
+                        
+                ]);
+
+                $token = DB::table('api_tokens')
+                            ->where([
+                                    ['user_id', '=', $logar->id]
+                            ])
+                            ->select([
+                                    'token'
+                            ])
+                            ->first();
+                
+                $mensagem = new responseMessage;
+                $mensagem->message(true, null, $token->token);
+                return $mensagem;  
         }
 }

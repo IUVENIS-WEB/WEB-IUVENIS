@@ -1,5 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use app\Http\Middleware;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +27,12 @@ Route::group(['prefix' => 'posts'], function (){
     Route::get('colecoes/usuario/{id}', 'PostController@getColecoesByIdUser');
 });
 
+Route::get('/logar/{user?}/{senha?}', 'LoginController@Logar');
+
+    
+    Route::get('/Token/{token?}', 'LoginController@Conferir_token')->middleware('Api_token');
+    
+
 
 Route::group(['prefix' => 'login'], function(){
     Route::post('/register', 'LoginController@register');
@@ -36,3 +44,4 @@ Route::group(['prefix' => 'users'], function(){
     Route::get('{id}', 'UserController@getUserById');
     Route::post('/recuperarSenha','USerController@emailRecuperarSenha');
 });
+
