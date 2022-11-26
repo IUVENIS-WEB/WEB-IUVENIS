@@ -214,7 +214,7 @@ class AdminController extends Controller
         ];
         $organizacao = new \App\Organizacao();
         if ($editing) {
-            $organizacao = \App\Organiacao::find($fields['id']);
+            $organizacao = \App\Organizacao::find($fields['id']);
         } 
         $messages = [
             'link.required' => 'O campo \'Link\' é obrigatório.',
@@ -263,10 +263,14 @@ class AdminController extends Controller
         return view('admin.avaliar',['tipo'=>'organizacao','organizacao'=>$organizacao]);
     }
     public function delete($id){
-        Organizacao::find($id)->delete();
+       DB::update('update users set organizacao_id = null where organizacao_id = ?', [$id]);
+       Organizacao::find($id)->delete();
         return back();
     }
     public function salvar($id){
-
+        $org = \App\Organizacao::find($id);
+        $org->publicado = true;
+        $org->save();
+        return redirect('/adm/autorizar_organizacao');
     }
 }

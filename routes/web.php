@@ -126,7 +126,7 @@ Route::group(['middleware' => ['administrador']], function () {
     Route::post('/adm/tag/submit', ['as' => 'adm.submit_tag', 'uses' => 'AdminController@submit_tag']);
     Route::post('/adm/tag/deletar/', ['as' => 'adm.deletar_tag', 'uses' => 'AdminController@deletar_tag']);
     Route::get('/adm/autorizar_organizacao', ['as' => 'adm.organizacao_autorizar', 'uses' => 'AdminController@organizacao_autorizar']);
-    Route::get('/adm/analizar/{id}',['as'=>'admin.analizar', 'uses' => 'AdminController@analizar']);
+    Route::get('/adm/analisar/{id}',['as'=>'admin.analizar', 'uses' => 'AdminController@analizar']);
     Route::get('/adm/delete/{id}',['as'=>'admin.delete', 'uses' => 'AdminController@delete']);
     Route::get('/adm/salvar/{id}',['as'=>'admin.salvar', 'uses' => 'AdminController@salvar']);
 

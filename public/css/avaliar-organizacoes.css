@@ -309,7 +309,7 @@ a{
 }
 
 .titulo-denuncia{
-    overflow:scroll;
+    /* overflow:scroll; */
     white-space: nowrap; 
 }
 

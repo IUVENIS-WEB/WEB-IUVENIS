@@ -12,7 +12,7 @@
         ];
     }
     else if(isset($user->adm_power)){
-    $tipo_usuario= $tipo_usuario= [
+    $tipo_usuario= [
             'tipo' => 'organizacoes',
             'route' => route('adm.organizacao_autorizar'),
             'icon' => asset('assets/organizacoes-icon.svg'),
@@ -21,7 +21,7 @@
         ];      
     }
     else{
-        $tipo_usuario= $tipo_usuario= [
+        $tipo_usuario= [
             'tipo' => 'organizacoes',
             'route' => route('perfil.organizacoes'),
             'icon' => asset('assets/organizacoes-icon.svg'),
@@ -81,17 +81,19 @@
 <div class="sidebar">
     <div class="conteudo-sidebar">
         <div class="perfil">
-            <div class="imagem-perfil"><img src=" {{ Storage::url(Auth::user()->foto) }}" alt="foto de perfil">
+            {{-- <div class="imagem-perfil">@include('layouts._foto_perfil', ['user' => Auth::user()])</div> --}}
+            <div class="imagem-perfil">@include('layouts._foto_perfil', ['user' => Auth::user()])
             </div>
             <h3>{{ Auth::user()->nome }}</h3>
         </div>
+        <br>
         <div class="botoes">
             @foreach ($items as $item)
                 @php
                     $matchTipo = $item['tipo'] == $tipo;
                     $hasCondition = isset($item['condition']);
                     $condition = true;
-                    if ($hasCondition) {
+                    if ($hasCondition && is_array($item['condition'])) {
                         $conditionRules = $item['condition'];
                         switch ($conditionRules[1]) {
                             case '=':

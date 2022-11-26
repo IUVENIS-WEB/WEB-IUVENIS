@@ -28,7 +28,7 @@
             @forelse($organizacoes as $organizacao)
             <div class="lista-posts">
                 <div class="btn-publicacao">
-                    <a class="conteudo-btn-post" href="/adm/analizar/{{$organizacao->id}}">
+                    <a class="conteudo-btn-post" href="/adm/analisar/{{$organizacao->id}}">
                         <div class="titulo-post">
                             <div class="titulo-btn-publicacao publicacao-titulo">Nome</div>
                             <div class="titulo-denuncia">{{$organizacao->nome}}</div>
