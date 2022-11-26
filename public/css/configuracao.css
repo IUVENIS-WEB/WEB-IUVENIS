@@ -129,6 +129,7 @@ a{
 }
 
 .titulo-top{
+    margin-top: -70px;
     display: flex;
     column-gap: 1rem;
 }
@@ -348,6 +349,7 @@ input,  #resumo{
 }
 
 .reset{
+    margin-right: 5px;
     border-style: solid;
 }
 
@@ -442,6 +444,7 @@ input#arquivo, input#imagem{
 }
 
 input[type="submit"] {
+    margin-right: 50px;
     background: var(--azul-claro);
     color: white;
     border-style: none;
