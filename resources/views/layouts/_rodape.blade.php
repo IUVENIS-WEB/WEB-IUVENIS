@@ -12,7 +12,9 @@
             <h2>Saiba Mais</h2>
             <ul>
                 <li><a href="{{ url('/sobre') }}">Sobre</a></li>
-                
+                <li><a href="{{ url('/escritor') }}">Escritores</a></li>
+                <li><a href="{{ url('/organizacao') }}">Organizações</a></li>
+                <li><a href=" {{ route('perfil.organizacoes')}} ">Organizações</a></li>
             </ul>
         </div>
         <div class="box1">  <!--2-->

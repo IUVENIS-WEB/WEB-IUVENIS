@@ -36,7 +36,7 @@
                 <div class="imagens">
                     <img src="{{ URL::asset('images/assets/gesteld.png') }}"alt="logo gesteld" id="gesteld">
                     <img src="{{ URL::asset('images/assets/educacross.png') }}" alt=" logo educacross" id="educacross">
-                    <a href="{{ route('iuvenis.organizacoes') }}">
+                    <a href="{{ route('perfil.organizacoes') }}">
                         <div class="plus"><img src="{{ URL::asset('images/assets/plus.png') }}"></div>
                     </a>
                 </div>

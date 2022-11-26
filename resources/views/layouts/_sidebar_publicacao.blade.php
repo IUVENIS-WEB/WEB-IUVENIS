@@ -1,5 +1,34 @@
 @php
     $user = Auth::user();
+    $tipo_usuario; 
+    if(isset($user->organizacao_id) && is_null($user->adm_power))
+    {
+        $tipo_usuario= [
+            'tipo' => 'organizacoes',
+            'route' => route('perfil.organizacoes'),
+            'icon' => asset('assets/organizacoes-icon.svg'),
+            'text' => 'Organizações',
+            'condition' => ['organizacao_id', '!=', null],
+        ];
+    }
+    else if(isset($user->adm_power)){
+    $tipo_usuario= [
+            'tipo' => 'organizacoes',
+            'route' => route('adm.organizacao_autorizar'),
+            'icon' => asset('assets/organizacoes-icon.svg'),
+            'text' => 'Organizações',
+            'condition' => ['adm_power', '!=', null],
+        ];      
+    }
+    else{
+        $tipo_usuario= [
+            'tipo' => 'organizacoes',
+            'route' => route('perfil.organizacoes'),
+            'icon' => asset('assets/organizacoes-icon.svg'),
+            'text' => 'Organizações',
+            'condition' => [$user, '!=', null],
+        ];
+    } 
     //Todos os itens da sidebar estão dispostos aqui para melhor organização
     $items = [
         [
@@ -35,7 +64,7 @@
             'route' => route('conta.index'),
             'icon' => asset('assets/config_icon.svg'),
             'text' => 'Conta',
-            'condition' => ['organizacao_id', '!=', null],
+            'condition' => isset($user),
         ],
         [
             'tipo' => 'denuncia',
@@ -44,23 +73,27 @@
             'text' => 'Denúncias',
             'condition' => ['adm_power', '=', true],
         ],
+
+       $tipo_usuario
     ];
     $matchTipo = false;
 @endphp
 <div class="sidebar">
     <div class="conteudo-sidebar">
         <div class="perfil">
-            <div class="imagem-perfil"><img src=" {{ Storage::url(Auth::user()->foto) }}" alt="foto de perfil">
+            {{-- <div class="imagem-perfil">@include('layouts._foto_perfil', ['user' => Auth::user()])</div> --}}
+            <div class="imagem-perfil">@include('layouts._foto_perfil', ['user' => Auth::user()])
             </div>
             <h3>{{ Auth::user()->nome }}</h3>
         </div>
+        <br>
         <div class="botoes">
             @foreach ($items as $item)
                 @php
                     $matchTipo = $item['tipo'] == $tipo;
                     $hasCondition = isset($item['condition']);
                     $condition = true;
-                    if ($hasCondition) {
+                    if ($hasCondition && is_array($item['condition'])) {
                         $conditionRules = $item['condition'];
                         switch ($conditionRules[1]) {
                             case '=':

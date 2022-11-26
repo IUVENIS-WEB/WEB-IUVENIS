@@ -115,9 +115,16 @@ Route::group(['middleware' => ['logado']], function () {
     //CONFIGURAÇÕES DO PERFIL
     Route::get('/conta/publica', ['as' => 'conta.index', 'uses' => 'UserController@index']);
     Route::post('/conta/publica/edit', ['as' => 'conta.edit', 'uses' => 'UserController@edit']);
-    
     Route::get('/conta/privada', ['as' => 'conta.privada', 'uses' => 'UserController@conta_privada']);
+    Route::get('/organizacao_informacoes', ['as' => 'perfil.organizacao_informacoes', 'uses' => 'AdminController@organizacao_informacoes']);
+    Route::post('/organizacao_update', ['as' => 'perfil.organizacao_update', 'uses' => 'AdminController@organizacao_update']);
+
+    Route::post('/organizacao_adicionar', ['as' => 'pefil.organizacao_adicionar', 'uses' => 'AdminController@organizacao_adicionar']);
     Route::post('/conta/privada/edit', ['as' => 'conta.privada_edit', 'uses' => 'UserController@privada_edit']);
+    Route::get('/organizacao_user/{id}', ['as' => 'organizacao_user', 'uses' => 'AdminController@organizacao_user']);
+    Route::get('/organizacoes', ['as' => 'perfil.organizacoes', 'uses' => 'AdminController@organizacoes']);
+    Route::get('/form_organizacaos', ['as' => 'perfil.organizacaos_form', 'uses' => 'AdminController@organizacoes_form']);
+    Route::post('/organizacao/submit', ['as'=> 'perfil.organizacoes_submit', 'uses'=> 'AdminController@organizacoes_submit']);
 });
 
 // USUARIO É ADMINISTRADOR DO SITE
@@ -127,6 +134,10 @@ Route::group(['middleware' => ['administrador']], function () {
     Route::get('/adm/tag/{id?}', ['as' => 'adm.publicacao_tag', 'uses' => 'AdminController@publicacao_tag']);
     Route::post('/adm/tag/submit', ['as' => 'adm.submit_tag', 'uses' => 'AdminController@submit_tag']);
     Route::post('/adm/tag/deletar/', ['as' => 'adm.deletar_tag', 'uses' => 'AdminController@deletar_tag']);
+    Route::get('/adm/autorizar_organizacao', ['as' => 'adm.organizacao_autorizar', 'uses' => 'AdminController@organizacao_autorizar']);
+    Route::get('/adm/analisar/{id}',['as'=>'admin.analizar', 'uses' => 'AdminController@analizar']);
+    Route::get('/adm/delete/{id}',['as'=>'admin.delete', 'uses' => 'AdminController@delete']);
+    Route::get('/adm/salvar/{id}',['as'=>'admin.salvar', 'uses' => 'AdminController@salvar']);
 
     Route::get('/denuncias', ['as' => 'adm.denuncias', 'uses' => 'AdminController@denuncias']);
     Route::get('/denuncias/{post}/excluir', ['as' => 'adm.excluir_post', 'uses' => 'AdminController@excluir_post']);
