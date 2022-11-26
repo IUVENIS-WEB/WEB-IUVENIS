@@ -19,24 +19,12 @@
                     <a class="nav-link active" aria-current="page" href="{{ route('explorar.index') }}">Explorar</a>
                 </li>
                 <li class="nav-item dropdown texto">
-                    <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Texto
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ url('/artigo') }}">Artigos</a></li>
-                        <li><a class="dropdown-item" href="{{ url('/texto/Editoriais') }}">Editoriais</a></li>
-                    </ul>
+                <a class="nav-link active" aria-current="page" href="{{ route('artigo.index') }}">Artigos</a>
                 </li>
                 <li class="nav-item dropdown videos">
-                    <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Vídeos
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{ url('/video') }}">Vídeos</a></li>
-                        <li><a class="dropdown-item" href="{{ url('/video/webserie') }}">Webséries</a></li>
-                    </ul>
+                <a class="nav-link active" aria-current="page" href="{{ route('video.index') }}">Videos</a>
+
+                    
                 </li>
                 <li class="nav-item eventos">
                     <a class="nav-link active" aria-current="page" href="{{ route('eventos.index') }}">Eventos</a>

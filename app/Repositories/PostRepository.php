@@ -44,10 +44,47 @@ class PostRepository extends Repository implements IPostRepository
 
         function getMostViewedEscritor($take = 10)
         {
-                return \App\Post::withCount('views')
+                $escritores = \App\Post::withCount('views')
+                ->join('users', 'users.id', '=', 'posts.autor_id')               
+                ->where('users.organizacao_id', '!=', null)
                 ->orderBy('views_count', 'desc')
-                ->take($take)
+                ->take(10)
                 ->get();
+
+                $escritores->toArray();
+
+                $comparador1 =$escritores;
+                $comparador2 = $escritores;
+                $i=0;$j=0;
+                $ta=count($comparador1);
+                $manho=count($comparador2);
+                while($i < $ta)
+                {
+                        $j=0;
+                        if(isset($comparador1[$i]))
+                        {
+                                while($j < $manho)
+                                {
+                                        if(isset($comparador2[$j]))
+                                        {
+                                                if(($comparador1[$i]['titulo'] != $comparador2[$j]['titulo']) && ($comparador1[$i]['autor_id'] == $comparador2[$j]['autor_id']))
+                                                {
+                                                        foreach($comparador1 as $comp)
+                                                        {
+                                                                if($comp == $comparador2[$j])
+                                                                {
+                                                                        unset($comp);
+                                                                }
+                                                        }
+                                                        unset($comparador2[$j]);
+                                                }  
+                                        }
+                                        $j++;
+                                }
+                        }
+                        $i++;
+                }
+        return $comparador1;
         }
 
         function getLastSavedPosts($userId, $take = 4)
